@@ -71,3 +71,31 @@
             filter: hue-rotate(360deg);
         }
 }
+
+/* Rainbow Background */
+
+#main {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: linear-gradient(130deg,
+        #FFFFFF 0%,
+        #FFFFFF 25%,
+        #E40303 25%,
+        #E40303 32%,
+        #FF8C00 32%,
+        #FF8C00 39%,
+        #FFED00 39%,
+        #FFED00 46%,
+        #008026 46%,
+        #008026 53%,
+        #24408E 53%,
+        #24408E 60%,
+        #732982 60%,
+        #732982 67%,
+        #FFFFFF 67%,
+        #FFF
+    ) center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
