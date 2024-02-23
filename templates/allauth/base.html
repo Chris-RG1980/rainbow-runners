@@ -10,7 +10,11 @@
     {% endblock %}
 
     {% block corecss %}
+        <!--CDN for website heading -->
+        <link href="https://fonts.cdnfonts.com/css/masque" rel="stylesheet">
+        <!--Bootstrap 5.3.3 CDN-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Static CSS File-->
         <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
     {% endblock %}
 
@@ -29,25 +33,52 @@
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg  bg-body-tertiary" data-bs-theme="dark"  >
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">
+                    <div class="text-wrapper">
+                        <div class="text-body">
+                            <div class="text-item">R</div>
+                            <div class="text-item">A</div>
+                            <div class="text-item">I</div>
+                            <div class="text-item">N</div>
+                            <div class="text-item">B</div>
+                            <div class="text-item">O</div>
+                            <div class="text-item">W</div>
+                        </div>
+                        <div class="text-body">
+                            <div class="text-item">R</div>
+                            <div class="text-item">U</div>
+                            <div class="text-item">N</div>
+                            <div class="text-item">N</div>
+                            <div class="text-item">E</div>
+                            <div class="text-item">R</div>
+                            <div class="text-item">S</div>
+                        </div>
+                    </div>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="#">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
+                            <a class="nav-link" href="#">Testimonials</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            <a class="nav-link"  href="#">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Register</a>
                         </li>
                     </ul>
                 </div>
