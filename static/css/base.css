@@ -1,0 +1,73 @@
+/* Navbar Logo Text */
+/* CREDIT:- Fd Web design https://www.youtube.com/watch?v=6yIW_Fz-4KE */
+
+.text-wrapper::before {
+    background: linear-gradient(to right, rgb(237, 34, 36), rgb(243, 91, 34), rgb(249, 150, 33), rgb(245, 193, 30), rgb(241, 235, 27) 27%, rgb(241, 235, 27), rgb(241, 235, 27) 33%, rgb(99, 199, 32), rgb(12, 155, 73), rgb(33, 135, 141), rgb(57, 84, 165), rgb(97, 55, 155), rgb(147, 40, 142));
+    opacity: 0.5;
+}
+
+.text-body {
+    display: flex;
+}
+
+.text-item {
+    text-shadow: 0 0 15px #ffff00, 0 0 25px #ffff00;
+    animation: glow 1.5s linear infinite;
+    font-family: 'Masque', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.text-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.text-item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.text-item:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.text-item:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.text-item:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.text-item:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.text-item:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.text-item:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+.text-item:nth-child(10) {
+    animation-delay: 0.9s;
+}
+
+.text-item:nth-child(11) {
+    animation-delay: 0.10s;
+}
+
+.text-item:nth-child(12) {
+    animation-delay: 0.11s;
+}
+
+.text-item:nth-child(13) {
+    animation-delay: 0.12s;
+}
+
+@keyframes glow {
+        100% {
+            filter: hue-rotate(360deg);
+        }
+}
