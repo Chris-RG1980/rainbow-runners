@@ -1,3 +1,53 @@
+:root {
+    --red: #E40303;
+    --orange: #FF8C00;
+    --yellow: #FFED00;
+    --green: #008026;
+    --light-blue: #5BCEFA;
+    --blue: #24408E;
+    --purple: #732982;
+    --white: #FFFFFF;
+    --black: #000000;
+}
+
+/* Colours */
+.red {
+    color: var(--red);
+}
+
+.orange {
+    color: var(--orange);
+}
+
+.yellow {
+    color: var(--yellow);
+}
+
+.green {
+    color: var(--green);
+}
+
+.light-blue {
+    color: var(--light-blue);
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.purple {
+    color: var(--purple);
+}
+
+.white {
+    color: var(--white);
+}
+
+.black {
+    color: var(--black);
+}
+
+/* base.html */
 html, body {
     height: 100vh;
 }
@@ -9,6 +59,13 @@ html, body {
 /* Navbar Logo Text */
 /* CREDIT:- Fd Web design https://www.youtube.com/watch?v=6yIW_Fz-4KE */
 
+
+.text-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
 .text-wrapper::before {
     background: linear-gradient(to right, rgb(237, 34, 36), rgb(243, 91, 34), rgb(249, 150, 33), rgb(245, 193, 30), rgb(241, 235, 27) 27%, rgb(241, 235, 27), rgb(241, 235, 27) 33%, rgb(99, 199, 32), rgb(12, 155, 73), rgb(33, 135, 141), rgb(57, 84, 165), rgb(97, 55, 155), rgb(147, 40, 142));
     opacity: 0.5;
@@ -16,6 +73,10 @@ html, body {
 
 .text-body {
     display: flex;
+}
+
+.word-space {
+    margin-right: 10px;
 }
 
 .text-item {
@@ -85,22 +146,24 @@ html, body {
 #main {
     position: relative;
     background: linear-gradient(130deg,
-        #FFFFFF 0%,
-        #FFFFFF 25%,
-        #E40303 25%,
-        #E40303 32%,
-        #FF8C00 32%,
-        #FF8C00 39%,
-        #FFED00 39%,
-        #FFED00 46%,
-        #008026 46%,
-        #008026 53%,
-        #24408E 53%,
-        #24408E 60%,
-        #732982 60%,
-        #732982 67%,
-        #FFFFFF 67%,
-        #FFF
+        var(--white) 0%,
+        var(--white) 25%,
+        var(--red) 25%,
+        var(--red) 32%,
+        var(--orange) 32%,
+        var(--orange) 39%,
+        var(--yellow) 39%,
+        var(--yellow) 46%,
+        var(--green) 46%,
+        var(--green) 53%,
+        var(--light-blue) 53%,
+        var(--light-blue) 60%,
+        var(--blue) 60%,
+        var(--blue) 67%,
+        var(--purple) 67%,
+        var(--purple) 74%,
+        var(--white) 74%,
+        var(--white)
     ) center center;
     background-size: cover;
     background-attachment: fixed;
@@ -119,4 +182,19 @@ footer, ul {
 .icon-size {
     width: 30px;
     height: 30px;
+}
+
+/* index.html */
+
+.hero-banner {
+    background: url('/media/hero-image.webp') center no-repeat;
+    width: 100%;
+    height: 300px;
+}
+
+.hero-title {
+    font-family: 'Masque', sans-serif;
+    font-weight: 400;
+    font-size: 4rem;
+    text-shadow: 6px 4px 0 var(--black);
 }
