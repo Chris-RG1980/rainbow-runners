@@ -4,6 +4,7 @@
         "corecss",
         "corejs",
         "postloadjs",
-        "socialaccount"
+        "socialaccount",
+        "Strava"
     ]
 }
