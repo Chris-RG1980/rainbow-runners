@@ -1,3 +1,11 @@
+html, body {
+    height: 100vh;
+}
+
+#main > .container {
+    background: rgba(255,255,255, 0.9);
+}
+
 /* Navbar Logo Text */
 /* CREDIT:- Fd Web design https://www.youtube.com/watch?v=6yIW_Fz-4KE */
 
@@ -75,8 +83,6 @@
 /* Rainbow Background */
 
 #main {
-    width: 100%;
-    min-height: 100vh;
     position: relative;
     background: linear-gradient(130deg,
         #FFFFFF 0%,
@@ -99,3 +105,10 @@
     background-size: cover;
     background-attachment: fixed;
 }
+
+/* Footer */
+
+.social-media-icon {
+    text-decoration: none;
+}
+
