@@ -108,7 +108,15 @@ html, body {
 
 /* Footer */
 
+footer, ul {
+    padding-inline-start: 0;
+}
+
 .social-media-icon {
     text-decoration: none;
 }
 
+.icon-size {
+    width: 30px;
+    height: 30px;
+}
