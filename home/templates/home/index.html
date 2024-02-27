@@ -27,8 +27,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row mt-4">
-        <div class="col-6">
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-md-6 ">
             <p class="text-font">
                 Welcome to Rainbow Runners, a new and inclusive LGBTQ+ virtual running club where diversity meets passion for running. Founded in the heart of South Wales, our aim is to be a sanctuary for runners from all walks of life, celebrating the joy of running in a supportive and welcoming environment.
             </p>
@@ -36,9 +36,12 @@
                 At Rainbow Runners, we believe in the power of community and inclusivity. Our mission is to provide a safe space for LGBTQ+ individuals and allies to come together, share their love for running, and support each other in their fitness journeys. Whether you're a seasoned marathoner or just taking your first steps, you'll find a home with us.
             </p>
         </div>
+        <div class="col-md-6 text-center">
+            <img src="media/runner.webp" alt="A photo of a runner" class="image">
+        </div>
     </div>
-    <div class="row mt-4 d-flex justify-content-center ">
-        <div class="col-6">
+    <div class="row mt-5 d-flex justify-content-center ">
+        <div class="col-md-6">
             <h2 class="text-center sub-heading">Run With Us</h2>
             <p class="text-font">
                 Whether you're looking to improve your run, make friends, or simply find a place where you can be your authentic self, Rainbow Runners is here for you.
@@ -47,7 +50,30 @@
                 Explore our website to learn more about our events, access educational resources on LGBTQ+ issues in sports, and read testimonials from our members. If you're inspired by our cause and excited to lace up your running shoes, we warmly invite you to join us. Together, we run with pride.
             </p>
             <div class="text-center">
-                <a class="btn btn-info sub-heading" aria-label="Go to the registration page." href="#" role="button">Join Now</a>
+                <a class="btn bg-purple btn-success white sub-heading" aria-label="Go to the registration page." href="" role="button">Join Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-evenly mt-5">
+        <div class="card bg-pink mb-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column text-center">
+                <h5 class="sub-heading">About Us</h5>
+                <p class="text-font">Our "About Us" page is your window into the world of Rainbow Runners. Here, you'll learn about our mission to create a welcoming space where every member can thrive, our vision for a more inclusive future in sports, and the core values that guide us every step of the way. Click below to find out more.</p>
+                <a href="" class="mt-auto btn bg-purple btn-success white sub-heading" aria-label="Go to the about us page.">About Us</a>
+            </div>
+        </div>
+        <div class="card bg-yellow mb-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column text-center">
+                <h5 class="sub-heading">Testimonials</h5>
+                <p class="text-font">Read through our testimonials, you’ll see just how much running with us can impact your life, not just physically but in fostering a sense of belonging and pride. So, take a moment to explore these stories, they might just spark the motivation you need to join us on our next run!</p>
+                <a href="" class="mt-auto btn bg-purple btn-success white sub-heading" aria-label="Go to the testimonials page.">Testimonials</a>
+            </div>
+        </div>
+        <div class="card bg-green mb-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column text-center">
+                <h5 class="sub-heading">Contact Us</h5>
+                <p class="text-font">Got questions, ideas, or just want to say hello? We're all ears! Drop us a message by clicking the button below. Whether you're curious about joining, need more info on our events, or have something else on your mind, we're here to help. Don't be a stranger reach out today, and let's get the conversation running!</p>
+                <a href="" class="mt-auto btn bg-purple btn-success white sub-heading" aria-label="Go to the contact us page.">Contact Us</a>
             </div>
         </div>
     </div>
