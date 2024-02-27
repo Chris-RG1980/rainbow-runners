@@ -10,7 +10,7 @@
     --black: #000000;
 }
 
-/* Colours */
+/* Utilities */
 .red {
     color: var(--red);
 }
@@ -47,13 +47,22 @@
     color: var(--black);
 }
 
+.sub-heading {
+    font-family: Roboto Slab, sans-serif;
+}
+
+.text-font {
+    font-family: Open Sans, sans-serif;
+    font-weight: 600; 
+}
+
 /* base.html */
 html, body {
     height: 100vh;
 }
 
 #main > .container {
-    background: rgba(255,255,255, 0.9);
+    background: rgba(255,255,255, 0.7);
 }
 
 /* Navbar Logo Text */
@@ -140,6 +149,7 @@ html, body {
             filter: hue-rotate(360deg);
         }
 }
+/* End of Credit */
 
 /* Rainbow Background */
 
@@ -189,8 +199,9 @@ footer, ul {
 .hero-banner {
     background: url('/media/hero-image.webp') center no-repeat;
     width: 100%;
-    height: 300px;
+    min-height: 200px;
     filter: brightness(90%);
+    background-size: cover;
 }
 
 .hero-title {
