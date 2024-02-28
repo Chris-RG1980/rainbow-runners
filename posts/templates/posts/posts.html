@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
     <div class="row">
-        <div class="col">
+        <div class="col-6">
             {% for post in posts %}
-                <div>{{post.user}}</div>
-                <div>{{post.body}}</div>
-                <div>{{post.created}}</div>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <div>{{post.user}}</div>
+                        <div>{{post.body}}</div>
+                        <div>{{post.created}}</div>
+                    </div>
+                </div>
             {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {% load crispy_forms_tags %}
+            <form action="{% url 'posts' %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ form|crispy}}
+                {% endfor %}
+                <input type="submit" value="Post">
+            </form>
         </div>
     </div>
 {% endblock %}
