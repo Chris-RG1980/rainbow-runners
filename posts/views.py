@@ -63,3 +63,16 @@ def edit_post(request, post_id):
     }
 
     return render(request, 'posts/edit_post.html', context)
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Posts, id=post_id)
+
+    if request.user != post.user and not request.user.is_superuser:
+        messages.error(request, "You are not authorized to delete this post.")
+        return redirect('posts')
+
+    post.delete()
+    messages.success(request, "Post deleted successfully")
+    return redirect('posts')
