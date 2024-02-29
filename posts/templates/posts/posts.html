@@ -10,7 +10,11 @@
                     <div class="card-body">
                         <div>{{post.user}}</div>
                         <div>{{post.body}}</div>
-                        <div>{{post.created}}</div>
+                        <div>{{post.created_date|date:"d M, Y"}}</div>
+                        {% if post.edited_by != None %}
+                            <div>{{post.edited_by}}</div>
+                            <div>{{post.last_edited_date|date:"d M, Y"}}</div>
+                        {% endif %}
                         {% if user.is_authenticated and user == post.user or user.is_superuser %}
                             <a href="{% url 'edit_post' post_id=post.id %}">Edit</a>
                         {% endif %}

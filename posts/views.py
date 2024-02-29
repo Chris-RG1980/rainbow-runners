@@ -46,7 +46,9 @@ def edit_post(request, post_id):
     if request.method == "POST":
         form = PostsForm(request.POST, instance=post)
         if form.is_valid():
-            form.save()
+            post_form = form.save(commit=False)
+            post_form.edited_by = request.user
+            post_form.save()
             messages.success(request, "Post updated successfully")
             return redirect('posts')
         else:
