@@ -17,6 +17,7 @@ class Posts(models.Model):
     edited_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='posts_edited',
+        on_delete=models.DO_NOTHING,
         null=True,
         blank=True
     )
