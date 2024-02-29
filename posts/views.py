@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Posts
@@ -25,7 +26,16 @@ def all_posts(request):
             messages.error(request,
                            'Update failed. Please ensure the form is valid.')
 
-    posts = Posts.objects.all()
+    posts = Posts.objects.all().order_by('-created_date')
+    page = request.GET.get('page')
+    paginator = Paginator(posts, 3)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
     context = {
         'posts': posts,
