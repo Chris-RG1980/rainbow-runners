@@ -24,4 +24,8 @@ class Posts(models.Model):
     last_edited_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user} - {self.body} - {self.created}"
+        return (f"User: {self.user}\n"
+                f"Post: {self.body[:30]}...\n"
+                f"Edited by: {self.edited_by if self.edited_by else 'N/A'}\n"
+                f"Created: {self.created_date.strftime('%d-%m-%Y %H:%M')}\n"
+                f"Last Edited: {self.last_edited_date.strftime('%d-%m-%Y')}")
