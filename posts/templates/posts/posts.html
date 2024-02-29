@@ -17,6 +17,7 @@
                         {% endif %}
                         {% if user.is_authenticated and user == post.user or user.is_superuser %}
                             <a href="{% url 'edit_post' post_id=post.id %}">Edit</a>
+                            <a href="{% url 'delete_post' post.id %}" onclick="return confirm('Are you sure?');">Delete</a>
                         {% endif %}
                     </div>
                 </div>
