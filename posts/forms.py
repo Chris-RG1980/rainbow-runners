@@ -6,7 +6,7 @@ class PostsForm(forms.ModelForm):
 
     class Meta:
         model = Posts
-        exclude = ('user',)
+        exclude = ('user', 'edited_by')
 
     def __init__(self, *args, **kwargs):
         super(PostsForm, self).__init__(*args, **kwargs)
