@@ -15,20 +15,26 @@
         <div class="col-4">
             {% for post in posts %}
             <div class="card shadow-sm mt-2">
-                <div class="card-header">
-                    <i class="bi bi-person-circle"></i>  {{ post.user }}
+                <div class="card-header d-flex">
+                    <div class="me-auto">
+                        <div class="fs-3">
+                            <i class="bi bi-person-circle p-2"></i>{{ post.user }}
+                        </div>
+                    </div>
+                    <div>
+                        {% if user.is_authenticated and user == post.user or user.is_superuser %}
+                            <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary" aria-label="Edit Button"><i class="bi bi-pencil p-2"></i></a>
+                            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');" aria-label="Delete Button"><i class="bi bi-trash3 p-2"></i></a>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="card-body">
                     <p>{{ post.body }}</p>
                     {% if post.edited_by == None %}
-                        <p><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                        <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
                     {% endif %}
                     {% if post.edited_by != None %}
-                        <p><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
-                    {% endif %}
-                    {% if user.is_authenticated and user == post.user or user.is_superuser %}
-                        <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary">Edit</a>
-                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                        <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
                     {% endif %}
                 </div>
             </div>
