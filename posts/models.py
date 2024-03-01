@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django_bleach.models import BleachField
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class Posts(models.Model):
         related_name='posts_authored',
         on_delete=models.DO_NOTHING
     )
-    body = models.TextField(blank=False)
+    body = BleachField(blank=False)
     edited_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='posts_edited',
