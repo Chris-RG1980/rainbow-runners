@@ -1,18 +1,45 @@
 :root {
     --red: #E40303;
+    --red-2: #EB3A3A;
     --orange: #FF8C00;
     --yellow: #FFED00;
     --green: #008026;
     --light-blue: #5BCEFA;
     --blue: #24408E;
+    --blue-2: #1153b3;
     --purple: #732982;
     --white: #FFFFFF;
     --black: #000000;
-    --purple2: #540D6E;
+    --purple-2: #540D6E;
     --pink: #FF718f;
-    --yellow2: #FFD23F;
+    --yellow-2: #FFD23F;
     --cyan: #3BCEAC;
-    --green2: #0EAD69;
+    --green-2: #0EAD69;
+}
+
+/* Bootstrap Overrides */
+.btn-primary {
+    --bs-btn-bg: var(--blue);
+    --bs-btn-border-color: var(--blue);
+    --bs-btn-hover-bg: var(--blue-2);
+    --bs-btn-disabled-bg: var(--blue);
+    --bs-btn-disabled-border-color: var(--blue);
+}
+
+.btn-danger {
+    --bs-btn-bg: var(--red);
+    --bs-btn-border-color: var(--red);
+    --bs-btn-hover-bg: var(--red-2);
+    --bs-btn-disabled-bg: var(--red);
+    --bs-btn-disabled-border-color: var(--red);
+}
+
+.btn-success {
+    --bs-btn-bg: var(--green);
+    --bs-btn-border-color: var(--green);
+    --bs-btn-hover-bg: var(--green-2);
+    --bs-btn-disabled-bg: var(--green);
+    --bs-btn-disabled-border-color: var(--green);
 }
 
 /* Utilities */
@@ -53,7 +80,7 @@
 }
 
 .bg-purple {
-    background-color: var(--purple2);
+    background-color: var(--purple-2);
 }
 
 .bg-pink {
@@ -61,7 +88,7 @@
 }
 
 .bg-yellow {
-    background-color: var(--yellow2);
+    background-color: var(--yellow-2);
 }
 
 .bg-cyan {
@@ -69,7 +96,7 @@
 }
 
 .bg-green {
-    background-color: var(--green2);
+    background-color: var(--green-2);
 }
 
 .sub-heading {
