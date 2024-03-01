@@ -10,52 +10,68 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <div class="row">
-        <div class="col-6">
+    <h2 class="text-center sub-heading mt-4">Club Posts</h2>
+    <div class="row d-flex justify-content-center text-font">
+        <div class="col-4">
             {% for post in posts %}
-                <div class="card mt-2">
-                    <div class="card-body">
-                        <div>{{post.user}}</div>
-                        <div>{{post.body}}</div>
-                        <div>{{post.created_date|date:"d M, Y"}}</div>
-                        {% if post.edited_by != None %}
-                            <div>{{post.edited_by}}</div>
-                            <div>{{post.last_edited_date|date:"d M, Y"}}</div>
-                        {% endif %}
-                        {% if user.is_authenticated and user == post.user or user.is_superuser %}
-                            <a href="{% url 'edit_post' post_id=post.id %}">Edit</a>
-                            <a href="{% url 'delete_post' post.id %}" onclick="return confirm('Are you sure?');">Delete</a>
-                        {% endif %}
-                    </div>
+            <div class="card shadow-sm mt-2">
+                <div class="card-header">
+                    <i class="bi bi-person-circle"></i>  {{ post.user }}
                 </div>
+                <div class="card-body">
+                    <p>{{ post.body }}</p>
+                    {% if post.edited_by == None %}
+                        <p><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                    {% endif %}
+                    {% if post.edited_by != None %}
+                        <p><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
+                    {% endif %}
+                    {% if user.is_authenticated and user == post.user or user.is_superuser %}
+                        <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
             {% endfor %}
-            <div class="pagination">
-                <span class="step-links">
+            <div class="mt-1">
+                <ul class="pagination pagination-sm justify-content-center mt-2">
                     {% if posts.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ posts.previous_page_number }}">previous</a>
+                        <li class="page-item">
+                            <a class="page-link bg-yellow black"  href="?page=1">&laquo; first</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-yellow black" href="?page={{ posts.previous_page_number }}">previous</a>
+                        </li>
                     {% endif %}
             
                     <span class="current">
-                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                        <li class="page-item">
+                            <div class="page-link bg-yellow black">
+                                Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                            </div>
+                        </li>
                     </span>
             
                     {% if posts.has_next %}
-                        <a href="?page={{ posts.next_page_number }}">next</a>
-                        <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                        <li class="page-item">
+                            <a class="page-link bg-yellow black" href="?page={{ posts.next_page_number }}">next</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link bg-yellow black" href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                        </li>
                     {% endif %}
-                </span>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <form action="{% url 'posts' %}" method="POST">
+    <div class="row d-flex justify-content-center mt-4 mb-4 text-font">
+        <div class="col-4">
+            <form action="{% url 'posts' %}" method="POST" class="p-3 border bg-light bg-gradient">
                 {% csrf_token %}
-                {% for field in form %}
-                    {{ form|crispy}}
-                {% endfor %}
-                <input type="submit" value="Post">
+                {{ form|crispy }}
+                <div class="d-grid gap-2">
+                    <input class="btn btn-success" type="submit" value="Post">
+                </div>
             </form>
         </div>
     </div>
