@@ -1,18 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
     <h2 class="text-center sub-heading mt-4">Edit Info</h2>
     <div class="row d-flex justify-content-center mt-4 text-font">
         <div class="col-xl-6 col-md-10">
-            <form action="{% url 'edit_post' post_id=post.id %}" method="POST" class="p-3 border bg-light bg-gradient">
+            <form id="posts_form" action="{% url 'edit_post' post_id=post.id %}" method="POST" class="p-3 border bg-light bg-gradient">
                 {% csrf_token %}
                 {{ form|crispy }}
+                <div id="posts_body_validation" class="d-none alert alert-danger" role="alert">
+                    Field is required
+                </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-success white sub-heading">Done</button>
+                    <button type="button" id="posts_button" class="btn btn-success white sub-heading">Done</button>
                     <a class="btn bg-secondary white sub-heading" aria-label="Go to the club posts page." href="{% url 'posts' %}" role="button">Cancel</a>
                 </div>
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block additional_js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+<script src="{% static 'js/ckeditor.js' %}"></script>
+{% endblock %}
+{% block postloadjs %}
+<script>
+    const editorHelper = new CKEditorHelper();
+    editorHelper.createEditor("posts", "body");
+</script>
 {% endblock %}

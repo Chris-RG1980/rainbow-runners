@@ -50,8 +50,10 @@ INSTALLED_APPS = [
     'home',
     'posts',
 
+    # Other
     'crispy_forms',
-    "crispy_bootstrap5",
+    'crispy_bootstrap5',
+    'django_bleach',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -162,7 +164,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -178,3 +179,30 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/posts'
+
+# Django-bleach settings
+
+# Which HTML tags are allowed
+BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong',
+                       'a', 'h3', 'h4', 'h5', 'h6']
+
+# Which HTML attributes are allowed
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style']
+
+# Which CSS properties are allowed in 'style' attributes (assuming style is
+# an allowed attribute)
+BLEACH_ALLOWED_STYLES = [
+    'font-family', 'font-weight', 'text-decoration', 'font-variant'
+]
+
+# Which protocols (and pseudo-protocols) are allowed in 'src' attributes
+# (assuming src is an allowed attribute)
+BLEACH_ALLOWED_PROTOCOLS = [
+    'http', 'https', 'data'
+]
+
+# Strip unknown tags if True, replace with HTML escaped characters if False
+BLEACH_STRIP_TAGS = True
+
+# Strip HTML comments, or leave them in.
+BLEACH_STRIP_COMMENTS = False

@@ -13,7 +13,7 @@ class Posts(models.Model):
         related_name='posts_authored',
         on_delete=models.DO_NOTHING
     )
-    body = models.TextField(help_text="Write your post here.")
+    body = models.TextField(blank=False)
     edited_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         related_name='posts_edited',

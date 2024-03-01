@@ -10,4 +10,5 @@ class PostsForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PostsForm, self).__init__(*args, **kwargs)
-        self.fields['body'].label = "Have you're say"
+        self.fields['body'].label = "Have your say"
+        self.auto_id = 'posts_%s'
