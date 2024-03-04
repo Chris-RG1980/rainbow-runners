@@ -99,6 +99,10 @@
     background-color: var(--green-2);
 }
 
+.bg-red {
+    background-color: var(--red);
+}
+
 .sub-heading {
     font-family: Roboto Slab, sans-serif;
 }
