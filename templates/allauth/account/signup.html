@@ -1,12 +1,11 @@
 {% extends "account/base_entrance.html" %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
-{% block content %}
+{% block title %}
     {% element h1 %}
         {% trans "Sign Up" %}
     {% endelement %}
+{% endblock %}
+{% block inner_content %}
     <p>
         {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
     </p>
@@ -18,8 +17,8 @@
             {% endelement %}
             {% if redirect_field_value %}
                 <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
+                        name="{{ redirect_field_name }}"
+                        value="{{ redirect_field_value }}" />
             {% endif %}
         {% endslot %}
         {% slot actions %}
@@ -31,4 +30,4 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
-{% endblock content %}
+{% endblock inner_content %}

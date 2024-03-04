@@ -1,13 +1,12 @@
 {% extends "account/base_manage_email.html" %}
 {% load i18n %}
 {% load allauth %}
-{% block head_title %}
-    {% trans "Email Address" %}
-{% endblock head_title %}
-{% block content %}
+{% block title %}
     {% element h1 %}
         {% trans "Email Address" %}
     {% endelement %}
+{% endblock title %}
+{% block inner_content %}
     {% if not emailaddresses %}
         {% include "account/snippets/warn_no_email.html" %}
     {% endif %}
@@ -65,4 +64,4 @@
             <input type="hidden" name="email" value="{{ new_emailaddress.email }}">
         </form>
     {% endif %}
-{% endblock content %}
+{% endblock inner_content %}
