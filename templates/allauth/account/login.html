@@ -1,13 +1,12 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
-{% block content %}
+{% block title %}
     {% element h1 %}
         {% trans "Sign In" %}
     {% endelement %}
+{% endblock title %}
+{% block inner_content %}
     <p>
         {% blocktrans %}If you have not created an account yet, then please
     <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
@@ -20,8 +19,8 @@
             {% endelement %}
             {% if redirect_field_value %}
                 <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
+                        name="{{ redirect_field_name }}"
+                        value="{{ redirect_field_value }}" />
             {% endif %}
         {% endslot %}
         {% slot actions %}
@@ -33,4 +32,4 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
-{% endblock content %}
+{% endblock inner_content %}
