@@ -47,7 +47,7 @@ class Comment(models.Model):
                              on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
-    body = models.TextField()
+    body = BleachField(blank=False)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
