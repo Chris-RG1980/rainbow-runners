@@ -8,7 +8,8 @@ class PostsForm(forms.ModelForm):
         model = Posts
         exclude = ('user', 'edited_by')
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, user=None, **kwargs):
         super(PostsForm, self).__init__(*args, **kwargs)
         self.fields['body'].label = "Have your say"
+        self.fields['club_notice'].label = "Club Notice?"
         self.auto_id = 'posts_%s'
