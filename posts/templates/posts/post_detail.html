@@ -30,7 +30,7 @@
                                 <a class="page-link bg-yellow black"  href="?page=1">&laquo; first</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-yellow black" href="?page={{ posts.previous_page_number }}">previous</a>
+                                <a class="page-link bg-yellow black" href="?page={{ comments.previous_page_number }}">previous</a>
                             </li>
                         {% endif %}
                 
@@ -44,10 +44,10 @@
                 
                         {% if comments.has_next %}
                             <li class="page-item">
-                                <a class="page-link bg-yellow black" href="?page={{ posts.next_page_number }}">next</a>
+                                <a class="page-link bg-yellow black" href="?page={{ comments.next_page_number }}">next</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link bg-yellow black" href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                                <a class="page-link bg-yellow black" href="?page={{ comments.paginator.num_pages }}">last &raquo;</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -55,15 +55,28 @@
             </section>
             <!-- Comment form -->
             <section class="mt-2">
-                <form method="post">
+                <form id="comment_form" action="" method="post">
                     {% csrf_token %}
                     {{ comment_form|crispy }}
-                    <div class="d-grid gap-2 mb-3">
-                        <button class="btn btn-success" type="submit">Add Comment</button>
-                    </div>
+                        <div id="comment_body_validation" class="d-none alert alert-danger" role="alert">
+                            Field is required
+                        </div>
+                        <div class="d-grid gap-2">
+                            <input class="btn btn-success" type="button" id="comment_button" value="Add Comment">
+                        </div>
                 </form>
             </section>
         </div>
     </div>
 </article>
+{% endblock %}
+{% block additional_js %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+    <script src="{% static 'js/ckeditor.js' %}"></script>
+{% endblock %}
+{% block postloadjs %}
+    <script>
+        const editorHelper = new CKEditorHelper();
+        editorHelper.createEditor("comment", "body");
+    </script>
 {% endblock %}

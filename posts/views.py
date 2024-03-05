@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Posts
+from .models import Posts, Comment
 from .forms import PostsForm, CommentForm
 from django.contrib import messages
 
@@ -91,7 +91,6 @@ def delete_post(request, post_id):
 @login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
-    comments = post.comments.all().order_by('-created_date')
     new_comment = None
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -108,6 +107,7 @@ def post_detail(request, post_id):
     else:
         comment_form = CommentForm()
 
+    comments = Comment.objects.all().order_by('-created_date')
     page = request.GET.get('page')
     paginator = Paginator(comments, 3)
 

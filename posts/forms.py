@@ -24,3 +24,4 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['body'].label = "Add a comment"
+        self.auto_id = 'comment_%s'
