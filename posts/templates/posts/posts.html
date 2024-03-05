@@ -68,8 +68,10 @@
         <div class="col-xl-6 col-md-10">
             <form id="posts_form" action="{% url 'posts' %}" method="POST" class="p-3 border bg-light bg-gradient">
                 {% csrf_token %}
-                {{ form|crispy }}
-
+                {{ form.body|as_crispy_field }}
+                {% if request.user.is_superuser %}
+                    {{ form.club_notice|as_crispy_field }}
+                {% endif %}
                 <div id="posts_body_validation" class="d-none alert alert-danger" role="alert">
                     Field is required
                 </div>

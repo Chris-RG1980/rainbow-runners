@@ -24,6 +24,7 @@ class Posts(models.Model):
     )
     created_date = models.DateTimeField(auto_now_add=True)
     last_edited_date = models.DateTimeField(auto_now=True)
+    club_notice = models.BooleanField()
 
     def __str__(self):
         return (f"User: {self.user}\n"
