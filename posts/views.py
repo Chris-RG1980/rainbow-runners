@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Posts
-from .forms import PostsForm
+from .forms import PostsForm, CommentForm
 from django.contrib import messages
 
 # Create your views here.
@@ -16,7 +16,7 @@ def all_posts(request):
 
     if request.method == "POST":
         form = PostsForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user.is_authenticated:
             post = form.save(commit=False)
             post.user = request.user
             post.save()
@@ -55,7 +55,7 @@ def edit_post(request, post_id):
 
     if request.method == "POST":
         form = PostsForm(request.POST, instance=post)
-        if form.is_valid():
+        if form.is_valid() and request.user.is_authenticated:
             post_form = form.save(commit=False)
             post_form.edited_by = request.user
             post_form.save()
@@ -86,3 +86,42 @@ def delete_post(request, post_id):
     post.delete()
     messages.success(request, "Post deleted successfully")
     return redirect('posts')
+
+
+@login_required
+def post_detail(request, post_id):
+    post = get_object_or_404(Posts, id=post_id)
+    comments = post.comments.all().order_by('-created_date')
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid() and request.user.is_authenticated:
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.author = request.user
+            new_comment.save()
+            messages.success(request, 'Comment added successfully')
+            return redirect(post.get_absolute_url())
+        else:
+            messages.error(request,
+                           'Comment failed. Please ensure the form is valid.')
+    else:
+        comment_form = CommentForm()
+
+    page = request.GET.get('page')
+    paginator = Paginator(comments, 3)
+
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments = paginator.page(paginator.num_pages)
+
+    context = {
+        'post': post,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form
+    }
+    return render(request, 'posts/post_detail.html', context)

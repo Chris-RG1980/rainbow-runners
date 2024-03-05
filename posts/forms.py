@@ -1,5 +1,5 @@
 from django import forms
-from .models import Posts
+from .models import Posts, Comment
 
 
 class PostsForm(forms.ModelForm):
@@ -13,3 +13,14 @@ class PostsForm(forms.ModelForm):
         self.fields['body'].label = "Have your say"
         self.fields['club_notice'].label = "Club Notice?"
         self.auto_id = 'posts_%s'
+
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['body']
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['body'].label = "Add a comment"

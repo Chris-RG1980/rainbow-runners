@@ -22,15 +22,29 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="card-body">
-                    <p>{{ post.body|bleach }}</p>
-                    {% if post.edited_by == None %}
-                        <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
-                    {% endif %}
-                    {% if post.edited_by != None %}
-                        <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
-                    {% endif %}
-                </div>
+                {% if post.club_notice %}
+                    <a href="{% url 'post_detail' post_id=post.id %}" class="text-decoration-none black">
+                        <div class="card-body">
+                            <p>{{ post.body|bleach }}</p>
+                            {% if post.edited_by == None %}
+                                <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                            {% endif %}
+                            {% if post.edited_by != None %}
+                                <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% else %}
+                    <div class="card-body">
+                        <p>{{ post.body|bleach }}</p>
+                        {% if post.edited_by == None %}
+                            <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                        {% endif %}
+                        {% if post.edited_by != None %}
+                            <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
             {% endfor %}
             <div class="mt-1">
