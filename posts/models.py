@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django_bleach.models import BleachField
+from django.urls import reverse
 
 # Create your models here.
 
@@ -32,3 +33,22 @@ class Posts(models.Model):
                 f"Edited by: {self.edited_by if self.edited_by else 'N/A'}\n"
                 f"Created: {self.created_date.strftime('%d-%m-%Y %H:%M')}\n"
                 f"Last Edited: {self.last_edited_date.strftime('%d-%m-%Y')}")
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'post_id': self.id})
+
+
+class Comment(models.Model):
+    """
+    A comment model to add comments to club notices
+    """
+
+    post = models.ForeignKey(Posts, related_name='comments',
+                             on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE)
+    body = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comment by {self.author} on {self.created_date}'
