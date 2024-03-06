@@ -27,6 +27,9 @@ class Posts(models.Model):
     last_edited_date = models.DateTimeField(auto_now=True)
     club_notice = models.BooleanField()
 
+    class Meta:
+        verbose_name_plural = "Posts"
+
     def __str__(self):
         return (f"User: {self.user}\n"
                 f"Post: {self.body[:30]}...\n"
