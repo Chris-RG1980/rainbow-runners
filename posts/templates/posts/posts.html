@@ -25,12 +25,19 @@
                 {% if post.club_notice %}
                     <a href="{% url 'post_detail' post_id=post.id %}" class="text-decoration-none black">
                         <div class="card-body">
+                                <h4><span class="badge bg-green">Club News</span></h4>
                             <p>{{ post.body|bleach }}</p>
                             {% if post.edited_by == None %}
-                                <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
+                                    <p><small class="text-muted">Click on this post to add your comments!</small></p>
+                                </div>
                             {% endif %}
                             {% if post.edited_by != None %}
-                                <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
+                                <div class="d-flex justify-content-between">
+                                    <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
+                                    <p><small class="text-muted">Click on this post to add your comments!</small></p>
+                                </div>
                             {% endif %}
                         </div>
                     </a>
