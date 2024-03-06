@@ -11,7 +11,7 @@ class PostsForm(forms.ModelForm):
     def __init__(self, *args, user=None, **kwargs):
         super(PostsForm, self).__init__(*args, **kwargs)
         self.fields['body'].label = "Have your say"
-        self.fields['club_notice'].label = "Club Notice?"
+        self.fields['club_notice'].label = "Club News?"
         self.auto_id = 'posts_%s'
 
 
