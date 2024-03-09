@@ -11,7 +11,7 @@ class ProductAdminForm(forms.ModelForm):
     )
     care_instructions = forms.CharField(
         widget=forms.Textarea,
-        help_text="Enter key features separated by commas.",
+        help_text="Enter care instructions separated by commas.",
         required=False
     )
 
