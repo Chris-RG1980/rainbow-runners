@@ -15,6 +15,7 @@
             <p class="h4">£{{ product.price }}</p>
             <p><strong>Colour:</strong> {{ product.colour }}</p>
             <p><strong>Material:</strong> {{ product.material }}</p>
+            <p><strong>SKU:</strong> {{ product.sku }}</p>
             <p><strong>Size:</strong> 
                 <select class="form-select" aria-label="Default select example">
                     {% for size in product.sizes %}
@@ -31,7 +32,7 @@
     
     <div class="row mt-4">
         <div class="col-12">
-            <!-- Bootstrap Tabs for Description, Features, Material & Care -->
+            <!-- Bootstrap Tabs for Description, Features & Care -->
             <ul class="nav nav-tabs" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
@@ -49,13 +50,17 @@
                 </div>
                 <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
                     <ul>
-                        {% for feature in product.key_features %}
+                        {% for feature in product.get_key_features %}
                             <li>{{ feature }}</li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
-                    {{ product.care_instructions }}
+                    <ul>
+                        {% for instruction in product.get_care_instructions%}
+                            <li>{{ instruction }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
