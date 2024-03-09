@@ -2,7 +2,33 @@
 {% load static %}
 
 {% block content %}
+    <h2 class="text-center sub-heading mt-4">Club Shop</h2>
+    <div class="row">
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    All Products
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=asc">
+                            Price (Low to High)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" type="button">
 
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" type="button">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             {% for product in products %}
@@ -65,5 +91,11 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %}
 
+{% block postloadjs %}
+<script type="text/javascript">
+    const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
+    const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new  bootstrap.Dropdown(dropdownToggleEl))
+</script>
 {% endblock %}
