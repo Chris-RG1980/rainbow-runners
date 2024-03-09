@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="text-center sub-heading mt-4">Product Details</h2>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <!-- Product Image -->
+            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-lg-6">
+            <!-- Product Details -->
+            <h2>{{ product.name }}</h2>
+            <p class="h4">£{{ product.price }}</p>
+            <p><strong>Colour:</strong> {{ product.colour }}</p>
+            <p><strong>Material:</strong> {{ product.material }}</p>
+            <p><strong>SKU:</strong> {{ product.sku }}</p>
+            <p><strong>Size:</strong> 
+                <select class="form-select" aria-label="Default select example">
+                    {% for size in product.sizes %}
+                        <option value="{{ size }}">{{ size }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p><strong>Quantity:</strong> 
+                <input type="number" class="form-control" value="1" min="1">
+            </p>
+            <button class="btn btn-primary">Add to Basket</button>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <!-- Bootstrap Tabs for Description, Features & Care -->
+            <ul class="nav nav-tabs" id="productTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Key Features</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false">Care Instructions</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="productTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                    {{ product.description }}
+                </div>
+                <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                    <ul>
+                        {% for feature in product.get_key_features %}
+                            <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
+                    <ul>
+                        {% for instruction in product.get_care_instructions%}
+                            <li>{{ instruction }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
