@@ -23,10 +23,16 @@
                     {% endfor %}
                 </select>
             </p>
-            <p><strong>Quantity:</strong> 
-                <input type="number" class="form-control-sm" value="1" min="1">
-            </p>
-            <button class="btn btn-primary">Add to Basket</button>
+            <!--Add to bag form-->
+            <form method="POST" action="{% url 'add_to_bag' product.id %}">
+                {% csrf_token %}
+                <p><strong>Quantity:</strong> 
+                    <input type="number" name="quantity" class="form-control-sm" value="1" min="1" max="99">
+                </p>
+                <button type="submit" class="btn btn-primary">Add to Basket</button>
+                <!-- Hidden Redirect URL -->
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            </form>
         </div>
     </div>
     

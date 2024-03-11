@@ -75,6 +75,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'products' %}">Shop</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view_bag' %}">Shopping Bag</a>
+                        </li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
@@ -186,6 +189,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'products' %}">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view_bag' %}">Shopping Bag</a>
                         </li>
                         {% if request.user.is_authenticated %}
                             <li class="nav-item">

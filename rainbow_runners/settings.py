@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'home',
     'posts',
     'products',
+    'bag',
 
     # Other
     'crispy_forms',
@@ -90,8 +91,10 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents'
             ],
         },
     },
@@ -209,3 +212,7 @@ BLEACH_STRIP_TAGS = True
 
 # Strip HTML comments, or leave them in.
 BLEACH_STRIP_COMMENTS = False
+
+# Delivery charges & thresholds
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
