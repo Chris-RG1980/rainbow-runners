@@ -15,7 +15,8 @@ class ProductAdmin(admin.ModelAdmin):
                     'material',
                     'care_instructions',
                     'colour',
-                    'image'
+                    'image',
+                    'has_sizes'
                     )
 
     form = ProductAdminForm
@@ -42,8 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
                     form.base_fields[
                         'care_instructions'
                     ].initial = ', '.join(
-                        care_instructions_list
-                    )
+                        care_instructions_list)
                 except json.JSONDecodeError:
                     form.base_fields['care_instructions'].initial = ""
 
