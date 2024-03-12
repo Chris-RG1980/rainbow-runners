@@ -77,6 +77,10 @@ class Product(models.Model):
         return Metadata.objects.filter(products__id=self.id,
                                        category__name='size_guide')
 
+    def get_sizes(self):
+        return Metadata.objects.filter(products__id=self.id,
+                                       category__name='sizes')
+
 
 class MetadataCategories(models.Model):
     def __str__(self):
