@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Category, Product
-from .forms import ProductAdminForm
-import json
+from django import forms
+from ckeditor.widgets import CKEditorWidget
+from .models import Category, Product, Metadata, MetadataCategories
 
 # Register your models here.
 
@@ -11,43 +11,24 @@ class ProductAdmin(admin.ModelAdmin):
                     'name',
                     'category',
                     'price',
-                    'key_features',
                     'material',
-                    'care_instructions',
                     'colour',
-                    'image'
+                    'image',
+                    'has_sizes'
                     )
 
-    form = ProductAdminForm
 
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        # If existing object, convert JSON back to a comma-separated list
-        if obj:
-            if obj.key_features:
-                try:
-                    key_features_list = json.loads(obj.key_features)
-                    form.base_fields[
-                        'key_features'
-                    ].initial = ', '.join(
-                        key_features_list
-                    )
-                except json.JSONDecodeError:
-                    form.base_fields['key_features'].initial = ""
+class MetadataAdminForm(forms.ModelForm):
+    value = forms.CharField(widget=CKEditorWidget())
 
-        if obj:
-            if obj.care_instructions:
-                try:
-                    care_instructions_list = json.loads(obj.care_instructions)
-                    form.base_fields[
-                        'care_instructions'
-                    ].initial = ', '.join(
-                        care_instructions_list
-                    )
-                except json.JSONDecodeError:
-                    form.base_fields['care_instructions'].initial = ""
+    class Meta:
+        model = Metadata
+        fields = '__all__'
 
-        return form
+
+class MetadataAdmin(admin.ModelAdmin):
+    form = MetadataAdminForm
+    filter_horizontal = ('products',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -56,3 +37,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Metadata, MetadataAdmin)
+admin.site.register(MetadataCategories)
