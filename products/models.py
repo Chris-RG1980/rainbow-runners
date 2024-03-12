@@ -30,9 +30,14 @@ class Product(models.Model):
         blank=True
     )
     name = models.CharField(
-        max_length=254
+        max_length=254,
+        null=False,
+        blank=False,
     )
-    description = models.TextField()
+    description = models.TextField(
+        null=False,
+        blank=False,
+    )
     price = models.DecimalField(
         max_digits=6,
         decimal_places=2
@@ -62,15 +67,15 @@ class Product(models.Model):
 
     def get_key_features(self):
         return Metadata.objects.filter(products__id=self.id,
-                                       category__name='key-features')
+                                       category__name='key_features')
 
     def get_care_instructions(self):
         return Metadata.objects.filter(products__id=self.id,
-                                       category__name='care-instructions')
+                                       category__name='care_instructions')
 
     def get_size_guide(self):
         return Metadata.objects.filter(products__id=self.id,
-                                       category__name='size-guide')
+                                       category__name='size_guide')
 
 
 class MetadataCategories(models.Model):
@@ -86,7 +91,7 @@ class MetadataCategories(models.Model):
 
 class Metadata(models.Model):
     def __str__(self):
-        return self.value
+        return f'[{self.id}] {self.category}'
 
     value = models.TextField(
         null=False,
@@ -100,8 +105,11 @@ class Metadata(models.Model):
         on_delete=models.RESTRICT
     )
 
-    products = models.ManyToManyField(Product, blank=True,
-                                      related_name="Metadata")
+    products = models.ManyToManyField(
+        Product,
+        blank=True,
+        related_name="Metadata"
+    )
 
     class Meta:
         verbose_name_plural = "metadata"
