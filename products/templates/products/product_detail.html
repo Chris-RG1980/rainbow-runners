@@ -16,22 +16,29 @@
             <p><strong>Colour:</strong> {{ product.colour }}</p>
             <p><strong>Material:</strong> {{ product.material }}</p>
             <p><strong>SKU:</strong> {{ product.sku }}</p>
-            <p><strong>Size:</strong> 
-                <select class="form-select-md" aria-label="Default select example">
-                    {% for size in product.sizes %}
-                        <option value="{{ size }}">{{ size }}</option>
-                    {% endfor %}
-                </select>
-            </p>
             <!--Add to bag form-->
             <form method="POST" action="{% url 'add_to_bag' product.id %}">
                 {% csrf_token %}
-                <p><strong>Quantity:</strong> 
-                    <input type="number" name="quantity" class="form-control-sm" value="1" min="1" max="99">
-                </p>
-                <button type="submit" class="btn btn-primary">Add to Basket</button>
-                <!-- Hidden Redirect URL -->
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                {% with product.has_sizes as s %}
+                    {% if s %}
+                        <p><strong>Size:</strong>
+                            <select class="form-control rounded-0 w-25 mb-2" name="product_size" id='id_product_size'>
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m" selected>M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                                <option value="xxl">XXL</option>
+                            </select>
+                        </p>
+                    {% endif %}
+                    <p><strong>Quantity:</strong> 
+                        <input type="number" name="quantity" class="form-control-sm" value="1" min="1" max="99">
+                    </p>
+                    <button type="submit" class="btn btn-primary">Add to Basket</button>
+                    <!-- Hidden Redirect URL -->
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                {% endwith %}
             </form>
         </div>
     </div>
