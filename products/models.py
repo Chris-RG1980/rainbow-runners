@@ -1,5 +1,4 @@
 from django.db import models
-import json
 
 # Create your models here.
 
@@ -20,7 +19,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(
-        'Category',
+        Category,
         null=True,
         blank=True,
         on_delete=models.SET_NULL
@@ -38,16 +37,9 @@ class Product(models.Model):
         max_digits=6,
         decimal_places=2
     )
-    key_features = models.TextField(
-        null=True,
-        blank=True
-    )
+
     material = models.CharField(
         max_length=100,
-        null=True,
-        blank=True
-    )
-    care_instructions = models.TextField(
         null=True,
         blank=True
     )
@@ -66,27 +58,50 @@ class Product(models.Model):
     )
 
     def __str__(self):
+        return f'[{self.id}] {self.name}'
+
+    def get_key_features(self):
+        return Metadata.objects.filter(products__id=self.id,
+                                       category__name='key-features')
+
+    def get_care_instructions(self):
+        return Metadata.objects.filter(products__id=self.id,
+                                       category__name='care-instructions')
+
+    def get_size_guide(self):
+        return Metadata.objects.filter(products__id=self.id,
+                                       category__name='size-guide')
+
+
+class MetadataCategories(models.Model):
+    def __str__(self):
         return self.name
 
-    # Helper method to serialize a list of features into a JSON string
-    def set_key_features(self, key_features_json):
-        self.key_features = key_features_json
+    name = models.CharField(max_length=254)
 
-    # Helper method to deserialize the features JSON string
-    def get_key_features(self):
-        try:
-            return json.loads(self.key_features) if self.key_features else []
-        except json.JSONDecodeError:
-            return []
+    class Meta:
+        verbose_name_plural = "Metadata Categories"
+        db_table = "products_metadata_categories"
 
-    # Helper method to serialize care instructions into a JSON string
-    def set_care_instructions(self, care_instructions_json):
-        self.care_instructions = care_instructions_json
 
-    # Helper method to deserialize the care instructions JSON string
-    def get_care_instructions(self):
-        try:
-            return json.loads(
-                self.care_instructions) if self.care_instructions else []
-        except json.JSONDecodeError:
-            return []
+class Metadata(models.Model):
+    def __str__(self):
+        return self.value
+
+    value = models.TextField(
+        null=False,
+        blank=False
+    )
+
+    category = models.ForeignKey(
+        MetadataCategories,
+        null=False,
+        blank=False,
+        on_delete=models.RESTRICT
+    )
+
+    products = models.ManyToManyField(Product, blank=True,
+                                      related_name="Metadata")
+
+    class Meta:
+        verbose_name_plural = "metadata"

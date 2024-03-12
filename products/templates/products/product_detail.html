@@ -59,6 +59,9 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false">Care Instructions</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab" aria-controls="care" aria-selected="false">Size Guide</button>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -78,6 +81,13 @@
                             <ul class="list-unstyled">
                                 {% for instruction in product.get_care_instructions %}
                                     <li><i class="bi bi-info-circle me-2"></i>{{ instruction }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide">
+                            <ul class="list-unstyled">
+                                {% for guide in product.get_size_guide %}
+                                    <li><i class="bi bi-info-circle me-2"></i>{{ guide }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
