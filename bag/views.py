@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+import re
 
 from products.models import Product
 
@@ -21,6 +22,7 @@ def add_to_bag(request, item_id):
     size = None
     if 'product_size' in request.POST:
         size = request.POST['product_size']
+        size = re.sub('<[^<]+?>', '', size)
     bag = request.session.get('bag', {})
 
     if size:

@@ -19,7 +19,7 @@
             <tr>
             <td><img class="image-size" src="{{ item.product.image.url }}" alt="{{ item.product.name }}"></td>
             <td colspan="2">{{ item.product.name }}</td>
-            <td>{{ item.size|default:"N/A" }}</td>
+            <td>{{ item.size|safe|default:"N/A" }}</td>
             <td>£{{ item.product.price }}</td>
             <td>{{ item.quantity }}</td>
             <td>£{{ item.subtotal }}</td>
