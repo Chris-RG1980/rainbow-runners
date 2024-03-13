@@ -9,7 +9,7 @@
             <!-- Product Image -->
             <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 mt-3">
             <!-- Product Details -->
             <h2>{{ product.name }}</h2>
             <h4>£{{ product.price }}</h4>
@@ -28,9 +28,17 @@
                         </select>
                     </p>
                 {% endif %}
-                <p><strong>Quantity:</strong> 
-                    <input type="number" name="quantity" class="form-control-sm" value="1" min="1" max="99">
-                </p>
+                <div class="input-group">
+                    <p><strong>Quantity:</strong>
+                        <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                            <i class="bi bi-dash-square"></i>
+                        </button>
+                        <input type="number" name="quantity" class="form-control-sm qty_input" value="1" min="1" max="99" id="id_qty_{{ product.id }}" data-item_id="{{ product.id }}">
+                        <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ product.id }}" id="increment-quantity_{{ product.id }}">
+                            <i class="bi bi-plus-square"></i>
+                        </button>
+                    </p>
+                </div>
                 <button type="submit" class="btn btn-primary">Add to Basket</button>
                 <!-- Hidden Redirect URL -->
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -104,5 +112,9 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+{% endblock postloadjs %}
