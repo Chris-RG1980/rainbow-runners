@@ -278,6 +278,11 @@ footer, ul {
     max-width: 100%;
 }
 
+/* Products & Bag apps */
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
 
 /* Media Queries */
 @media screen and (max-width: 992px) {

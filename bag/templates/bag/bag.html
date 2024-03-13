@@ -21,10 +21,54 @@
             <td colspan="2">{{ item.product.name }}</td>
             <td>{{ item.size|safe|default:"N/A" }}</td>
             <td>£{{ item.product.price }}</td>
-            <td>{{ item.quantity }}</td>
+            <td>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <p>
+                            <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                <i class="bi bi-dash-square"></i>
+                            </button>
+                            <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item.id }}" data-item_id="{{ item.item.id }}">
+                            <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ item.item.id }}" id="increment-quantity_{{ item.item.id }}">
+                                <i class="bi bi-plus-square"></i>
+                            </button>
+                        </p>
+                    </div>
+                </form>
+                <a class="update-link text-info"><small>Update</small></a>
+                <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>
+            </td>
             <td>£{{ item.subtotal }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('product_size');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+
+        $.post(url, data)
+        .done(function() {
+            location.reload();
+        });
+    })
+</script>
 {% endblock %}
