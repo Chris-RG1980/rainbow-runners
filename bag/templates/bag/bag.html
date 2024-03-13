@@ -22,7 +22,7 @@
             <td>{{ item.size|safe|default:"N/A" }}</td>
             <td>£{{ item.product.price }}</td>
             <td>
-                <form method="POST">
+                <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
                     {% csrf_token %}
                     <div class="input-group">
                         <p>
