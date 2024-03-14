@@ -292,6 +292,15 @@ footer, ul {
     max-width: 150px;
 }
 
+.basket-totals-height {
+    max-height: 450px;
+}
+
+.basket-totals-border {
+    border-color: var(--black);
+    border-style: solid;
+}
+
 /* 
     Set height to 1px so child div can properly
     calculate height to 100%
