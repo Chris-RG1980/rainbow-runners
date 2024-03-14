@@ -1,30 +1,113 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+    <div class="row">
+        <div class="col mt-5 mb-2">
+            <h2 class="sub-heading text-center">Shopping Basket</h2>
+        </div>
+    </div>
+{% endblock %}
+
 
 {% block content %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Product</th>
-            <th colspan="2">Product Info</th>
-            <th>Size</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for item in bag_items %}
-            <tr>
-            <td><img class="image-size" src="{{ item.product.image.url }}" alt="{{ item.product.name }}"></td>
-            <td colspan="2">{{ item.product.name }}</td>
-            <td>{{ item.size|safe|default:"N/A" }}</td>
-            <td>£{{ item.product.price }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>£{{ item.subtotal }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-lg-8">
+            {% if bag_items %}
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Product</th>
+                            <th colspan="2">Product Info</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in bag_items %}
+                            <tr>
+                                <td class="table-cell-height-fix">
+                                    <div class="h-100 d-flex align-items-center">
+                                        <a class="btn btn-danger remove-item fs-5" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove Item">
+                                            <i class="bi bi-bag-x"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="product-thumbnail">
+                                    <div class="">
+                                        <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    </div>
+                                </td>
+                                <td colspan="2">{{ item.product.name }}</td>
+                                <td>{{ item.size|safe|default:"N/A" }}</td>
+                                <td>£{{ item.product.price }}</td>
+                                <td class="quantity-col">
+                                    <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                            <p>
+                                                <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                    <i class="bi bi-dash-square"></i>
+                                                </button>
+                                                <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item.id }}" data-item_id="{{ item.item.id }}">
+                                                <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ item.item.id }}" id="increment-quantity_{{ item.item.id }}">
+                                                    <i class="bi bi-plus-square"></i>
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </form>
+                                    <div class="d-flex mb-3">
+                                        <a class="update-link blue me-auto p-2"><small>Update</small></a>
+                                    </div>
+                                </td>
+                                <td>£{{ item.subtotal }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex justify-content-center mt-5">
+                                <a href="{% url 'products' %}" class="btn btn-success btn-lg">
+                                    <span class="text-uppercase"><Strong>Return To Shop</Strong></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        let form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = $(this).attr('id').split('remove_')[1];
+        let size = $(this).data('product_size');
+        let url = `/bag/remove/${itemId}/`;
+        let data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+
+        $.post(url, data)
+        .done(function() {
+            location.reload();
+        });
+    })
+</script>
 {% endblock %}
