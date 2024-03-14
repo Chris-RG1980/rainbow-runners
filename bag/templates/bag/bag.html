@@ -92,9 +92,11 @@
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
-        let form = $(this).prev('.update-form');
+        e.preventDefault(); // Prevent the default anchor link behavior
+        let form = $(this).closest('.quantity-col').find('.update-form');
         form.submit();
-    })
+    });
+    
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
