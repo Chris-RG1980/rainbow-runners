@@ -284,6 +284,22 @@ footer, ul {
     cursor: pointer;
 }
 
+.product-thumbnail {
+    max-width: 90px;
+}
+
+.quantity-col {
+    max-width: 150px;
+}
+
+/* 
+    Set height to 1px so child div can properly
+    calculate height to 100%
+*/
+.table-cell-height-fix {
+    height: 1px;
+}
+
 /* Media Queries */
 @media screen and (max-width: 992px) {
     .hero-title {
