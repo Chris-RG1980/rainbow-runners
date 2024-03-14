@@ -11,9 +11,9 @@
 
 
 {% block content %}
-    <div class="row">
-        <div class="col-lg-8">
-            {% if bag_items %}
+    <div class="row d-flex justify-content-center">
+        {% if bag_items %}
+            <div class="col-lg-8">
                 <div class="table-responsive">
                     <table class="table table-sm">
                         <thead>
@@ -38,7 +38,7 @@
                                     </div>
                                 </td>
                                 <td class="product-thumbnail">
-                                    <div class="">
+                                    <div>
                                         <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                     </div>
                                 </td>
@@ -48,20 +48,21 @@
                                 <td class="quantity-col">
                                     <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
                                         {% csrf_token %}
-                                        <div class="input-group">
-                                            <p>
+                                        <div class="input-group justify-content-center">
+                                            <div>
                                                 <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                     <i class="bi bi-dash-square"></i>
                                                 </button>
-                                                <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item.id }}" data-item_id="{{ item.item.id }}">
-                                                <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ item.item.id }}" id="increment-quantity_{{ item.item.id }}">
+                                                <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                                <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                                     <i class="bi bi-plus-square"></i>
                                                 </button>
-                                            </p>
+                                            </div>
                                         </div>
+                                        <input type="hidden" name="product_size"  value="{{ item.size }}" />
                                     </form>
-                                    <div class="d-flex mb-3">
-                                        <a class="update-link blue me-auto p-2"><small>Update</small></a>
+                                    <div class="d-flex justify-content-center mt-2">
+                                        <a class="update-link black btn btn-info"><small>Update</small></a>
                                     </div>
                                 </td>
                                 <td>£{{ item.subtotal }}</td>
@@ -69,19 +70,46 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                {% else %}
-                    <div class="row">
-                        <div class="col">
-                            <div class="d-flex justify-content-center mt-5">
-                                <a href="{% url 'products' %}" class="btn btn-success btn-lg">
-                                    <span class="text-uppercase"><Strong>Return To Shop</Strong></span>
-                                </a>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-lg-3 bg-white basket-totals-height basket-totals-border">
+                <p class="p-1 m-0"><strong>Basket Totals</strong></p>
+                <hr class="mt-0">
+                <p class="p-1"><strong>Subtotal:</strong> £{{ total }}</p>
+                <hr>
+                <p class="ps-1"><strong>Shipping:</strong></p>
+                <p class="ps-1"><small><strong>Standard Delivery (3-5 Working Days):</strong></small> £{{ delivery|floatformat:2 }}</p>
+                {% if free_delivery_delta > 0 %}
+                    <p class="mb-1 text-danger">
+                        You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
+                    </p>
+                {% endif %}
+                <hr>
+                <p class="ps-1"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></p>
+                <div>
+                    <div class="d-flex justify-content-center">
+                        <a href="" class="btn btn-success btn-lg">
+                            <span class="text-uppercase"><strong>Proceed to Checkout</strong></span>
+                        </a>
+                    </div>
+                    <div class="mt-1 mb-2 d-flex justify-content-center">
+                        <a href="{% url 'products' %}" class="btn btn-info btn-lg">
+                            <span class="text-uppercase"><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                        </a>
                     </div>
                 </div>
-            {% endif %}
-        </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-center mt-5">
+                        <a href="{% url 'products' %}" class="btn btn-success btn-lg">
+                            <span class="text-uppercase"><Strong>Return To Shop</Strong></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
 
@@ -92,9 +120,11 @@
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
-        let form = $(this).prev('.update-form');
+        e.preventDefault(); // Prevent the default anchor link behavior
+        let form = $(this).closest('.quantity-col').find('.update-form');
         form.submit();
-    })
+    });
+    
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
