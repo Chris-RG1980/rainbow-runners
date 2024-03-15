@@ -39,7 +39,11 @@
                         </button>
                     </p>
                 </div>
-                <button type="submit" class="btn btn-primary">Add to Basket</button>
+                <a href="{% url 'products' %}" class="btn btn-primary">
+                    <span><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                </a>
+                <button type="submit" class="btn btn-success">Add to Basket</button>
+            </div>
                 <!-- Hidden Redirect URL -->
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
@@ -58,12 +62,12 @@
                         </li>
                         {% if product.get_key_features %}
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link black" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Key Features <i class="bi bi-check-circle me-2"></i></button>
+                                <button class="nav-link black" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false"><i class="bi bi-check-circle me-2"></i>Key Features</button>
                             </li>
                         {% endif %}
                         {% if product.get_care_instructions %}
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false">Care Instructions <i class="bi bi-info-circle me-2"></i></button>
+                                <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false"><i class="bi bi-info-circle me-2"></i>Care Instructions</button>
                             </li>
                         {% endif %}
                         {% if product.get_size_guide %}
