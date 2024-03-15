@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+    <div class="row">
+        <div class="col mt-5 mb-2">
+            <h2 class="sub-heading text-center">Checkout Details</h2>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+            
+        </div>
+        <div class="col-lg-3 bg-white  basket-totals-border">
+            <p class="m-0"><strong>Order Totals</strong></p>
+            <hr class="mt-0">
+            <div class="d-flex">
+                <span class="me-auto"><strong>Product</strong></span>
+                <span><strong>Subtotal</strong></span>
+            </div>
+            <hr>
+            {% for item in bag_items %}
+                <div class="d-flex">
+                    <span class="me-auto">{{ item.product.name }}
+                        {% if item.size %}
+                            {{ item.size }} 
+                        {% endif %}
+                        x {{ item.quantity }}
+                    </span>
+                    <span>£{{ item.subtotal }}</span>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="d-flex">
+                <span class="me-auto"><strong>Subtotal:</strong></span>
+                <span>£{{ total }}</span>
+            </div>
+            <hr>
+            <p class="ps-1"><strong>Shipping:</strong></p>
+            <p class="ps-1"><small><strong>Standard Delivery (3-5 Working Days):</strong></small> £{{ delivery|floatformat:2 }}</p>
+            <hr>
+            <p class="ps-1"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></p>
+            <hr>
+            <div>
+                <div class="d-flex justify-content-center">
+                    <a href="" class="btn btn-success btn-lg">
+                        <span class="text-uppercase"><strong>Proceed to Checkout</strong></span>
+                    </a>
+                </div>
+                <div class="mt-1 mb-2 d-flex justify-content-center">
+                    <a href="{% url 'products' %}" class="btn btn-info btn-lg">
+                        <span class="text-uppercase"><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
