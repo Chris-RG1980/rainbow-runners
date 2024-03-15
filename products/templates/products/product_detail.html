@@ -2,120 +2,122 @@
 {% load static %}
 
 {% block content %}
-<h2 class="text-center sub-heading mt-4">Product Details</h2>
-<div class="container my-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-lg-4">
-            <!-- Product Image -->
-            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
-        </div>
-        <div class="col-lg-5 mt-3">
-            <!-- Product Details -->
-            <h2>{{ product.name }}</h2>
-            <h4>£{{ product.price }}</h4>
-            <p><strong>Colour:</strong> {{ product.colour }}</p>
-            <p><strong>Material:</strong> {{ product.material }}</p>
-            <p><strong>SKU:</strong> {{ product.sku }}</p>
-            <!--Add to bag form-->
-            <form method="POST" action="{% url 'add_to_bag' product.id %}">
-                {% csrf_token %}
-                {% if product.get_sizes%}
-                    <p><strong>Size:</strong>
-                        <select class="form-control rounded-0 w-25 mb-2" name="product_size">
-                            {% for size in product.get_sizes %}
-                                <option value="{{ size.value }}">{{ size.value|safe }}</option>
-                                {% endfor %}
-                        </select>
-                    </p>
-                {% endif %}
-                <div class="input-group">
-                    <p><strong>Quantity:</strong>
-                        <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                            <i class="bi bi-dash-square"></i>
-                        </button>
-                        <input type="number" name="quantity" class="form-control-sm qty_input" value="1" min="1" max="99" id="id_qty_{{ product.id }}" data-item_id="{{ product.id }}">
-                        <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ product.id }}" id="increment-quantity_{{ product.id }}">
-                            <i class="bi bi-plus-square"></i>
-                        </button>
-                    </p>
+    <div class="container-fluid">
+        <h2 class="text-center sub-heading mt-4">Product Details</h2>
+        <div class="container my-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-4">
+                    <!-- Product Image -->
+                    <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
                 </div>
-                <a href="{% url 'products' %}" class="btn btn-primary">
-                    <span><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
-                </a>
-                <button type="submit" class="btn btn-success">Add to Basket</button>
-            </div>
-                <!-- Hidden Redirect URL -->
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-            </form>
-        </div>
-    </div>
-    
-    <div class="row d-flex justify-content-center mt-4">
-        <div class="col-lg-9">
-            <!-- Encapsulating Tabs and Content in a Card -->
-            <div class="card">
-                <div class="card-header bg-yellow">
-                    <!-- Bootstrap Tabs -->
-                    <ul class="nav nav-tabs card-header-tabs" id="productTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active black" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
-                        </li>
-                        {% if product.get_key_features %}
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link black" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false"><i class="bi bi-check-circle me-2"></i>Key Features</button>
-                            </li>
+                <div class="col-lg-5 mt-3">
+                    <!-- Product Details -->
+                    <h2>{{ product.name }}</h2>
+                    <h4>£{{ product.price }}</h4>
+                    <p><strong>Colour:</strong> {{ product.colour }}</p>
+                    <p><strong>Material:</strong> {{ product.material }}</p>
+                    <p><strong>SKU:</strong> {{ product.sku }}</p>
+                    <!--Add to bag form-->
+                    <form method="POST" action="{% url 'add_to_bag' product.id %}">
+                        {% csrf_token %}
+                        {% if product.get_sizes%}
+                            <p><strong>Size:</strong>
+                                <select class="form-control rounded-0 w-25 mb-2" name="product_size">
+                                    {% for size in product.get_sizes %}
+                                        <option value="{{ size.value }}">{{ size.value|safe }}</option>
+                                        {% endfor %}
+                                </select>
+                            </p>
                         {% endif %}
-                        {% if product.get_care_instructions %}
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false"><i class="bi bi-info-circle me-2"></i>Care Instructions</button>
-                            </li>
-                        {% endif %}
-                        {% if product.get_size_guide %}
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab" aria-controls="care" aria-selected="false">Size Guide</button>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                <div class="card-body">
-                    <!-- Tab Content -->
-                    <div class="tab-content" id="productTabContent">
-                        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                            <p class="card-text">{{ product.description }}</p>
+                        <div class="input-group">
+                            <p><strong>Quantity:</strong>
+                                <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                    <i class="bi bi-dash-square"></i>
+                                </button>
+                                <input type="number" name="quantity" class="form-control-sm qty_input" value="1" min="1" max="99" id="id_qty_{{ product.id }}" data-item_id="{{ product.id }}">
+                                <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ product.id }}" id="increment-quantity_{{ product.id }}">
+                                    <i class="bi bi-plus-square"></i>
+                                </button>
+                            </p>
                         </div>
-                        {% if product.get_key_features %}
-                            <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
-                                <div class="p-3">
-                                    {% for feature in product.get_key_features %}
-                                        {{ feature.value|safe }}
-                                    {% endfor %}
+                        <a href="{% url 'products' %}" class="btn btn-primary">
+                            <span><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                        </a>
+                        <button type="submit" class="btn btn-success">Add to Basket</button>
+                    </div>
+                        <!-- Hidden Redirect URL -->
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+                </div>
+            </div>
+            
+            <div class="row d-flex justify-content-center mt-4">
+                <div class="col-lg-9">
+                    <!-- Encapsulating Tabs and Content in a Card -->
+                    <div class="card">
+                        <div class="card-header bg-yellow">
+                            <!-- Bootstrap Tabs -->
+                            <ul class="nav nav-tabs card-header-tabs" id="productTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active black" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+                                </li>
+                                {% if product.get_key_features %}
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link black" id="features-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false"><i class="bi bi-check-circle me-2"></i>Key Features</button>
+                                    </li>
+                                {% endif %}
+                                {% if product.get_care_instructions %}
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#care" type="button" role="tab" aria-controls="care" aria-selected="false"><i class="bi bi-info-circle me-2"></i>Care Instructions</button>
+                                    </li>
+                                {% endif %}
+                                {% if product.get_size_guide %}
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link black" id="care-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab" aria-controls="care" aria-selected="false">Size Guide</button>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="productTabContent">
+                                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                    <p class="card-text">{{ product.description }}</p>
                                 </div>
+                                {% if product.get_key_features %}
+                                    <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                                        <div class="p-3">
+                                            {% for feature in product.get_key_features %}
+                                                {{ feature.value|safe }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if product.get_care_instructions %}
+                                    <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
+                                        <div class="p-3">
+                                            {% for instruction in product.get_care_instructions %}
+                                                {{ instruction.value|safe }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if product.get_size_guide %}
+                                    <div class="tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide">
+                                        <div class="p-3">
+                                            {% for guide in product.get_size_guide %}
+                                                {{ guide.value|safe }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
-                        {% if product.get_care_instructions %}
-                            <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
-                                <div class="p-3">
-                                    {% for instruction in product.get_care_instructions %}
-                                        {{ instruction.value|safe }}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        {% endif %}
-                        {% if product.get_size_guide %}
-                            <div class="tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide">
-                                <div class="p-3">
-                                    {% for guide in product.get_size_guide %}
-                                        {{ guide.value|safe }}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block postloadjs %}
