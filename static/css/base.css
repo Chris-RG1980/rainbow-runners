@@ -136,14 +136,6 @@ html, body {
     z-index: 99999999999;
 }
 
-.custom-toast {
-    overflow: visible;
-}
-
-.toast-capper {
-    height: 2px;
-}
-
 .bag-notification-wrapper {
     height: 100px;
     overflow-x: hidden;
