@@ -28,6 +28,10 @@ if os.path.exists("env.py"):
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+# Stripe Payments
+STRIPE_PUBLIC_KEY = 'pk_test_51Oj2CvKqpxNRgMs23rCHUNh848cIyrkE9aADN9cBzODsDGELuXDaBtCVUZcf5GgEqToL0zsnJWN438umTDaU9qPe00grJkHlqY' # noqa
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
