@@ -29,6 +29,7 @@ if os.path.exists("env.py"):
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Stripe Payments
+STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = 'pk_test_51Oj2CvKqpxNRgMs23rCHUNh848cIyrkE9aADN9cBzODsDGELuXDaBtCVUZcf5GgEqToL0zsnJWN438umTDaU9qPe00grJkHlqY' # noqa
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
