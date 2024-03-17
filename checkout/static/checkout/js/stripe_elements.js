@@ -33,9 +33,6 @@ card.addEventListener('change', function (event) {
     let errorDiv = document.getElementById('card-errors');
     if (event.error) {
         let html = `
-            <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
             <span>${event.error.message}</span>
         `;
         $(errorDiv).html(html);
@@ -76,7 +73,6 @@ form.addEventListener('submit', function(ev) {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
-                        country: $.trim(form.country.value),
                         state: $.trim(form.county.value),
                     }
                 }
@@ -88,7 +84,6 @@ form.addEventListener('submit', function(ev) {
                     line1: $.trim(form.street_address1.value),
                     line2: $.trim(form.street_address2.value),
                     city: $.trim(form.town_or_city.value),
-                    country: $.trim(form.country.value),
                     postal_code: $.trim(form.postcode.value),
                     state: $.trim(form.county.value),
                 }
@@ -97,9 +92,6 @@ form.addEventListener('submit', function(ev) {
             if (result.error) {
                 let errorDiv = document.getElementById('card-errors');
                 let html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
