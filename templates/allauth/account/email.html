@@ -12,6 +12,7 @@
         {% element form form=form action=email_url method="post" %}
             {% slot body %}
                 {% csrf_token %}
+                {{ form|crispy }}
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
                         {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
@@ -37,37 +38,25 @@
                 {% endfor %}
             {% endslot %}
             {% slot actions %}
-                {% element button type="submit" name="action_primary" %}
-                    {% trans 'Make Primary' %}
-                {% endelement %}
-                {% element button tags="secondary" type="submit" name="action_send" %}
-                    {% trans 'Re-send Verification' %}
-                {% endelement %}
-                {% element button tags="danger,delete" type="submit" name="action_remove" %}
-                    {% trans 'Remove' %}
-                {% endelement %}
+                <button type="submit" name="action_primary" class="btn btn-success">Make Primary</button>
+                <button tags="secondary" type="submit" name="action_send" class="btn btn-primary">Re-send Verification</button>
+                <button tags="danger,delete" type="submit" name="action_remove" class="btn btn-danger">Remove</button>
             {% endslot %}
         {% endelement %}
     {% else %}
         {% include "account/snippets/warn_no_email.html" %}
     {% endif %}
     {% if can_add_email %}
-        {% element h2 %}
-            {% trans "Add Email Address" %}
-        {% endelement %}
+        <h2 class="mt-2">Add Email Address</h2>
         {% url 'account_email' as action_url %}
         {% element form form=form method="post" action=action_url %}
-            Hoi bef bod
             {% slot body %}
                 {% csrf_token %}
                 {% element fields form=form %}
                 {% endelement %}
             {% endslot %}
-            befac
             {% slot actions %}
-                {% element button name="action_add" type="submit" %}
-                    {% trans "Add Email" %}
-                {% endelement %}
+                <button name="action_add" type="submit" class="btn btn-primary">Add Email</button>
             {% endslot %}
         {% endelement %}
     {% endif %}

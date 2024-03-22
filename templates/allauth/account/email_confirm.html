@@ -18,9 +18,7 @@
             {% element form method="post" action=action_url %}
                 {% slot actions %}
                     {% csrf_token %}
-                    {% element button type="submit" %}
-                        {% trans 'Confirm' %}
-                    {% endelement %}
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 {% endslot %}
             {% endelement %}
         {% else %}

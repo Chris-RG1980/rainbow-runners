@@ -14,6 +14,7 @@
     {% element form method="post" action=action_url %}
         {% slot body %}
             {% csrf_token %}
+            {{ form|crispy }}
             {% if current_emailaddress %}
                 {% element field disabled=True type="email" value=current_emailaddress.email %}
                     {% slot label %}
@@ -32,13 +33,9 @@
                     {% endslot %}
                     {% slot help_text %}
                         {% blocktranslate %}Your email address is still pending verification.{% endblocktranslate %}
-                        {% element button form="pending-email" type="submit" name="action_send" tags="minor,secondary" %}
-                            {% trans 'Re-send Verification' %}
-                        {% endelement %}
+                        <button form="pending-email" type="submit" name="action_send" tags="minor,secondary" class="btn btn-secondary" >Re-send Verification</button>
                         {% if current_emailaddress %}
-                            {% element button form="pending-email" type="submit" name="action_remove" tags="danger,minor" %}
-                                {% trans 'Cancel Change' %}
-                            {% endelement %}
+                            <button form="pending-email" type="submit" name="action_remove" tags="danger,minor" class="btn btn-danger">Cancel Change</button>
                         {% endif %}
                     {% endslot %}
                 {% endelement %}
@@ -50,9 +47,7 @@
             {% endelement %}
         {% endslot %}
         {% slot actions %}
-            {% element button name="action_add" type="submit" %}
-                {% trans "Change Email" %}
-            {% endelement %}
+            <button name="action_add" type="submit" class="btn btn-info">Change Email</button>
         {% endslot %}
     {% endelement %}
     {% if new_emailaddress %}

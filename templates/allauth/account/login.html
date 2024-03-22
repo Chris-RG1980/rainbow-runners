@@ -16,6 +16,7 @@
         {% slot body %}
             {% csrf_token %}
             {% element fields form=form unlabeled=True %}
+            {{ form|crispy }}
             {% endelement %}
             {% if redirect_field_value %}
                 <input type="hidden"
@@ -24,9 +25,7 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% trans "Sign In" %}
-            {% endelement %}
+            <button class="btn btn-primary" type="submit" tags="prominent,login">Sign In</button>
         {% endslot %}
     {% endelement %}
     {% if SOCIALACCOUNT_ENABLED %}
