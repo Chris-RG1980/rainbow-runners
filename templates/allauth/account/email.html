@@ -12,7 +12,6 @@
         {% element form form=form action=email_url method="post" %}
             {% slot body %}
                 {% csrf_token %}
-                {{ form|crispy }}
                 {% for radio in emailaddress_radios %}
                     {% with emailaddress=radio.emailaddress %}
                         {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
@@ -53,6 +52,7 @@
             {% slot body %}
                 {% csrf_token %}
                 {% element fields form=form %}
+                {{ form|crispy }}
                 {% endelement %}
             {% endslot %}
             {% slot actions %}
