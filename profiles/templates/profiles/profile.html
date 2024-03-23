@@ -5,9 +5,21 @@
 {% block content %}
     <div class="row">
         <div class="col">
-            <hr>
             <h2 class="text-center sub-heading mt-4">My Profile</h2>
-            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <form method="post" id="profile-update-form" action="{% url 'profile' %}">
+                {% csrf_token %}
+                <fieldset class="border border-black p-3 text-muted">
+                    <legend class="mb-2">Account Details</legend>
+                    {{ form|crispy }}
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary float-right">Update Information</button>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 {% endblock %}
