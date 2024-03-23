@@ -18,8 +18,8 @@
     <div class="row d-flex justify-content-center mb-5">
         <div class="col-lg-8">
             <div class="basket-totals-border bg-white">
-                <p class="text-muted ps-2 mt-2">Please fill out the form below to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                <form action="{% url 'checkout' %}" method="POST">
+                    <p class="text-muted ps-2 mt-2">Please fill out the form below to complete your order</p>
                     {% csrf_token %}
                     <fieldset class="border p-3 text-muted">
                         <legend class="mb-2">Details</legend>
@@ -70,6 +70,13 @@
                         <span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
                     </p>
                 </form>
+                <div id="loading-overlay" class="d-none">
+                    <h1 class="loading-spinner">
+                        <span class="icon">
+                            <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                        </span>
+                    </h1>
+                </div>
             </div>
         </div>
         <div class="col-lg-3 bg-white  basket-totals-border">
