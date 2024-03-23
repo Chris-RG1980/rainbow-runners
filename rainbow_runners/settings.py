@@ -198,6 +198,7 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/posts'
+DEFAULT_FROM_EMAIL = 'rainbowrunners@example.com'
 
 # Django-bleach settings
 
