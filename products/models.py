@@ -48,7 +48,8 @@ class Product(models.Model):
         null=True,
         blank=True
     )
-    colour = models.TextField(
+    colour = models.CharField(
+        max_length=30,
         null=True,
         blank=True
     )
@@ -87,6 +88,10 @@ class MetadataCategories(models.Model):
         return self.name
 
     name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def get_friendly_name(self):
+        return self.friendly_name
 
     class Meta:
         verbose_name_plural = "Metadata Categories"
@@ -97,9 +102,10 @@ class Metadata(models.Model):
     def __str__(self):
         return f'[{self.id}] {self.category}'
 
-    value = models.TextField(
-        null=False,
-        blank=False
+    products = models.ManyToManyField(
+        Product,
+        blank=True,
+        related_name="Metadata",
     )
 
     category = models.ForeignKey(
@@ -109,11 +115,14 @@ class Metadata(models.Model):
         on_delete=models.RESTRICT
     )
 
-    products = models.ManyToManyField(
-        Product,
-        blank=True,
-        related_name="Metadata"
+    value = models.TextField(
+        null=False,
+        blank=False,
+        verbose_name="Input Product Information"
     )
+
+    def get_sizes():
+        return Metadata.objects.filter(category__name='sizes')
 
     class Meta:
         verbose_name_plural = "metadata"
