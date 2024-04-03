@@ -116,12 +116,20 @@ def add_product_metadata(request, product_id, metadata_category_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
-    form = MetadataForm()
     product = get_object_or_404(Product, pk=product_id)
     metadata_category = get_object_or_404(
         MetadataCategories,
         pk=metadata_category_id
     )
+
+    product_metadata = Metadata.objects.filter(
+        products__id=product_id).filter(
+            category__id=metadata_category_id).first()
+
+    form = MetadataForm()
+
+    if product_metadata is not None:
+        form.initial['value'] = product_metadata.value
 
     if metadata_category.name == 'sizes':
         msg = "Please select a size or add a new size"
@@ -132,7 +140,7 @@ def add_product_metadata(request, product_id, metadata_category_id):
             )
 
     if request.method == "POST":
-        form = MetadataForm(request.POST)
+        form = MetadataForm(request.POST, instance=product_metadata)
         if form.is_valid() and request.user.is_authenticated:
             metadata = form.save(commit=False)
             metadata.category = metadata_category
