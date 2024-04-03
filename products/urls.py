@@ -17,4 +17,9 @@ urlpatterns = [
         '<int:product_id>/metadata/size',
         views.process_metadata_size,
         name='process_metadata_size'),
+    path('edit/<int:product_id>/', views.edit_product, name='edit_product'),
+    path(
+        'delete/<int:product_id>/',
+        views.delete_product,
+        name='delete_product'),
 ]

@@ -100,6 +100,7 @@ def add_product_info(request, product_id):
 def add_product_metadata(request, product_id, metadata_category_id):
     """A view to add metadata"""
 
+    form = MetadataForm()
     product = get_object_or_404(Product, pk=product_id)
     metadata_category = get_object_or_404(
         MetadataCategories,
@@ -138,9 +139,6 @@ def add_product_metadata(request, product_id, metadata_category_id):
             )
             messages.error(request, msg)
 
-    else:
-        form = MetadataForm()
-
     context = {
                 'product': product,
                 'metadata_category': metadata_category,
@@ -174,3 +172,32 @@ def process_metadata_size(request, product_id):
         metadata.products.remove(product)
 
     return HttpResponse(status=204)
+
+
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Successfully updated {product.name}!')
+            return redirect('product_detail', product_id=product.id)
+        else:
+            msg = 'Failed to update product. Please ensure the form is valid.'
+            messages.error(request, msg)
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
+
+    context = {
+        'form': form,
+        'product': product
+    }
+    return render(request, 'products/edit_product.html', context)
+
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted successfully!')
+    return redirect(reverse('products'))
