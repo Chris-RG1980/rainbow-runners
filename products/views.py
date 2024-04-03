@@ -4,6 +4,7 @@ from django.db.models.functions import Lower
 from django.contrib import messages
 from django.urls import reverse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from .models import Product, Metadata, MetadataCategories
 from .forms import ProductForm, MetadataForm
 
@@ -55,8 +56,13 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@login_required
 def add_product(request):
     """A view to add a product"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
 
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
@@ -79,8 +85,13 @@ def add_product(request):
     return render(request, 'products/add_products.html', context)
 
 
+@login_required
 def add_product_info(request, product_id):
     """A view to select the metadata to add"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
 
     product = get_object_or_404(Product, pk=product_id)
     sizes = Metadata.get_sizes()
@@ -97,8 +108,13 @@ def add_product_info(request, product_id):
     return render(request, 'products/add_product_info.html', context)
 
 
+@login_required
 def add_product_metadata(request, product_id, metadata_category_id):
     """A view to add metadata"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
 
     form = MetadataForm()
     product = get_object_or_404(Product, pk=product_id)
@@ -150,6 +166,11 @@ def add_product_metadata(request, product_id, metadata_category_id):
 
 @require_POST
 def process_metadata_size(request, product_id):
+    """A view to add and remove sizes"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
 
     product = get_object_or_404(Product, pk=product_id)
     metadata_size_id = request.POST.get("size-id")
@@ -174,7 +195,14 @@ def process_metadata_size(request, product_id):
     return HttpResponse(status=204)
 
 
+@login_required
 def edit_product(request, product_id):
+    """A view to edit products"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
+
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -196,7 +224,14 @@ def edit_product(request, product_id):
     return render(request, 'products/edit_product.html', context)
 
 
+@login_required
 def delete_product(request, product_id):
+    """A view to delete products"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect('products')
+
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted successfully!')
