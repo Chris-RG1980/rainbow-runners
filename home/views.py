@@ -11,3 +11,8 @@ def index(request):
 def about(request):
     """Return the about us page """
     return render(request, 'home/about.html')
+
+
+def resources(request):
+    """Return the resources page"""
+    return render(request, 'home/resources.html')
