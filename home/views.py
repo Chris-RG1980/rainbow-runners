@@ -6,3 +6,8 @@ from django.shortcuts import render
 def index(request):
     """Return the index page."""
     return render(request, 'home/index.html')
+
+
+def about(request):
+    """Return the about us page """
+    return render(request, 'home/about.html')
