@@ -81,29 +81,42 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'products' %}">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'view_bag' %}">Shopping Bag</a>
-                        </li>
                         {% if request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
-                        </li>
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'products' %}">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{% if grand_total %}text-white font-weight-bold{% else %}text-white{% endif %} nav-link" href="{% url 'view_bag' %}">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                        <p class="my-0">
+                                            {% if total %}
+                                                £{{ total|floatformat:2 }}
+                                            {% else %}
+                                                £0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
                         {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About Us</a>
                             </li>
@@ -114,10 +127,27 @@
                                 <a class="nav-link"  href="#">Contact Us</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{% url 'products' %}">Shop</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="{% if grand_total %}text-white font-weight-bold{% else %}text-white{% endif %} nav-link" href="{% url 'view_bag' %}">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                        <p class="my-0">
+                                            {% if total %}
+                                                £{{ total|floatformat:2 }}
+                                            {% else %}
+                                                £0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
                             </li>
                         {% endif %}
                     </ul>
@@ -206,18 +236,17 @@
                 </div>
                 <div class="justify-content-end">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'products' %}">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'view_bag' %}">Shopping Bag</a>
-                        </li>
                         {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'products' %}">Shop</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
@@ -225,10 +254,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
-                            </li>
                         {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'home' %}">Home</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About Us</a>
                             </li>
@@ -237,6 +266,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"  href="#">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'products' %}">Shop</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
