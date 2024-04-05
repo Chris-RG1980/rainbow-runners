@@ -30,13 +30,13 @@
                             {% if post.edited_by == None %}
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
-                                    <p><small class="text-muted">Click on this post to add your comments!</small></p>
+                                    <p><small class="text-muted">Click on this post to view or add comments!</small></p>
                                 </div>
                             {% endif %}
                             {% if post.edited_by != None %}
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
-                                    <p><small class="text-muted">Click on this post to add your comments!</small></p>
+                                    <p><small class="text-muted">Click on this post to view or add  comments!</small></p>
                                 </div>
                             {% endif %}
                         </div>
@@ -85,23 +85,25 @@
             </div>
         </div>
     </div>
-    <div class="row d-flex justify-content-center mt-4 mb-4 text-font">
-        <div class="col-xl-6 col-md-10">
-            <form id="posts_form" action="{% url 'posts' %}" method="POST" class="p-3 border bg-light bg-gradient">
-                {% csrf_token %}
-                {{ form.body|as_crispy_field }}
-                {% if request.user.is_superuser %}
-                    {{ form.club_notice|as_crispy_field }}
-                {% endif %}
-                <div id="posts_body_validation" class="d-none alert alert-danger" role="alert">
-                    Field is required
-                </div>
-                <div class="d-grid gap-2">
-                    <input class="btn btn-success" type="button" id="posts_button" value="Post">
-                </div>
-            </form>
+    {% if user.is_authenticated and user.is_superuser %}
+        <div class="row d-flex justify-content-center mt-4 mb-4 text-font">
+            <div class="col-xl-6 col-md-10">
+                <form id="posts_form" action="{% url 'posts' %}" method="POST" class="p-3 border bg-light bg-gradient">
+                    {% csrf_token %}
+                    {{ form.body|as_crispy_field }}
+                    {% if request.user.is_superuser %}
+                        {{ form.club_notice|as_crispy_field }}
+                    {% endif %}
+                    <div id="posts_body_validation" class="d-none alert alert-danger" role="alert">
+                        Field is required
+                    </div>
+                    <div class="d-grid gap-2">
+                        <input class="btn btn-success" type="button" id="posts_button" value="Post">
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 {% block additional_js %}
 <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>

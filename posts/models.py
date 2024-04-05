@@ -47,9 +47,9 @@ class Comment(models.Model):
     """
 
     post = models.ForeignKey(Posts, related_name='comments',
-                             on_delete=models.CASCADE)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,
-                               on_delete=models.CASCADE)
+                             on_delete=models.RESTRICT)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
+                               on_delete=models.SET_NULL)
     body = BleachField(blank=False)
     created_date = models.DateTimeField(auto_now_add=True)
 

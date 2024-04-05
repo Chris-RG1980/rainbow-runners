@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .models import Posts, Comment
 from .forms import PostsForm, CommentForm
 from django.contrib import messages
@@ -125,3 +126,20 @@ def post_detail(request, post_id):
         'comment_form': comment_form
     }
     return render(request, 'posts/post_detail.html', context)
+
+
+@login_required
+def delete_comment(request, post_id, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    if request.user != comment.author and not request.user.is_superuser:
+        msg = "You are not authorized to delete this comment."
+        messages.error(request, msg)
+        return redirect('posts')
+
+    comment.delete()
+    messages.success(request, "Comment deleted successfully")
+    return redirect(reverse(
+                'post_detail',
+                kwargs={'post_id': post_id})
+            )
