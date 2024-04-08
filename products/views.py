@@ -172,6 +172,7 @@ def add_product_metadata(request, product_id, metadata_category_id):
     return render(request, 'products/add_metadata.html', context)
 
 
+@login_required
 @require_POST
 def process_metadata_size(request, product_id):
     """A view to add and remove sizes"""
