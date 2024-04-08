@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from .models import UserProfile
 
 
@@ -33,3 +34,23 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black'
             self.fields[field].label = False
+
+
+""" Credit https://stackoverflow.com/questions/
+38047408/how-to-allow-user-to-delete-account-in-django-allauth """
+
+
+class DeactivateUserForm(forms.ModelForm):
+    """
+    Simple form that provides a checkbox that signals deactivation.
+    """
+    class Meta:
+        model = User
+        fields = ['is_active']
+
+        def __init__(self, *args, **kwargs):
+            super(DeactivateUserForm, self).__init__(*args, **kwargs)
+
+            msg = "To deactivate this account tick the box."
+
+            self.fields['is_active'].help_text = msg
