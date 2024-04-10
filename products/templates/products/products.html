@@ -55,7 +55,7 @@
                                             </span>
                                         </p>
                                         {% endif %}
-                                        {% if request.user.is_superuser %}
+                                        {% if is_admin %}
                                         <small class="ml-3">
                                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                                             <a href="{% url 'add_product_info' product.id %}">Edit Product Info</a> | 

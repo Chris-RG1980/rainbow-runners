@@ -11,8 +11,15 @@ from .forms import ProductForm, MetadataForm
 # Create your views here.
 
 
+def is_in_group(user, group_name):
+    """Check if the user is in the given group."""
+    return user.groups.filter(name=group_name).exists()
+
+
 def all_products(request):
     """A view to show all products, including sorting and search queries"""
+
+    is_admin = is_in_group(request.user, 'admin')
 
     products = Product.objects.all()
     query = None
@@ -40,6 +47,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'is_admin': is_admin
     }
 
     return render(request, 'products/products.html', context)
@@ -60,7 +68,9 @@ def product_detail(request, product_id):
 def add_product(request):
     """A view to add a product"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
@@ -89,7 +99,9 @@ def add_product(request):
 def add_product_info(request, product_id):
     """A view to select the metadata to add"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
@@ -112,7 +124,9 @@ def add_product_info(request, product_id):
 def add_product_metadata(request, product_id, metadata_category_id):
     """A view to add metadata"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
@@ -177,7 +191,9 @@ def add_product_metadata(request, product_id, metadata_category_id):
 def process_metadata_size(request, product_id):
     """A view to add and remove sizes"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
@@ -208,7 +224,9 @@ def process_metadata_size(request, product_id):
 def edit_product(request, product_id):
     """A view to edit products"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
@@ -228,7 +246,7 @@ def edit_product(request, product_id):
 
     context = {
         'form': form,
-        'product': product
+        'product': product,
     }
     return render(request, 'products/edit_product.html', context)
 
@@ -237,7 +255,9 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     """A view to delete products"""
 
-    if not request.user.is_superuser:
+    is_admin = is_in_group(request.user, 'admin')
+
+    if not is_admin:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect('products')
 
