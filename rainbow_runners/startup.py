@@ -5,7 +5,6 @@ def create_groups():
     """Create co-ordinators & admin groups """
     Group.objects.get_or_create(name='co-ordinators')
     Group.objects.get_or_create(name='admin')
-    print("Groups created!")
 
 
 create_groups()
