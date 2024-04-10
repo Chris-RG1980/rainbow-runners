@@ -5,24 +5,28 @@
     <h2 class="text-center sub-heading mt-4">Club Shop</h2>
     <!--Product Sorting Dropdown-->
     <div class="row d-flex justify-content-end mb-3">
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sort by...
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=asc">
-                            Price (Low to High)
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=desc">
-                            Price (High to Low)
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center">
+            {% if is_admin %}
+                <a class="btn btn-primary" href="{% url 'add_product' %}">Add Product</a>
+            {% else%}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort by...
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=asc">
+                                Price (Low to High)
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=desc">
+                                Price (High to Low)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </div>
     <!--Products Display-->
