@@ -9,23 +9,35 @@ from django.contrib import messages
 # Create your views here.
 
 
+def is_in_group(user, group_name):
+    """Check if the user is in the given group."""
+    return user.groups.filter(name=group_name).exists()
+
+
 @login_required
 def all_posts(request):
     """Show all posts"""
 
     form = PostsForm()
 
+    is_coordinator = is_in_group(request.user, 'co-ordinators')
+    is_admin = is_in_group(request.user, 'admin')
+
     if request.method == "POST":
-        form = PostsForm(request.POST)
-        if form.is_valid() and request.user.is_authenticated:
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            messages.success(request, 'Post added successfully')
-            return redirect('posts')
+        if is_coordinator or is_admin:
+            form = PostsForm(request.POST)
+            if form.is_valid() and request.user.is_authenticated:
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
+                messages.success(request, 'Post added successfully')
+                return redirect('posts')
+            else:
+                msg = "Update failed. Please ensure the form is valid."
+                messages.error(request, msg)
         else:
-            messages.error(request,
-                           'Update failed. Please ensure the form is valid.')
+            messages.error(request, "You are not authorized to create a post.")
+            return redirect('posts')
 
     posts = Posts.objects.all().order_by('-created_date')
     page = request.GET.get('page')
@@ -41,6 +53,8 @@ def all_posts(request):
     context = {
         'posts': posts,
         'form': form,
+        'is_coordinator': is_coordinator,
+        'is_admin': is_admin
     }
 
     return render(request, 'posts/posts.html', context)
@@ -49,28 +63,34 @@ def all_posts(request):
 @login_required
 def edit_post(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
-
-    if request.user != post.user and not request.user.is_superuser:
-        messages.error(request, "You are not authorized to edit this post.")
-        return redirect('posts')
+    is_coordinator = is_in_group(request.user, 'co-ordinators')
+    is_admin = is_in_group(request.user, 'admin')
 
     if request.method == "POST":
-        form = PostsForm(request.POST, instance=post)
-        if form.is_valid() and request.user.is_authenticated:
-            post_form = form.save(commit=False)
-            post_form.edited_by = request.user
-            post_form.save()
-            messages.success(request, "Post updated successfully")
-            return redirect('posts')
+        if is_coordinator or is_admin:
+            form = PostsForm(request.POST, instance=post)
+            if form.is_valid() and request.user.is_authenticated:
+                post_form = form.save(commit=False)
+                post_form.edited_by = request.user
+                post_form.save()
+                messages.success(request, "Post updated successfully")
+                return redirect('posts')
+            else:
+                msg = "Update failed. Please ensure the form is valid."
+                messages.error(request, msg)
         else:
-            messages.error(request,
-                           "Update failed. Please ensure the form is valid.")
+            msg = "You are not authorized to edit this post."
+            messages.error(request, msg)
+            return redirect('posts')
     else:
         form = PostsForm(instance=post)
 
+    print("Is Coordinator:", is_coordinator)
     context = {
         'post': post,
         'form': form,
+        'is_coordinator': is_coordinator,
+        'is_admin': is_admin
     }
 
     return render(request, 'posts/edit_post.html', context)
@@ -79,19 +99,24 @@ def edit_post(request, post_id):
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
+    is_coordinator = is_in_group(request.user, 'co-ordinators')
+    is_admin = is_in_group(request.user, 'admin')
 
-    if request.user != post.user and not request.user.is_superuser:
+    if is_coordinator or is_admin:
+        post.delete()
+        messages.success(request, "Post deleted successfully")
+        return redirect('posts')
+    else:
         messages.error(request, "You are not authorized to delete this post.")
         return redirect('posts')
-
-    post.delete()
-    messages.success(request, "Post deleted successfully")
-    return redirect('posts')
 
 
 @login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Posts, id=post_id)
+    is_coordinator = is_in_group(request.user, 'co-ordinators')
+    is_admin = is_in_group(request.user, 'admin')
+
     new_comment = None
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -123,7 +148,9 @@ def post_detail(request, post_id):
         'post': post,
         'comments': comments,
         'new_comment': new_comment,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'is_coordinator': is_coordinator,
+        'is_admin': is_admin
     }
     return render(request, 'posts/post_detail.html', context)
 
@@ -131,15 +158,17 @@ def post_detail(request, post_id):
 @login_required
 def delete_comment(request, post_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
+    is_coordinator = is_in_group(request.user, 'co-ordinators')
+    is_admin = is_in_group(request.user, 'admin')
 
-    if request.user != comment.author and not request.user.is_superuser:
-        msg = "You are not authorized to delete this comment."
-        messages.error(request, msg)
-        return redirect('posts')
-
-    comment.delete()
-    messages.success(request, "Comment deleted successfully")
-    return redirect(reverse(
+    if request.user == comment.author or is_coordinator or is_admin:
+        comment.delete()
+        messages.success(request, "Comment deleted successfully")
+        return redirect(reverse(
                 'post_detail',
                 kwargs={'post_id': post_id})
             )
+    else:
+        msg = "You are not authorized to delete this comment."
+        messages.error(request, msg)
+        return redirect('posts')

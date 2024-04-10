@@ -21,7 +21,7 @@
                                 <p class="mb-0 justify-content-start align-self-center"><small class="text-muted">Posted by {{ comment.author }} on {{ comment.created_date|date:"d M, Y" }}</small></p>
                             </div>
                             <div>
-                                {% if user.is_authenticated and user == comment.author or user.is_superuser %}
+                                {% if is_coordinator or user == comment.author or is_admin %}
                                     <small>
                                         <a href="{% url 'delete_comment' post.id comment.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');" aria-label="Delete Button"><i class="bi bi-trash3 p-2"></i></a>
                                     </small>

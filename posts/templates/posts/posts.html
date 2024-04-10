@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div>
-                        {% if user.is_authenticated and user == post.user or user.is_superuser %}
+                        {% if user.is_authenticated and is_coordinator or is_admin %}
                             <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary" aria-label="Edit Button"><i class="bi bi-pencil p-2"></i></a>
                             <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');" aria-label="Delete Button"><i class="bi bi-trash3 p-2"></i></a>
                         {% endif %}
@@ -85,13 +85,13 @@
             </div>
         </div>
     </div>
-    {% if user.is_authenticated and user.is_superuser %}
+    {% if user.is_authenticated and is_coordinator or is_admin%}
         <div class="row d-flex justify-content-center mt-4 mb-4 text-font">
             <div class="col-xl-6 col-md-10">
                 <form id="posts_form" action="{% url 'posts' %}" method="POST" class="p-3 border bg-light bg-gradient">
                     {% csrf_token %}
                     {{ form.body|as_crispy_field }}
-                    {% if request.user.is_superuser %}
+                    {% if is_coordinator or is_admin%}
                         {{ form.club_notice|as_crispy_field }}
                     {% endif %}
                     <div id="posts_body_validation" class="d-none alert alert-danger" role="alert">
