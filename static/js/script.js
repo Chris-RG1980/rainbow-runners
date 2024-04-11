@@ -5,8 +5,3 @@ document.addEventListener('DOMContentLoaded', function () {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 });
-
-// Add sizes to products
-$(".select-size").click(function() {
-    console.log("Hello")
-});

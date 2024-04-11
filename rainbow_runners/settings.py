@@ -24,6 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if os.path.exists("env.py"):
     import env  # noqa
 
+# MongoDB
+MONGO_URI = os.environ.get('MONGO_URI')
+MONGO_DBNAME = os.environ.get('MONGO_DBNAME')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -60,6 +63,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'contact',
 
     # Other
     'crispy_forms',
