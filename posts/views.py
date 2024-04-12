@@ -62,6 +62,8 @@ def all_posts(request):
 
 @login_required
 def edit_post(request, post_id):
+    """A view to allow co-ordinators and admin to edit posts"""
+
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
     is_admin = is_in_group(request.user, 'admin')
@@ -98,6 +100,8 @@ def edit_post(request, post_id):
 
 @login_required
 def delete_post(request, post_id):
+    """A view to allow admin or co-ordinators to delete posts"""
+
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
     is_admin = is_in_group(request.user, 'admin')
@@ -113,6 +117,8 @@ def delete_post(request, post_id):
 
 @login_required
 def post_detail(request, post_id):
+    """A view to allow users to comment on posts"""
+
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
     is_admin = is_in_group(request.user, 'admin')
@@ -157,6 +163,11 @@ def post_detail(request, post_id):
 
 @login_required
 def delete_comment(request, post_id, comment_id):
+    """
+    A view to allow the post author,
+    co-ordinators or admin to delete comments
+    """
+
     comment = get_object_or_404(Comment, id=comment_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
     is_admin = is_in_group(request.user, 'admin')
