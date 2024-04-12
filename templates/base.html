@@ -82,6 +82,11 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav align-items-center">
                         {% if request.user.is_authenticated %}
+                            {% if is_admin %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'view_questions' %}">View Questions</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
                             </li>
@@ -232,6 +237,11 @@
                 <div class="justify-content-end">
                     <ul class="navbar-nav">
                         {% if request.user.is_authenticated %}
+                            {% if is_admin %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'view_questions' %}">View Questions</a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'posts' %}">Club Posts</a>
                             </li>
