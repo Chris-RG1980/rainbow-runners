@@ -15,10 +15,9 @@ def contact(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
-            data = form.cleaned_data
             db = MongoClient(settings.MONGO_URI).get_database()
             questions = db.questions
-            question = data
+            question = form.cleaned_data
             entry = questions.insert_one(question)
 
             return render(request, 'contact/thanks.html', {
