@@ -13,9 +13,9 @@
 {% block content %}
     <div class="row d-flex justify-content-center">
         {% if bag_items %}
-            <div class="col-lg-8">
+            <div class="col-xl-8">
                 <div class="table-responsive">
-                    <table class="table table-sm">
+                    <table class="table table-sm responsive-bag">
                         <thead>
                         <tr>
                             <th></th>
@@ -30,72 +30,98 @@
                         <tbody>
                         {% for item in bag_items %}
                             <tr>
-                                <td class="table-cell-height-fix">
+                                <td class="table-cell-height-fix btn-row">
                                     <div class="h-100 d-flex align-items-center">
                                         <a class="btn btn-danger remove-item fs-5" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Remove Item">
                                             <i class="bi bi-bag-x"></i>
                                         </a>
                                     </div>
                                 </td>
-                                <td class="product-thumbnail">
-                                    <div>
+                                <td>
+                                    <div class="mobile-description">Product Image:</div>
+                                    <div class="product-thumbnail">
                                         <img class="img-fluid" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
                                     </div>
                                 </td>
-                                <td colspan="2">{{ item.product.name }}</td>
-                                <td>{{ item.size|safe|default:"N/A" }}</td>
-                                <td>£{{ item.product.price }}</td>
-                                <td class="quantity-col">
-                                    <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
-                                        {% csrf_token %}
-                                        <div class="input-group justify-content-center">
-                                            <div>
-                                                <button class="decrement-qty btn btn-outline-black input-group-text" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                    <i class="bi bi-dash-square"></i>
-                                                </button>
-                                                <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
-                                                <button class="increment-qty btn btn-outline-black input-group-text"  data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                    <i class="bi bi-plus-square"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="product_size"  value="{{ item.size }}" />
-                                    </form>
-                                    <div class="d-flex justify-content-center mt-2">
-                                        <a class="update-link black btn btn-info"><small>Update</small></a>
+                                <td colspan="2">
+                                    <div class="mobile-description">Product Name:</div>
+                                    <div>
+                                        {{ item.product.name }}
                                     </div>
                                 </td>
-                                <td>£{{ item.subtotal }}</td>
+                                <td>
+                                    <div class="mobile-description">Product Size:</div>
+                                    <div>{{ item.size|safe|default:"N/A" }}</div>
+                                </td>
+                                <td>
+                                    <div class="mobile-description">Product Price:</div>
+                                    <div>£{{ item.product.price }}</div>
+                                </td>
+                                <td class="quantity-col">
+                                    <div class="mobile-description">Product Quantity:</div>
+                                    <div class="quantity">
+                                        <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                <div>
+                                                    <button class="decrement-qty qty-btn" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                        <i class="bi bi-dash-square"></i>
+                                                    </button>
+                                                    <input type="number" name="quantity" class="form-control-sm qty_input" value="{{ item.quantity }}" min="1" max="99" id="id_qty_{{ item.item_id }}" data-item_id="{{ item.item_id }}">
+                                                    <button class="increment-qty qty-btn"  data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <i class="bi bi-plus-square"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="product_size"  value="{{ item.size }}" />
+                                        </form>
+                                        <div>
+                                            <a class="update-link black btn btn-info"><small>Update</small></a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mobile-description">Product Subtotal:</div>
+                                    <div>£{{ item.subtotal }}</div>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col-lg-3 bg-white basket-totals-height basket-totals-border">
-                <p class="p-1 m-0"><strong>Basket Totals</strong></p>
-                <hr class="mt-0">
-                <p class="p-1"><strong>Subtotal:</strong> £{{ total }}</p>
-                <hr>
-                <p class="ps-1"><strong>Shipping:</strong></p>
-                <p class="ps-1"><small><strong>Standard Delivery (3-5 Working Days):</strong></small> £{{ delivery|floatformat:2 }}</p>
-                {% if free_delivery_delta > 0 %}
-                    <p class="mb-1 text-danger">
-                        You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
-                    </p>
-                {% endif %}
-                <hr>
-                <p class="ps-1"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></p>
-                <div>
-                    <div class="d-flex justify-content-center">
-                        <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">
-                            <span class="text-uppercase"><strong>Proceed to Checkout</strong></span>
-                        </a>
+            <div class="col-lg-3">
+                <div class="bg-white basket-totals mb-4">
+                    <div class="border-bottom">
+                        <strong>Basket Totals</strong>
                     </div>
-                    <div class="mt-1 mb-2 d-flex justify-content-center">
-                        <a href="{% url 'products' %}" class="btn btn-info btn-lg">
-                            <span class="text-uppercase"><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
-                        </a>
+                    <div>
+                        <strong>Subtotal:</strong> £{{ total }}</div>
+                    <div class="border-top">
+                        <strong>Shipping:</strong>
+                    </div>
+                    <div>
+                        <small><strong>Standard Delivery (3-5 Working Days):</strong></small> £{{ delivery|floatformat:2 }}
+                    </div>
+                    {% if free_delivery_delta > 0 %}
+                        <div class="text-danger">
+                            You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
+                        </div>
+                    {% endif %}
+                    <div class="border-bottom border-top h5 mt-2 py-3">
+                        <strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong>
+                    </div>
+                    <div>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% url 'checkout' %}" class="btn btn-success">
+                                <span class="text-uppercase"><strong>Proceed to Checkout</strong></span>
+                            </a>
+                        </div>
+                        <div class="mt-1 mb-2 d-flex justify-content-center">
+                            <a href="{% url 'products' %}" class="btn btn-info">
+                                <span class="text-uppercase"><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
