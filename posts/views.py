@@ -134,12 +134,16 @@ def post_detail(request, post_id):
             messages.success(request, 'Comment added successfully')
             return redirect(post.get_absolute_url())
         else:
-            messages.error(request,
-                           'Comment failed. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Comment failed. Please ensure the form is valid.'
+            )
     else:
         comment_form = CommentForm()
 
-    comments = Comment.objects.all().order_by('-created_date')
+    comments = Comment.objects.filter(
+        post_id=post_id).order_by('-created_date')
+
     page = request.GET.get('page')
     paginator = Paginator(comments, 3)
 
