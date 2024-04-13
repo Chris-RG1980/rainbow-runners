@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pymongo import MongoClient
@@ -21,9 +22,10 @@ def contact(request):
         form = ContactForm(request.POST)
 
         if form.is_valid():
+            question = form.cleaned_data
+            question['submission_date'] = timezone.now()
             db = MongoClient(settings.MONGO_URI).get_database()
             questions = db.questions
-            question = form.cleaned_data
             entry = questions.insert_one(question)
 
             return render(request, 'contact/thanks.html', {
@@ -44,7 +46,7 @@ def view_questions(request):
     if is_admin:
         db = MongoClient(settings.MONGO_URI).get_database()
         questions = db.questions
-        all_questions = list(questions.find())
+        all_questions = list(questions.find().sort("submission_date", -1))
 
         questions_for_template = []
         for question in all_questions:
@@ -53,7 +55,7 @@ def view_questions(request):
                 'name': question.get('name', 'No name provided'),
                 'email': question.get('email', 'No email provided'),
                 'question': question.get('question', 'No question provided'),
-                'answered': question.get('answered', False)
+                'date': question.get('submission_date')
             }
             questions_for_template.append(question_data)
 

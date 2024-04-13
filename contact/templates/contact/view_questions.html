@@ -16,6 +16,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Question</th>
+                        <th>Date Submitted</th>
+                        <th>Time Submitted</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +26,8 @@
                         <td>{{ question.name }}</td>
                         <td>{{ question.email }}</td>
                         <td>{{ question.question }}</td>
+                        <td>{{ question.date|date:"d M, Y" }}</td>
+                        <td>{{ question.date|time:"H:i" }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
