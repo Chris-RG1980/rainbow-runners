@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <h2 class="text-center sub-heading mt-4">Unexpected Error</h2>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-6 text-center mt-4">
+        <p class="lead">We have run into an unexpected error. Please click the button below. </p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Back to Home Page!</a>
+</div>
+{% endblock %}
