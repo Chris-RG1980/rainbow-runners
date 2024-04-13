@@ -311,6 +311,9 @@ footer, ul {
     padding: 5px 15px;
 }
 
+.product-actions {
+    gap: 10px;
+}
 
 .quantity {
     display: flex;
@@ -371,7 +374,6 @@ footer, ul {
         font-weight: 400;
         font-size: 3.5rem;
     }
-    
 }
 
 @media screen and (max-width: 768px) {
@@ -424,6 +426,7 @@ footer, ul {
         display: block;
         font-weight: 500;
     }
+    
 }
 
 @media screen and (max-width: 576px) {
@@ -431,8 +434,12 @@ footer, ul {
         font-weight: 400;
         font-size: 1.9rem;
     }
-    
+
+    .product-actions {
+        flex-direction: column;
+    }
 }
+
 
 @media screen and (max-width: 360px) {
     .hero-title {

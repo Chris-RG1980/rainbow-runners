@@ -44,17 +44,18 @@
                                 </button>
                             </p>
                         </div>
-                        <a href="{% url 'products' %}" class="btn btn-primary">
-                            <span><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
-                        </a>
-                        <button type="submit" class="btn btn-success">Add to Basket</button>
+                        <div class="product-actions d-flex">
+                            <a href="{% url 'products' %}" class="btn btn-primary">
+                                <span><i class="bi bi-arrow-left pe-2"></i>Continue Shopping</span>
+                            </a>
+                            <button type="submit" class="btn btn-success">Add to Basket</button>
+                        </div>
                     </div>
                         <!-- Hidden Redirect URL -->
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </form>
                 </div>
             </div>
-            
             <div class="row d-flex justify-content-center mt-4">
                 <div class="col-lg-9 mb-3">
                     <!-- Encapsulating Tabs and Content in a Card -->
