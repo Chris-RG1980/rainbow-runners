@@ -15,7 +15,7 @@ def assign_users_to_coordinators():
     group, created = Group.objects.get_or_create(name='co-ordinators')
 
     # List of usernames who should be coordinators
-    coordinator_usernames = ['Chris', 'stuart']
+    coordinator_usernames = ['chris', 'stuart']
 
     for username in coordinator_usernames:
         user = User.objects.get(username=username)
@@ -26,12 +26,12 @@ def assign_users_to_admin():
     group, created = Group.objects.get_or_create(name='admin')
 
     # List of usernames who should be admin
-    admin_usernames = ['Chris', 'adam1']
+    admin_usernames = ['chris', 'adam1']
 
     for username in admin_usernames:
         user = User.objects.get(username=username)
         user.groups.add(group)
 
 
-# assign_users_to_coordinators()
-# assign_users_to_admin()
+assign_users_to_coordinators()
+assign_users_to_admin()

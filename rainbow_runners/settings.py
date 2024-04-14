@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'rainbow_runners.apps.RainbowRunnersConfig',
+    'rainbow_runners.apps.RainbowRunnersConfig',
     'home',
     'posts',
     'products',
