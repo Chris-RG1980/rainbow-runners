@@ -33,5 +33,5 @@ def assign_users_to_admin():
         user.groups.add(group)
 
 
-assign_users_to_coordinators()
-assign_users_to_admin()
+# assign_users_to_coordinators()
+# assign_users_to_admin()
