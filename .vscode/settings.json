@@ -8,17 +8,22 @@
         "corejs",
         "csrfmiddlewaretoken",
         "cust",
+        "fhbrjwbi",
         "forloop",
+        "gunicorn",
+        "herokuapp",
         "inclusivity",
         "Iyrk",
         "LGBTQ",
         "lineitems",
+        "metadatacategories",
         "myclient",
         "ordinators",
         "postloadjs",
         "pymongo",
         "socialaccount",
         "Strava",
-        "webp"
+        "webp",
+        "wsgi"
     ]
 }
