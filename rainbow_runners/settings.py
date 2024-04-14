@@ -41,7 +41,11 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['rainbow-runners.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'rainbow-runners-03ee314b7993.herokuapp.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
