@@ -10,6 +10,8 @@
         "cust",
         "fhbrjwbi",
         "forloop",
+        "gunicorn",
+        "herokuapp",
         "inclusivity",
         "Iyrk",
         "LGBTQ",
@@ -21,6 +23,7 @@
         "pymongo",
         "socialaccount",
         "Strava",
-        "webp"
+        "webp",
+        "wsgi"
     ]
 }
