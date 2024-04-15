@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -40,7 +41,8 @@ class Product(models.Model):
     )
     price = models.DecimalField(
         max_digits=6,
-        decimal_places=2
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
     )
 
     material = models.CharField(
