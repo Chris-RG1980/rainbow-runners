@@ -18,7 +18,7 @@
     <div class="row d-flex justify-content-center mb-5">
         <div class="col-lg-8">
             <div class="basket-totals-border bg-white">
-                <form action="{% url 'checkout' %}" method="POST">
+                <form action="{% url 'checkout' %}" id="payment-form" method="POST">
                     <p class="text-muted ps-2 mt-2">Please fill out the form below to complete your order</p>
                     {% csrf_token %}
                     <fieldset class="border p-3 text-muted">
