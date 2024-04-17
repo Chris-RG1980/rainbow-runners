@@ -1,4 +1,3 @@
-import sys
 from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -19,7 +18,7 @@ def webhook(request):
 
     # Get the webhook data and verify its signature
     payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    sig_header = request.headers['STRIPE_SIGNATURE']
     event = None
 
     try:
@@ -48,8 +47,6 @@ def webhook(request):
 
     # Get the webhook type from Stripe
     event_type = event['type']
-
-    print(event, file=sys.stderr)
 
     # If there's a handler for it, get it from the event map
     # Use the generic one by default

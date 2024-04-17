@@ -97,6 +97,7 @@ class StripeWH_Handler:
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
+                    user_profile=profile,
                     grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
@@ -125,8 +126,10 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
+                    grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
+                    user_profile=profile
                 )
                 for item_id, item_data in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
