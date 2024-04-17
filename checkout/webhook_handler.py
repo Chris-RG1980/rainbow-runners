@@ -88,11 +88,13 @@ class StripeWH_Handler:
         attempt = 1
         while attempt <= 5:
             try:
-                order = Order.objects.get(
+                order = Order.objects.filter(
                     stripe_pid=pid
-                )
-                order_exists = True
-                break
+                ).first()
+
+                if order is not None:
+                    order_exists = True
+                    break
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
@@ -121,8 +123,9 @@ class StripeWH_Handler:
                     user_profile=profile,
                     source="Stripe Webhook"
                 )
-                for item_id, item_data in json.loads(bag).items():
-                    product = Product.objects.get(pk=int(item_id))
+                bagItems = json.loads(bag).items()
+                for item_id, item_data in bagItems:
+                    product = Product.objects.filter(pk=int(item_id)).first()
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
@@ -145,7 +148,7 @@ class StripeWH_Handler:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
+                    status=200)
         self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | '
