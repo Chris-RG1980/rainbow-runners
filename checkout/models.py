@@ -54,6 +54,7 @@ class Order(models.Model):
         blank=False,
         default=''
     )
+    source = models.CharField(max_length=32, null=True, blank=True)
 
     def _generate_order_number(self):
         """
