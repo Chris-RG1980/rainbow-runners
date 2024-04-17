@@ -12,6 +12,14 @@ from products.models import Product
 
 
 class Order(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['stripe_pid'],
+                name='unique stripe id'
+            )
+        ]
+
     user_profile = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,

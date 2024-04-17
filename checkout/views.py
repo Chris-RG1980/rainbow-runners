@@ -62,9 +62,8 @@ def checkout(request):
 
         order_form = OrderForm(form_data, instance=order)
         if order_form.is_valid():
-            orderExisted = order is not None
             order = order_form.save(commit=False)
-            if not orderExisted:
+            if order.source is None:
                 order.source = "Checkout"
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
