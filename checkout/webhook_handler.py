@@ -118,7 +118,8 @@ class StripeWH_Handler:
                     grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
-                    user_profile=profile
+                    user_profile=profile,
+                    source="Stripe Webhook"
                 )
                 for item_id, item_data in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
