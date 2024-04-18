@@ -231,7 +231,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Settings for Email Confirmation
 
 # Email settings for development
-if DEBUG:
+if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'rainbowrunners@example.com'
 else:
@@ -240,7 +240,7 @@ else:
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
-    DEFAULT_FROM_EMAIL = 'Rainbow Runners'
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASS = os.environ.get('EMAIL_HOST_PASS')
 
