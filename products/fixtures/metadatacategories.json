@@ -1,34 +1,34 @@
 [
-    {
-      "model": "products.metadatacategories",
-      "pk": 1,
-      "fields": {
-        "name": "size_guide",
-        "friendly_name": "Size Guide"
-      }
-    },
-    {
-      "model": "products.metadatacategories",
-      "pk": 2,
-      "fields": {
-        "name": "key_features",
-        "friendly_name": "Key Features"
-      }
-    },
-    {
-      "model": "products.metadatacategories",
-      "pk": 3,
-      "fields": {
-        "name": "care_instructions",
-        "friendly_name": "Care Instructions"
-      }
-    },
-    {
-      "model": "products.metadatacategories",
-      "pk": 4,
-      "fields": {
-        "name": "sizes",
-        "friendly_name": "Sizes"
-      }
-    }
-  ]
+	{
+		"model": "products.metadatacategories",
+		"pk": 1,
+		"fields": {
+			"name": "size_guide",
+			"friendly_name": "Size Guide"
+		}
+	},
+	{
+		"model": "products.metadatacategories",
+		"pk": 2,
+		"fields": {
+			"name": "key_features",
+			"friendly_name": "Key Features"
+		}
+	},
+	{
+		"model": "products.metadatacategories",
+		"pk": 3,
+		"fields": {
+			"name": "care_instructions",
+			"friendly_name": "Care Instructions"
+		}
+	},
+	{
+		"model": "products.metadatacategories",
+		"pk": 4,
+		"fields": {
+			"name": "sizes",
+			"friendly_name": "Sizes"
+		}
+	}
+]

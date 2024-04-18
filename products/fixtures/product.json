@@ -1,107 +1,107 @@
 [
-    {
-      "model": "products.product",
-      "pk": 4,
-      "fields": {
-        "category": 1,
-        "sku": "RR-UT-01",
-        "name": "Rainbow Runner Unisex Top",
-        "description": "Designed for athletes who believe in inclusivity and style, this top features a subtle gradient of rainbow colors across the chest, symbolizing unity in diversity. Crafted from high-performance, breathable fabric, it keeps you cool and comfortable whether you're sprinting or just enjoying a leisurely jog. The lightweight material provides a relaxed fit suitable for all body types, making it a versatile choice for your race day.",
-        "price": "29.99",
-        "material": "100% Polyester",
-        "colour": "White with Rainbow Gradient",
-        "image": "running-top-2_Mmdnkpu.webp",
-        "has_sizes": true
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 5,
-      "fields": {
-        "category": 1,
-        "sku": "RR-US-02",
-        "name": "Rainbow Runner Shorts",
-        "description": "<p>Elevate your running game with the Rainbow Runner Spectrum Shorts, tailored for a comfortable unisex fit. These stylish shorts come in a sleek dark grey colour, accented with a vibrant rainbow sweep on the side, reflecting our commitment to diversity and inclusion. Made with lightweight, breathable fabric, they are perfect for any runner looking to add some color to their stride while ensuring optimum performance.</p>",
-        "price": "24.99",
-        "material": "100% Recycled Polyester",
-        "colour": "Dark Grey with Rainbow Details",
-        "image": "shorts_YEGHhWZ.webp",
-        "has_sizes": true
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 6,
-      "fields": {
-        "category": 1,
-        "sku": "RR-SS-03",
-        "name": "Rainbow Runner Socks",
-        "description": "Step into comfort and style with our Rainbow Runner Socks. These unisex socks are a burst of color for your athletic or casual wear, featuring a dynamic rainbow arc that wraps around the grey fabric. Engineered for performance and longevity, they offer cushioning and breathability to keep your feet comfortable throughout your run.",
-        "price": "12.99",
-        "material": "Cotton, Polyester, Spandex Blend",
-        "colour": "Grey with Rainbow Design",
-        "image": "socks_LANzKBY.webp",
-        "has_sizes": false
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 7,
-      "fields": {
-        "category": 2,
-        "sku": "RR-RB-2024",
-        "name": "Velocity Sprinter Running Bag",
-        "description": "The Velocity Sprinter Running Bag is the quintessential accessory for avid runners and sprinters seeking a combination of style and functionality. This medium-sized bag provides ample space for essentials without burdening you with excess weight. Its water-resistant fabric protects against the elements, while the adjustable straps offer comfort and stability. Designed with a minimalist aesthetic, the bag features a subtle dynamic stripe that embodies the essence of speed.",
-        "price": "43.50",
-        "material": "High-grade, durable polyester with a water-resistant coating",
-        "colour": "Slate Grey",
-        "image": "kit-bag.webp",
-        "has_sizes": false
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 8,
-      "fields": {
-        "category": 2,
-        "sku": "HEAD-LITE-0324",
-        "name": "Trailblazer Ultra Bright Head Torch",
-        "description": "The Trailblazer Ultra Bright Head Torch illuminates your path, ensuring safety and visibility during nocturnal runs. Its aerodynamic design and lightweight construction promise comfort and stability, while the adjustable headband ensures a perfect fit for every runner. Featuring an ultra-bright LED with a focused beam, this torch provides exceptional clarity. Intuitive controls allow for easy operation, even when youÆre pushing the pace.",
-        "price": "34.95",
-        "material": "Durable ABS plastic with a silicone headband for grip and comfort",
-        "colour": "Stealth Black",
-        "image": "head-torch.webp",
-        "has_sizes": false
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 9,
-      "fields": {
-        "category": 2,
-        "sku": "HYDRA-RNBW-0424",
-        "name": "Hydration Runner's Bottle",
-        "description": "The Spectrum Hydration Runner's Bottle offers a burst of color and vitality to your running routine. With its ergonomically designed body featuring a rainbow motif, this bottle ensures a comfortable and secure grip. The high-flow spout and leak-proof cap mean you can hydrate on the move without spills. Made from clear, durable, and BPA-free plastic, it's as stylish as it is practical, providing a cheerful companion on your runs.",
-        "price": "14.50",
-        "material": "BPA-free Triton plastic",
-        "colour": "Clear",
-        "image": "water-bottle.webp",
-        "has_sizes": false
-      }
-    },
-    {
-      "model": "products.product",
-      "pk": 10,
-      "fields": {
-        "category": 2,
-        "sku": "GLOV-RNBW-0524",
-        "name": "Running Gloves",
-        "description": "Elevate your running gear with the Spectrum Grip Running Gloves, expertly crafted for performance and style. These black gloves are enhanced with a subtle yet striking rainbow design, seamlessly integrating fashion with function. Tailored for comfort in various weather conditions, they feature touchscreen-compatible fingertips, allowing you to stay connected without missing a step. The breathable, moisture-wicking fabric keeps your hands dry, while reflective elements ensure visibility during early morning or late evening runs.",
-        "price": "19.95",
-        "material": "Polyester blend with silicone grip pattern.",
-        "colour": "Black",
-        "image": "gloves.webp",
-        "has_sizes": false
-      }
-    }
-  ]
+	{
+		"model": "products.product",
+		"pk": 4,
+		"fields": {
+			"category": 1,
+			"sku": "RR-UT-01",
+			"name": "Rainbow Runner Unisex Top",
+			"description": "Designed for athletes who believe in inclusivity and style, this top features a subtle gradient of rainbow colors across the chest, symbolizing unity in diversity. Crafted from high-performance, breathable fabric, it keeps you cool and comfortable whether you're sprinting or just enjoying a leisurely jog. The lightweight material provides a relaxed fit suitable for all body types, making it a versatile choice for your race day.",
+			"price": "29.99",
+			"material": "100% Polyester",
+			"colour": "White with Rainbow Gradient",
+			"image": "running-top-2_Mmdnkpu.webp",
+			"has_sizes": true
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 5,
+		"fields": {
+			"category": 1,
+			"sku": "RR-US-02",
+			"name": "Rainbow Runner Shorts",
+			"description": "<p>Elevate your running game with the Rainbow Runner Spectrum Shorts, tailored for a comfortable unisex fit. These stylish shorts come in a sleek dark grey colour, accented with a vibrant rainbow sweep on the side, reflecting our commitment to diversity and inclusion. Made with lightweight, breathable fabric, they are perfect for any runner looking to add some color to their stride while ensuring optimum performance.</p>",
+			"price": "24.99",
+			"material": "100% Recycled Polyester",
+			"colour": "Dark Grey with Rainbow Details",
+			"image": "shorts_YEGHhWZ.webp",
+			"has_sizes": true
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 6,
+		"fields": {
+			"category": 1,
+			"sku": "RR-SS-03",
+			"name": "Rainbow Runner Socks",
+			"description": "Step into comfort and style with our Rainbow Runner Socks. These unisex socks are a burst of color for your athletic or casual wear, featuring a dynamic rainbow arc that wraps around the grey fabric. Engineered for performance and longevity, they offer cushioning and breathability to keep your feet comfortable throughout your run.",
+			"price": "12.99",
+			"material": "Cotton, Polyester, Spandex Blend",
+			"colour": "Grey with Rainbow Design",
+			"image": "socks_LANzKBY.webp",
+			"has_sizes": false
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 7,
+		"fields": {
+			"category": 2,
+			"sku": "RR-RB-2024",
+			"name": "Velocity Sprinter Running Bag",
+			"description": "The Velocity Sprinter Running Bag is the quintessential accessory for avid runners and sprinters seeking a combination of style and functionality. This medium-sized bag provides ample space for essentials without burdening you with excess weight. Its water-resistant fabric protects against the elements, while the adjustable straps offer comfort and stability. Designed with a minimalist aesthetic, the bag features a subtle dynamic stripe that embodies the essence of speed.",
+			"price": "43.50",
+			"material": "High-grade, durable polyester with a water-resistant coating",
+			"colour": "Slate Grey",
+			"image": "kit-bag.webp",
+			"has_sizes": false
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 8,
+		"fields": {
+			"category": 2,
+			"sku": "HEAD-LITE-0324",
+			"name": "Trailblazer Ultra Bright Head Torch",
+			"description": "The Trailblazer Ultra Bright Head Torch illuminates your path, ensuring safety and visibility during nocturnal runs. Its aerodynamic design and lightweight construction promise comfort and stability, while the adjustable headband ensures a perfect fit for every runner. Featuring an ultra-bright LED with a focused beam, this torch provides exceptional clarity. Intuitive controls allow for easy operation, even when youÆre pushing the pace.",
+			"price": "34.95",
+			"material": "Durable ABS plastic with a silicone headband for grip and comfort",
+			"colour": "Stealth Black",
+			"image": "head-torch.webp",
+			"has_sizes": false
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 9,
+		"fields": {
+			"category": 2,
+			"sku": "HYDRA-RNBW-0424",
+			"name": "Hydration Runner's Bottle",
+			"description": "The Spectrum Hydration Runner's Bottle offers a burst of color and vitality to your running routine. With its ergonomically designed body featuring a rainbow motif, this bottle ensures a comfortable and secure grip. The high-flow spout and leak-proof cap mean you can hydrate on the move without spills. Made from clear, durable, and BPA-free plastic, it's as stylish as it is practical, providing a cheerful companion on your runs.",
+			"price": "14.50",
+			"material": "BPA-free Triton plastic",
+			"colour": "Clear",
+			"image": "water-bottle.webp",
+			"has_sizes": false
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 10,
+		"fields": {
+			"category": 2,
+			"sku": "GLOV-RNBW-0524",
+			"name": "Running Gloves",
+			"description": "Elevate your running gear with the Spectrum Grip Running Gloves, expertly crafted for performance and style. These black gloves are enhanced with a subtle yet striking rainbow design, seamlessly integrating fashion with function. Tailored for comfort in various weather conditions, they feature touchscreen-compatible fingertips, allowing you to stay connected without missing a step. The breathable, moisture-wicking fabric keeps your hands dry, while reflective elements ensure visibility during early morning or late evening runs.",
+			"price": "19.95",
+			"material": "Polyester blend with silicone grip pattern.",
+			"colour": "Black",
+			"image": "gloves.webp",
+			"has_sizes": false
+		}
+	}
+]

@@ -1,18 +1,18 @@
 [
-    {
-      "model": "products.category",
-      "pk": 1,
-      "fields": {
-        "name": "club_kit",
-        "friendly_name": "Club Kit"
-      }
-    },
-    {
-      "model": "products.category",
-      "pk": 2,
-      "fields": {
-        "name": "essentials",
-        "friendly_name": "Running Essentials"
-      }
-    }
-  ]
+	{
+		"model": "products.category",
+		"pk": 1,
+		"fields": {
+			"name": "club_kit",
+			"friendly_name": "Club Kit"
+		}
+	},
+	{
+		"model": "products.category",
+		"pk": 2,
+		"fields": {
+			"name": "essentials",
+			"friendly_name": "Running Essentials"
+		}
+	}
+]
