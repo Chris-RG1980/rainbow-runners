@@ -1,20 +1,13 @@
 from django.db.models.signals import post_delete, post_save
-from django.dispatch import receiver
-
 from .models import OrderLineItem
 
 
-@receiver(post_save, sender=OrderLineItem)
-def update_on_save(sender, instance, created, **kwargs):
+def update_total(sender, instance, **kwargs):
     """
     Update order total on lineitem update/create
     """
     instance.order.update_total()
 
 
-@receiver(post_delete, sender=OrderLineItem)
-def update_on_save(sender, instance, **kwargs):  # noqa
-    """
-    Update order total on lineitem delete
-    """
-    instance.order.update_total()
+post_save.connect(update_total, sender=OrderLineItem)
+post_delete.connect(update_total, sender=OrderLineItem)
