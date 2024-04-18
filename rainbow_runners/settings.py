@@ -137,9 +137,11 @@ WSGI_APPLICATION = 'rainbow_runners.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if "DATABASE_URL" in os.environ:
+if "HEROKU_POSTGRESQL_ROSE_URL" in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        'default': dj_database_url.parse(
+            os.environ.get("HEROKU_POSTGRESQL_ROSE_URL")
+        )
     }
 else:
     DATABASES = {
@@ -237,12 +239,10 @@ if 'DEVELOPMENT' in os.environ:
 else:
     # Email settings for production
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = os.environ.get('EMAIL_HOST_HOST')
-    EMAIL_PORT = os.environ.get('EMAIL_HOST_PORT')
-    EMAIL_USE_TLS = os.environ.get('EMAIL_HOST_USE_TLS')
-    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASS = os.environ.get('EMAIL_HOST_PASS')
+    EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
+    EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
+    EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
 
 if 'SENTRY_DSN' in os.environ:
     import sentry_sdk
