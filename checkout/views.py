@@ -13,6 +13,7 @@ from profiles.models import UserProfile
 
 import stripe
 import json
+import sentry_sdk
 
 
 @require_POST
@@ -68,6 +69,9 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+            with sentry_sdk.push_scope() as scope:
+                scope.set_extra("bag", bag)
+                sentry_sdk.capture_message("Bag items")
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)

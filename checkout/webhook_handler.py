@@ -10,6 +10,7 @@ from profiles.models import UserProfile
 import json
 import time
 import stripe
+import sentry_sdk
 
 
 class StripeWH_Handler:
@@ -87,15 +88,14 @@ class StripeWH_Handler:
         order_exists = False
         attempt = 1
         while attempt <= 5:
-            try:
-                order = Order.objects.filter(
-                    stripe_pid=pid
-                ).first()
+            order = Order.objects.filter(
+                stripe_pid=pid
+            ).first()
 
-                if order is not None:
-                    order_exists = True
-                    break
-            except Order.DoesNotExist:
+            if order is not None:
+                order_exists = True
+                break
+            else:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
@@ -124,6 +124,11 @@ class StripeWH_Handler:
                     source="Stripe Webhook"
                 )
                 bagItems = json.loads(bag).items()
+                with sentry_sdk.push_scope() as scope:
+                    scope.user = {"email": username}
+                    scope.set_extra("bagStr", bag)
+                    scope.set_extra("bag", bagItems)
+                    sentry_sdk.capture_message("Webhook Bag items")
                 for item_id, item_data in bagItems:
                     product = Product.objects.filter(pk=int(item_id)).first()
                     if isinstance(item_data, int):
@@ -144,6 +149,7 @@ class StripeWH_Handler:
                             )
                             order_line_item.save()
             except Exception as e:
+                sentry_sdk.capture_exception(e)
                 if order:
                     order.delete()
                 return HttpResponse(
