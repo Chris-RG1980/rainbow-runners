@@ -17,6 +17,13 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
 
 [Click here to view live website](https://rainbow-runners-03ee314b7993.herokuapp.com/)
 ***
+**Contents**
+- [Rainbow Runners](#rainbow-runners)
+  - [User Stories](#user-stories)
+      - [As A Non Member:](#as-a-non-member)
+      - [As A Member:](#as-a-member)
+      - [As A Returning Member:](#as-a-returning-member)
+      - [Future Functionality:](#future-functionality)
 
 
 ***
