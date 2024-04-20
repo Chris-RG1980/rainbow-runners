@@ -239,10 +239,10 @@ if 'DEVELOPMENT' in os.environ:
 else:
     # Email settings for production
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
-    EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
-    EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
-    EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
+    EMAIL_HOST = os.environ.get('EMAIL_SMTP_SERVER', '')
+    EMAIL_PORT = os.environ.get('EMAIL_SMTP_PORT', '')
+    EMAIL_HOST_USER = os.environ.get('EMAIL_SMTP_LOGIN', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_SMTP_PASSWORD', '')
 
 if 'SENTRY_DSN' in os.environ:
     import sentry_sdk
