@@ -47,7 +47,7 @@ class Comment(models.Model):
     """
 
     post = models.ForeignKey(Posts, related_name='comments',
-                             on_delete=models.RESTRICT)
+                             on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                on_delete=models.SET_NULL)
     body = BleachField(blank=False)
