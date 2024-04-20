@@ -24,6 +24,10 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
       - [As A Member:](#as-a-member)
       - [As A Returning Member:](#as-a-returning-member)
       - [Future Functionality:](#future-functionality)
+  - [Wireframes](#wireframes)
+      - [Mobile](#mobile)
+      - [Tablet](#tablet)
+      - [Desktop](#desktop)
 
 
 ***
@@ -49,3 +53,52 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
 4. As a tech-savvy member, I want integration with popular fitness trackers and apps, so I can sync my activity data automatically with my Rainbow Runners profile.
 5. As a member who values recognition, I would like a rewards system for participation and achievements, so I can feel acknowledged for my efforts and contributions.
 ***
+## Wireframes
+#### Mobile
+[Mobile Homepage 1](resources/wireframes/Mobile-Home-1.png)                     
+[Mobile Homepage 2](resources/wireframes/Mobile-Home-2.png)                    
+[Mobile About Us](resources/wireframes/Mobile-About-Us.png)                   
+[Mobile Resources](resources/wireframes/Mobile-Resources.png)                 
+[Mobile Contact Us](resources/wireframes/Mobile-Contact-Us.png)                
+[Mobile Shop](resources/wireframes/Mobile-Kit-Store.png)                    
+[Mobile Product](resources/wireframes/Mobile-Product.png)                      
+[Mobile Checkout 1](resources/wireframes/Mobile-Checkout.png)               
+[Mobile Checkout 2](resources/wireframes/Mobile-Checkout-2.png)                
+[Mobile Shopping Cart](resources/wireframes/Mobile-Shopping-Cart.png)           
+[Mobile Profile](resources/wireframes/Mobile-Profile.png)                    
+[Mobile Club Posts](resources/wireframes/Mobile-Team-Space.png)                 
+[Mobile Register](resources/wireframes/Mobile-Register.png)               
+[Mobile Sign In](resources/wireframes/Mobile-Sign-In.png)                     
+#### Tablet
+[Tablet Homepage 1](resources/wireframes/Tablet-Home-1.png)                 
+[Tablet Homepage 2](resources/wireframes/Tablet-Home-2.png)                    
+[Tablet Homepage 3](resources/wireframes/Tablet-Home-3.png)                   
+[Tablet About Us](resources/wireframes/Tablet-About-Us.png)                    
+[Tablet Resources](resources/wireframes/Tablet-Resources.png)                
+[Tablet Contact Us](resources/wireframes/Tablet-Contact-Us.png)             
+[Tablet Shop](resources/wireframes/Tablet-Kit-Store.png)                 
+[Tablet Product](resources/wireframes/Tablet-Product.png)                   
+[Tablet Checkout 1](resources/wireframes/Tablet-Checkout.png)               
+[Tablet Checkout 2](resources/wireframes/Tablet-Checkout-2.png)               
+[Tablet Shopping Cart](resources/wireframes/Tablet-Shopping-Cart.png)         
+[Tablet Profile](resources/wireframes/Tablet-Profile.png)                     
+[Tablet Club Posts](resources/wireframes/Tablet-Team-Space.png)                
+[Tablet Register](resources/wireframes/Tablet-Register.png)              
+[Tablet Sign In](resources/wireframes/Tablet-Sign-In.png)          
+#### Desktop
+[Desktop Homepage 1](resources/wireframes/Desktop-Home-1.png)                
+[Desktop Homepage 2](resources/wireframes/Desktop-Home-2.png)                 
+[Desktop About Us](resources/wireframes/Desktop-About-Us.png)                  
+[Desktop Resources](resources/wireframes/Desktop-Resources.png)                 
+[Desktop Contact Us](resources/wireframes/Desktop-Contact-Us.png)               
+[Desktop Shop](resources/wireframes/Desktop-Kit-Store.png)                   
+[Desktop Product](resources/wireframes/Desktop-Product.png)                  
+[Desktop Checkout](resources/wireframes/Desktop-Checkout.png)                
+[Desktop Shopping Cart](resources/wireframes/Desktop-Shopping-Cart.png)        
+[Desktop Profile](resources/wireframes/Desktop-Profile.png)                     
+[Desktop Club Posts](resources/wireframes/Desktop-Team-Space.png)              
+[Desktop Register](resources/wireframes/Desktop-Register.png)                
+[Desktop Sign In](resources/wireframes/Desktop-Sign-In.png)            
+***
+
+
