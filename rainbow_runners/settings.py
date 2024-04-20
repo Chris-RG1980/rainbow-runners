@@ -235,7 +235,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email settings for development
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'rainbowrunners@example.com'
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_SMTP_LOGIN', '')
 else:
     # Email settings for production
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -243,6 +243,7 @@ else:
     EMAIL_PORT = os.environ.get('EMAIL_SMTP_PORT', '')
     EMAIL_HOST_USER = os.environ.get('EMAIL_SMTP_LOGIN', '')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_SMTP_PASSWORD', '')
+    EMAIL_USE_TLS = True
 
 if 'SENTRY_DSN' in os.environ:
     import sentry_sdk
