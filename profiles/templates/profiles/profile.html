@@ -24,7 +24,7 @@
                 {% csrf_token %}
                 {{ deactivate_form|crispy }}
                 <div class="d-flex justify-content-center mt-3 mb-3">
-                    <button type="submit" class="btn btn-danger float-right">Deactivate My Account</button>
+                    <button type="submit" class="btn btn-danger float-right" onclick="return confirm('Are you sure?');" aria-label="Deactivate Button">Deactivate My Account</button>
                 </div>
             </form>
         </div>
