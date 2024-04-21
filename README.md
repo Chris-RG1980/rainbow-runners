@@ -1,5 +1,5 @@
 # Rainbow Runners
-Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBTQ+ community in South Wales, UK. Our website serves as a central hub for both members and enthusiasts to connect, share, and celebrate inclusivity through the joy of running. Here, you can find our regularly updated Club Posts section, which keeps you informed about upcoming events and important club updates. Our Online Shop offers a range of merchandise, including exclusive club kit for members and a variety of running gear for non-members. Additionally, the website features a Contact Us page for inquiries and a dedicated section providing links to other LGBTQ+ clubs and charities in South Wales.
+Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBTQ+ community in South Wales, UK. The website serves as a central hub for both members and enthusiasts to connect, share, and celebrate inclusivity through the joy of running. Here, you can find the regularly updated Club Posts section, which keeps you informed about upcoming events and important club updates. The Online Shop offers a range of merchandise, including exclusive club kit for members and a variety of running gear for non-members. Additionally, the website features a Contact Us page for inquiries and a dedicated section providing links to other LGBTQ+ clubs and charities in South Wales.
 
 ![Image](resources/mockup.png)
 
@@ -28,6 +28,15 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
       - [Mobile](#mobile)
       - [Tablet](#tablet)
       - [Desktop](#desktop)
+  - [Design](#design)
+    - [Overview](#overview)
+    - [Typography](#typography)
+    - [Color Palette](#color-palette)
+    - [Framework](#framework)
+    - [Features and Design](#features-and-design)
+    - [Usage of Design Elements](#usage-of-design-elements)
+    - [Accessibility](#accessibility)
+    - [Conclusion](#conclusion)
 
 
 ***
@@ -100,5 +109,51 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
 [Desktop Register](resources/wireframes/Desktop-Register.png)                
 [Desktop Sign In](resources/wireframes/Desktop-Sign-In.png)            
 ***
+## Design
 
+### Overview
+The Rainbow Runners website is designed to reflect the spirit and inclusivity of the LGBTQ+ running community in South Wales. The site offers a user-friendly experience while generating community engagement through its visual and functional features.
+
+### Typography
+- **Hero Title**: Masque - This striking, contemporary font is used for the hero title, providing a bold visual impact that captures the user's attention with a fall back font of sans-serif. [Masque font from dafont.com](https://www.dafont.com/masque.font)                              
+![Image](resources/masque-font.PNG)
+- **Sub Headings**: Roboto Slab - A robust serif font that complements the main titles by offering clarity and a subtle authoritative tone. The fall back font is sans-serif.                                    
+![Image](resources/roboto-slab.PNG)
+- **Body Text**: Open Sans - Known for its readability and clean appearance, Open Sans is used for general text across the site, ensuring that information is accessible and easy to read. The fall back font is sans-serif.           
+![Image](resources/open-sans.PNG)
+
+### Color Palette
+The site features a rainbow-themed color palette that not only pays homage to the LGBTQ+ flag but also adds a lively and welcoming feel to the user experience:
+- Reds: `#E40303`, `#EB3A3A`
+- Orange: `#FF8C00`
+- Yellows: `#FFED00`, `#FFD23F`
+- Greens: `#008026`, `#0EAD69`
+- Blues: `#5BCEFA`, `#24408E`, `#1153b3`
+- Purples: `#732982`, `#540D6E`
+- Pink: `#FF718F`
+- Cyan: `#3BCEAC`
+- Neutrals: `#FFFFFF`, `#000000`
+
+### Framework
+The entire site is built using Bootstrap 5, ensuring responsiveness and modern web standards. Bootstrap’s grid system and components have been utilized to create a consistent layout that adapts seamlessly across devices, enhancing the user experience.
+
+### Features and Design
+- **Responsive Layout**: Adapts effectively across different screen sizes and orientations.
+- **Navigation**: Streamlined, intuitive navigation structure that aligns with the site’s aesthetic and community needs.
+- **Interactive Elements**: Dynamic components like dropdowns, modal windows, and tooltips that engage users throughout their journey on the site.
+
+### Usage of Design Elements
+Design elements are used to guide the user through the site’s content logically and smoothly:
+- **Color**: Utilized to denote importance, categorize information, and direct user attention effectively.
+- **Typography**: Hierarchical use of typography helps in maintaining structural clarity and enhancing readability.
+- **Icons and Buttons**: Thoughtfully placed to facilitate user interaction and actions.
+
+### Accessibility
+Accessibility has been considered within the design with considerations for:
+- **Color Contrast**: Ensuring that text stands out against background colors for readability by users with visual impairments.
+- **Alt Text on Images**: All images include descriptive alt text to provide context for screen readers.
+
+### Conclusion
+The design approach for the Rainbow Runners website has a blend of aesthetic appeal, functional richness, and inclusive design principles. It aims to create not just a digital space but a welcoming community portal that resonates with the values of the LGBTQ+ community in South Wales.
+***
 
