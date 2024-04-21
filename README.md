@@ -53,6 +53,13 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Products App](#products-app)
     - [Checkout App](#checkout-app)
     - [Contact App](#contact-app)
+  - [Technology](#technology)
+    - [Languages  Used](#languages--used)
+    - [Frameworks](#frameworks)
+    - [Libraries](#libraries)
+    - [Utilities Used](#utilities-used)
+    - [Packages](#packages)
+    - [Services](#services)
 
 
 ***
@@ -242,7 +249,7 @@ For storing inquiries and questions submitted through the contact page, I have c
 
 ### Relational Database
 
-For all other data that benefits from structured relationships and integrity, such as user data, product information, and transaction records, I have chosen to use **Heroku Postgres**. I have selected the free tier of Heroku Postgres for its reliability and longevity, especially given that ElephantSQL, the previous provider, is reaching the end of its life. Heroku Postgres offers a robust, scalable, and efficient relational database solution, ensuring data integrity and seamless operations for all aspects of the site that require relational data handling.
+For all other data that benefits from structured relationships and integrity, such as user data, product information, and transaction records, I have chosen to use **Heroku Postgresql**. I have selected the free tier of Heroku Postgresql for its reliability and longevity, especially given that ElephantSQL, the previous provider, is reaching the end of its life. Heroku Postgres offers a robust, scalable, and efficient relational database solution, ensuring data integrity and seamless operations for all aspects of the site that require relational data handling.
 ***
 ## Database Schema
 This section provides a detailed overview of the relationships and structure of the database models used within the Django application. Each model is critical for various features of the site, from managing user profiles and club posts to handling product sales and user interactions. The schemas illustrates how these models connect to each other, ensuring data integrity and facilitating efficient data retrieval. Below are complete entity-relationship diagrams (ERD), outlining the fields and relationships of each model involved in the application.     
@@ -259,5 +266,38 @@ A non-relational database has been implemented to manage inquiries and questions
 
 ![Image](resources/database-schema/contact-schema.png)
 ***
-
+## Technology
+### Languages  Used
+- HTML            
+- CSS                               
+- Javascript  
+- Python                     
+### Frameworks
+- [Django](https://www.djangoproject.com/) -  A high-level Python web framework.
+- [Bootstrap5](https://getbootstrap.com/) - A Responsive front-end framework
+### Libraries
+- [jQuery](https://jquery.com/) - To connect the user interface with the javascript logic and supply functionality from Bootstrap.                     
+- [Google Fonts](https://fonts.google.com/) - To select and Import fonts. 
+- [Dafont](https://www.dafont.com/masque.font) - To select and Import fonts.                                     
+### Utilities Used
+- [Balsamiq Wireframes](https://www.mockplus.com/mockplus-rp) - To create wire-frames.
+- Git - Version Control.
+- [Github](https://github.com/) - To store repository and deploy site.
+- [Cloud Convert](https://cloudconvert.com/) - To convert image files to webp and ico.
+- [Tinypng](https://tinypng.com/) - For image Optimisation.
+- [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Web Developer Tools.    
+- [Favicon](https://favicon.io/) - To create Favicon images.
+- [Creately](https://app.creately.com) - To create database schema.           
+### Packages
+- [Django-Allauth](https://docs.allauth.org/) - Provides a set of ready-to-use features that manage user accounts.        
+- [Django-bleach](https://django-bleach.readthedocs.io/) -  Integrates the Bleach library to sanitize HTML.         
+- [Django-CKEditor](https://django-ckeditor.readthedocs.io/) - Integrates for the CKEditor text editor.      
+- [Django-crispy-forms](https://django-crispy-forms.readthedocs.io/) - Allows for elegant rendering of forms.       
+### Services
+- [Sentry](https://sentry.io) - Provides error tracking and application monitoring.         
+- [Heroku Postgresql](https://elements.heroku.com/addons/heroku-postgresql) - To host and manage the PostgreSQL database.       
+- [MongoDB](https://account.mongodb.com/) - To host and manage the MongoDB NoSQL database.  
+- [AWS](https://www.aws.amazon.com) -  Cloud platform providing storage for static and media files.                 
+- [Heroku](https://www.heroku.com/) - To build and host the website.                                                                   
+***
 
