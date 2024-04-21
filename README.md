@@ -44,6 +44,12 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Member Role](#member-role)
     - [Non-Member Role](#non-member-role)
     - [Comment Policy](#comment-policy)
+  - [Database Schema](#database-schema)
+    - [Posts App](#posts-app)
+    - [Profiles App](#profiles-app)
+    - [Products App](#products-app)
+    - [Checkout App](#checkout-app)
+    - [Contact App](#contact-app)
 
 
 ***
@@ -130,7 +136,7 @@ The Rainbow Runners website is designed to reflect the spirit and inclusivity of
 ![Image](resources/open-sans.PNG)
 
 ### Color Palette
-The site features a rainbow-themed color palette that not only pays homage to the LGBTQ+ flag but also adds a lively and welcoming feel to the user experience:
+The site features a rainbow-themed colour palette that not only pays homage to the LGBTQ+ flag but also adds a lively and welcoming feel to the user experience:
 - Reds: `#E40303`, `#EB3A3A`
 - Orange: `#FF8C00`
 - Yellows: `#FFED00`, `#FFD23F`
@@ -223,4 +229,17 @@ Currently, users cannot edit comments. To change a comment, the user must delete
 
 This structured access ensures that each user interacts with the site in a way that is appropriate to their role and responsibilities, maintaining a secure and orderly environment.
 ***
-
+## Database Schema
+This section provides a detailed overview of the relationships and structure of the database models used within the Django application. Each model is critical for various features of the site, from managing user profiles and club posts to handling product sales and user interactions. The schemas illustrates how these models connect to each other, ensuring data integrity and facilitating efficient data retrieval. Below are complete entity-relationship diagrams (ERD), outlining the fields and relationships of each model involved in the application.     
+### Posts App
+![Image](resources/database-schema/posts-schema.png)
+### Profiles App
+![Image](resources/database-schema/profiles-schema.png)
+### Products App
+![Image](resources/database-schema/products-schema.png)
+### Checkout App
+![Image](resources/database-schema/checkout-schema.png)
+### Contact App
+A non-relational database has been implemented to manage inquiries and questions. This decision was made because the functionality for submitting questions does not necessitate a relationship with other data entities within the system. Users, including non-members, can submit inquiries without the need for an account or any association with the user profiles, orders, or products databases. A non-relational database provides the flexibility and scalability needed to handle this isolated data efficiently, ensuring that the website can manage high volumes of queries seamlessly without impacting the performance and integrity of the relational data structures used elsewhere in the application.
+![Image](resources/database-schema/contact-schema.png)
+***
