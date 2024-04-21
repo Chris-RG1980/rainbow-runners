@@ -9,6 +9,7 @@
         "corejs",
         "csrfmiddlewaretoken",
         "cust",
+        "dafont",
         "fhbrjwbi",
         "forloop",
         "gunicorn",
@@ -23,9 +24,11 @@
         "ordinators",
         "postloadjs",
         "pymongo",
+        "Roboto",
         "socialaccount",
         "Strava",
         "webp",
+        "Wireframes",
         "wsgi"
     ]
 }
