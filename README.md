@@ -61,6 +61,27 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Packages](#packages)
     - [Services](#services)
   - [Testing](#testing)
+  - [Deployment](#deployment)
+    - [Forking the Repository](#forking-the-repository)
+    - [Cloning the Forked Repository](#cloning-the-forked-repository)
+    - [Cloning with Git](#cloning-with-git)
+    - [Creating a Local Django Environment](#creating-a-local-django-environment)
+      - [Precursors](#precursors)
+      - [Setup](#setup)
+    - [Initial production deployment setup](#initial-production-deployment-setup)
+      - [Setting up the ElephantSQL Database](#setting-up-the-elephantsql-database)
+      - [Setting up an Amazon S3 Bucket for Static Website Hosting](#setting-up-an-amazon-s3-bucket-for-static-website-hosting)
+        - [Creating and Configuring the S3 Bucket](#creating-and-configuring-the-s3-bucket)
+        - [Configuring AWS IAM for Secure Access](#configuring-aws-iam-for-secure-access)
+      - [Creating a New Heroku App](#creating-a-new-heroku-app)
+        - [If using Heroku Postgres instead of ElephantSQL](#if-using-heroku-postgres-instead-of-elephantsql)
+        - [Project Preparation in Your IDE](#project-preparation-in-your-ide)
+        - [Update DATABASE Setting](#update-database-setting)
+      - [Confirming Your Database](#confirming-your-database)
+      - [Setting Up Heroku Deployment](#setting-up-heroku-deployment)
+        - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
+        - [Additional Deployment Steps](#additional-deployment-steps)
+        - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
 
 
 ***
@@ -304,3 +325,469 @@ A non-relational database has been implemented to manage inquiries and questions
 ## Testing
 Please see [TESTING.md](/TESTING.md) for all testing performed.          
 ***
+## Deployment
+### Forking the Repository
+1. On the top-right corner of the repository page, click on the button labeled "Fork."
+2. Select the owner (if there is more than one account available).
+3. Rename the repository if required.
+4. Add a description (this step is optional).
+5. Click on the green "Create Fork" button.
+
+### Cloning the Forked Repository
+1. After forking the repository, you will be redirected to the forked copy of the repository.
+2. On the right side of the repository page, click on the green "Code" button.
+3. A dropdown will appear with options to clone the repository. Select the HTTPS option for a local setup.
+4. Click the clipboard icon next to the repository URL to copy it to the clipboard. You can now clone the repository onto your local machine.
+
+### Cloning with Git
+1. Open a terminal or command prompt on your computer.
+2. Use the `cd` command to navigate to the directory where you want to clone the repository.
+3. When in the required directory, use the `git clone` command followed by the repository URL you copied earlier.
+4. To execute the `git clone` command press enter.
+5. Git will download the repository files onto your computer, creating a new directory with the repository name.
+
+### Creating a Local Django Environment
+#### Precursors
+- Ensure Python >=3.8 and pip are installed.
+
+#### Setup
+1. Create a virtual environment: `python -m venv env
+source env/bin/activate` On Windows use `env\Scripts\activate`                
+2. Install Django and other dependencies:  `pip install -r requirements.txt`                                 
+3. Migrate the database using the default SQLite3: `python manage.py migrate`
+4. Create env.py file in root by using the template env file provided.
+5. Ensure `DEVELOPMENT` setting is set to true.
+6. Ensure `SECRET_KEY` setting has a unique string value.
+7. Save the `env.py` file.
+   1. Open the `.gitignore` file and ensure the `env.py` file is displayed in the list. If not add `env.py` to the list of files and save.
+8. Add a new super user by using the following command in a terminal: `python manage.py createsuperuser`            
+9. Apply fixtures to the database which seeds data into the tables, run the following command from a terminal: `python manage.py loaddata category metadata metadatacategories product groups`
+10. Run the development server to verify everything is working: `python manage.py runserver`     
+
+### Initial production deployment setup
+
+This website has been deployed to Heroku with Heroku Postgresql hosting the PostgreSQL database however if using ElephantSQL use the following method:
+
+#### Setting up the ElephantSQL Database  
+
+Log into ElephantSQL and create database instance.
+1. Click on "Create New Instance".
+2. Input an instance name (this is usually the name of your project).
+3. Select the free Tiny Turtle plan.
+4. Leave the tags field blank.
+5. Select a region closest to you for the data center.
+6. Review your instance details and confirm by creating the instance.
+7. Copy the URL of the newly created database instance for later use.
+
+#### Setting up an Amazon S3 Bucket for Static Website Hosting
+
+This guide will walk you through the process of setting up an Amazon S3 bucket for hosting a static website, including necessary permissions and security configurations using AWS IAM.
+
+##### Creating and Configuring the S3 Bucket
+
+1. **Create an AWS Account**:
+   - Sign up or log into your Amazon AWS account.
+
+2. **Create a New S3 Bucket**:
+   - Navigate to the S3 service in the AWS Management Console.
+   - Click "Create bucket".
+   - Provide a unique bucket name and select an appropriate region.
+   - Uncheck "Block all public access" under the permissions settings to allow public access.
+   - Acknowledge the warning that the bucket will be publicly accessible.
+
+3. **Enable Static Website Hosting**:
+   - Go to the "Properties" tab for your bucket.
+   - Activate "Static website hosting".
+   - Set 'index.html' as the index document.
+   - Click "Save".
+
+4. **Configure CORS**:
+   - Move to the "Permissions" tab and click on "CORS configuration".
+   - Input the following JSON and save:
+     ```json
+     [
+       {
+         "AllowedHeaders": ["Authorization"],
+         "AllowedMethods": ["GET"],
+         "AllowedOrigins": ["*"],
+         "ExposeHeaders": []
+       }
+     ]
+     ```
+
+5. **Set Up Bucket Policy**:
+   - Still under the "Permissions" tab, click "Bucket Policy".
+   - Generate a Bucket Policy using the policy generator:
+     - Select "S3 Bucket Policy" as the type.
+     - Set principal to "*".
+     - Paste the ARN from your bucket.
+     - Add the statement and generate the policy.
+   - Copy and paste the generated policy JSON into the bucket policy editor.
+   - Save your changes.
+
+6. **Adjust Access Control List (ACL)**:
+   - Under "Access control list (ACL)", grant "List" permissions to "Everyone (public access)".
+   - Confirm to acknowledge public access.
+   - Save the configuration.
+
+##### Configuring AWS IAM for Secure Access
+
+1. **Create an IAM User Group**:
+   - From the IAM dashboard, select "User Groups".
+   - Create a new group (e.g., `manage-rainbow-runners`).
+   - Proceed without adding a policy directly; create the group.
+
+2. **Create and Attach a Policy**:
+   - Select "Policies" and then "Create policy".
+   - Use the JSON tab to import the "AmazonS3FullAccess" managed policy.
+   - Modify the resource block to include your bucket's ARN, like so:
+     ```json
+     "Resource": [
+       "arn:aws:s3:::rainbow-runners",
+       "arn:aws:s3:::rainbow-runners/*"
+     ]
+     ```
+   - Name your policy (e.g., `rainbow-runners-policy`) and create it.
+
+3. **Attach Policy to Group**:
+   - Go back to your user group, select it, and attach the newly created policy under "Permissions".
+
+4. **Create an IAM User**:
+   - In "Users", create a new user (e.g., `rainbow-runners-staticfiles-user`) with "Programmatic access".
+   - Add this user to the group you created.
+   - Finalize user creation and download the .csv file containing their access key and secret. This is crucial as it cannot be downloaded again later.
+
+#### Creating a New Heroku App
+
+1. **Log Into Heroku**:
+
+- Ensure you have a Heroku account ready. Log into Heroku and navigate to your Dashboard.
+
+2. **Creating a New App**
+**Initiate App Creation**
+
+- On the Heroku Dashboard, look for and click the **"New"** button, then select **"Create new app"** from the dropdown.
+
+**Configure Your App**
+
+- **App Name**: Give your app a unique name. Heroku app names must be globally unique across all users.
+- **Region**: Select the region that is geographically closest to you. This helps in minimizing latency for your app.
+
+**Finalize App Creation**
+
+- Once you've configured your app's name and selected the appropriate region, click **"Create app"** to confirm and finalize the creation of your new Heroku app.
+
+3. **Configuring Your App**
+
+**Open the Settings Tab**
+
+- Navigate to the **Settings** tab of your newly created app. This is where you can manage configurations and other settings for your Heroku app.
+
+**Add Database Configuration**
+
+- Scroll down to the **Config Vars** section and click on the **"Reveal Config Vars"** button.
+- **Key**: Enter `DATABASE_URL` as the key.
+- **Value**: Paste the database URL you copied from ElephantSQL.
+
+**Save Config Var**
+
+- After adding the `DATABASE_URL` config var with the appropriate value from ElephantSQL, ensure it's saved correctly.
+
+##### If using Heroku Postgres instead of ElephantSQL
+1. **Navigate to Resources Tab:**
+On your application's dashboard, click on the "Resources" tab.
+2. **Add Heroku Postgres:**
+In the "Add-ons" search bar, type "Heroku Postgres" and select it when it appears.
+3. **Select a Plan:**
+Choose the free "Hobby Dev - Free" plan.
+4. **Provision the Database:**
+Click on the "Provision" button to add the Heroku Postgres service to your application. Heroku will automatically attach the database to your application and set the DATABASE_URL in your app’s configuration.
+5. **Verify Installation:**
+After provisioning, go back to the "Settings" tab, and under the "Config Vars" section, you should see the DATABASE_URL. This URL is the connection string that your application will use to connect to the Postgres database.
+
+##### Project Preparation in Your IDE
+
+1. **Install Required Packages**
+
+Open your IDE and execute the following commands in your terminal:
+
+```bash
+pip3 install dj_database_url==0.5.0 psycopg2
+```
+
+- `dj_database_url` facilitates connecting to various databases using their URL.
+- `psycopg2` is a PostgreSQL adapter for Python.
+
+2. **Update Requirements**
+
+Update your `requirements.txt` to include the newly installed packages.
+
+```bash
+pip freeze > requirements.txt
+```
+
+3. **Modify `settings.py`**
+
+In your `settings.py`, import `dj_database_url` under the import for `os`.
+
+```python
+import os
+import dj_database_url
+```
+
+##### Update DATABASE Setting
+
+Comment out the original SQLite connection and add a new connection to use ElephantSQL.
+
+```python
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+DATABASES = {
+    'default': dj_database_url.parse('your-database-url-here')
+}
+```
+
+**Important:** Do not commit this change with your database URL. This step is temporary for migration purposes.
+
+4. **Verify Database Connection**
+
+Run the following command to ensure you're connected to the external database:
+
+```bash
+python manage.py showmigrations
+```
+
+You should see a list of migrations none of which are applied yet.
+
+5. **Migrate Database Models**
+
+Execute the migrate command to apply database models to your new database:
+
+```bash
+python manage.py migrate
+```
+
+6. **Load Fixtures**
+
+Load the fixtures: `python manage.py loaddata category metadata metadatacategories product groups`
+
+7. **Create a Superuser**
+
+Create a superuser for your new database:
+
+```bash
+python manage.py createsuperuser
+```
+
+Follow the prompts to set up your superuser's username, password, and email (optional).
+
+8. **Revert `settings.py` Changes**
+
+To prevent exposing our database URL, revert the `DATABASES` setting in `settings.py` to use the local SQLite database again.
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+```
+#### Confirming Your Database
+
+After setting up the database and performing migrations, it's essential to confirm that the data in your ElephantSQL database has been correctly created. This step ensures that your database tables are set up and that you can successfully add data to your database, including your superuser account.
+
+1. **Access ElephantSQL Database Browser**
+
+Navigate to your ElephantSQL dashboard and open the database instance you created for your project. On the left side navigation menu, click on **"BROWSER"** to access the database browser feature.
+
+2. **Query the Database**
+
+In the browser view, you'll find a **Table queries** button or section. Use this to select the table you wish to query. For confirming your superuser has been created, select the **auth_user** table from the dropdown menu or list.
+
+3. **Execute the Query**
+
+With the **auth_user** table selected, click on **"Execute"** to run the query against your database. This action will display the contents of the `auth_user` table.
+
+4. **Confirm Your Superuser Details**
+
+After executing the query, you should see a list of users in the table. Look for the details of the superuser account you created during the setup process. Confirming the presence and accuracy of your superuser details in the `auth_user` table indicates that your migrations were successful, and your database tables have been correctly created.
+
+#### Setting Up Heroku Deployment
+
+After preparing your project in your IDE and confirming your database with ElephantSQL, deploy the application on Heroku and ensure it uses the correct database depending on the environment it's running in.
+
+##### Update Database Settings in `settings.py`
+
+Modify `settings.py` to dynamically switch between databases (Postgres on Heroku and SQLite locally).
+
+```python
+import dj_database_url
+import os
+
+# Existing DATABASES setting
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# New DATABASES setting
+if "DATABASE_URL" in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+```
+##### Additional Deployment Steps
+
+1. **Install Gunicorn:**  
+
+   ```bash
+   pip3 install gunicorn
+   pip freeze > requirements.txt
+   ```
+
+2. **Create a Procfile:**  
+   ```
+   web: gunicorn rainbow_runners.wsgi:application
+   ```
+
+3. **Disable `collectstatic`:**  
+
+   ```bash
+   heroku config:set DISABLE_COLLECTSTATIC=1 --app rainbow-runners
+   ```
+
+4. **Update `ALLOWED_HOSTS` in `settings.py`:**  
+   Include your Heroku app's hostname and localhost.
+   ```python
+   ALLOWED_HOSTS = ['rainbow-runners.herokuapp.com', 'localhost']
+   ```
+
+5. **Set Up Automatic Deploys from GitHub:**  
+   In the Heroku dashboard, connect your GitHub repository to your Heroku app and enable automatic deploys.
+
+6. **Manage Secret Keys:**  
+   - Modify `settings.py` to fetch the secret key and set the `DEBUG` value based on the environment.
+     ```python
+     DEBUG = 'DEVELOPMENT' in os.environ
+     ```
+
+7. **Disable Email Verification on Deployed Sites:**  
+   To avoid 500 errors during login, change the following line to your `settings.py`:
+   ```python
+   ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+   # Change to:
+   ACCOUNT_EMAIL_VERIFICATION = 'none'
+   ```
+
+##### Connecting Django to AWS S3
+
+1. **Install Required Packages**
+
+You'll need to install `boto3` and `django-storages` to interface with AWS services and integrate S3 with Django:
+
+```bash
+pip3 install boto3 django-storages
+```
+
+Remember to update your `requirements.txt` to ensure these packages are installed on Heroku:
+
+```bash
+pip freeze > requirements.txt
+```
+
+2. **Update Django Settings**
+
+- Add `storages` to your `INSTALLED_APPS` in `settings.py`.
+- To configure Django to use AWS S3, add the following settings within an if statement that checks for a `USE_AWS` environment variable. This ensures these settings are only applied in production on Heroku:
+
+```python
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+    AWS_S3_REGION_NAME = 'your-region'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+```
+
+- Ensure you replace `'your-bucket-name'` and `'your-region'` with your actual bucket name and AWS region.
+
+3. **Configure Heroku Environment Variables**
+
+Go to your Heroku app's settings and add your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `USE_AWS` set to `True` as config vars.
+
+    | KEY | VALUE |
+    | --- | ----- |
+    | AWS_ACCESS_KEY_ID | `your variable here if you have it already` |
+    | AWS_SECRET_ACCESS_KEY | `your variable here if you have it already` |
+    | DISABLE_COLLECTSTATIC | 1* |
+    | DATABASE_URL | `your variable here` |
+    | EMAIL_HOST_PASS | `your variable here` |
+    | EMAIL_HOST_USER | `your variable here` |
+    | SECRET_KEY | `your variable here` |
+    | STRIPE_PUBLIC_KEY | `your variable here` |
+    | STRIPE_SECRET_KEY | `your variable here` |
+    | STRIPE_WH_SECRET | `your variable here` |
+    | USE_AWS | True |
+    | DEVELOPMENT | True* |
+
+     * Remove this before completing the deployment. 
+
+1. **Configure Static and Media Files**
+
+- Set the S3 bucket URL for static files in `settings.py`:
+
+```python
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+
+- Tell Django to use S3 for static and media file storage in production:
+
+```python
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+```
+
+- Create a `custom_storages.py` file in your project directory. Import `S3Boto3Storage` and define two classes, `StaticStorage` and `MediaStorage`, that specify the locations for static and media files respectively.
+
+5. **Update URLs for Static and Media Files**
+
+- Override the URLs for static and media files in `settings.py` to point to your S3 bucket.
+
+```python
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+- Add a setting in `settings.py` to instruct browsers to cache static files for an extended period. This improves performance due to decreased load times.  
+
+```python
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+```
+6. **Uploading Media Files to S3**
+- Navigate to your S3 bucket in the AWS Management Console.
+- Create a new folder named `media`.
+- Click **Upload**, select all your product images, and upload them.
+  - Ensure you grant public read access to these objects during the upload process.
+
+7. **Commit Changes**
+- Commit your changes and push them to GitHub. This will trigger an automatic deployment to Heroku if you've set up automatic deploys.
+***
+
