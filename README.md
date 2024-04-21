@@ -37,6 +37,13 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Usage of Design Elements](#usage-of-design-elements)
     - [Accessibility](#accessibility)
     - [Conclusion](#conclusion)
+  - [CRUD Functionality](#crud-functionality)
+    - [Superuser Role](#superuser-role)
+    - [Admin Role](#admin-role)
+    - [Coordinator Role](#coordinator-role)
+    - [Member Role](#member-role)
+    - [Non-Member Role](#non-member-role)
+    - [Comment Policy](#comment-policy)
 
 
 ***
@@ -155,5 +162,65 @@ Accessibility has been considered within the design with considerations for:
 
 ### Conclusion
 The design approach for the Rainbow Runners website has a blend of aesthetic appeal, functional richness, and inclusive design principles. It aims to create not just a digital space but a welcoming community portal that resonates with the values of the LGBTQ+ community in South Wales.
+***
+## CRUD Functionality
+
+The Rainbow Runners website offers comprehensive Create, Read, Update, and Delete (CRUD) capabilities tailored to different user roles within the platform. Below is a detailed overview of the permissions and functionalities available to each user role:
+
+### Superuser Role
+- **Access Control**: Full access to the Django admin area; can assign Admin and Coordinator roles to members.
+- **Member Management**: Ability to activate and deactivate member accounts.
+- **Content Management**:
+  - Can add, edit, and delete posts.
+  - Can add and delete comments on any post.
+  - Can add, edit, and delete products.
+- **Inquiries Management**: Can view and delete any questions submitted through the contact us page within the Django admin.
+- **Shopping Basket**:
+  - Can add products to their shopping basket.
+  - Can edit the quantity of products in the basket.
+  - Can delete products from the basket.
+
+### Admin Role
+- **Content Management**:
+  - Can add, edit, and delete posts.
+  - Can add and delete comments on any post.
+  - Can add, edit, and delete products.
+- **Inquiries Viewing**: Can view any questions submitted but cannot delete them.
+- **Profile Management**: Can update their profile and deactivate their account.
+- **Shopping Basket**:
+  - Can add products to their shopping basket.
+  - Can edit the quantity of products in the basket.
+  - Can delete products from the basket.
+
+### Coordinator Role
+- **Content Management**:
+  - Can add, edit, and delete posts.
+  - Can add and delete comments on any post.
+- **Profile Management**: Can update their profile and deactivate their account.
+- **Shopping Basket**:
+  - Can add products to their shopping basket.
+  - Can edit the quantity of products in the basket.
+  - Can delete products from the basket.
+
+### Member Role
+- **Interaction**:
+  - Can submit questions through the contact us page.
+  - Can add and delete their own comments to club news posts.
+- **Profile Management**: Can update their profile and deactivate their account.
+- **Shopping Basket**:
+  - Can add products to their shopping basket.
+  - Can edit the quantity of products in the basket.
+  - Can delete products from the basket.
+
+### Non-Member Role
+- **Interaction**: Can submit questions through the contact us page.
+- **Shopping Basket**:
+  - Can add products to their shopping basket.
+  - Can edit the quantity of products in the basket.
+
+### Comment Policy
+Currently, users cannot edit comments. To change a comment, the user must delete the existing comment and post a new one. This policy aligns with current practices on many social media platforms, ensuring clarity and accountability in user communications. Future updates may include editable comments based on user feedback and requirements.
+
+This structured access ensures that each user interacts with the site in a way that is appropriate to their role and responsibilities, maintaining a secure and orderly environment.
 ***
 
