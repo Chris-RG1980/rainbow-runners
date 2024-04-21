@@ -44,6 +44,9 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Member Role](#member-role)
     - [Non-Member Role](#non-member-role)
     - [Comment Policy](#comment-policy)
+  - [Database Configuration](#database-configuration)
+    - [Non-Relational Database](#non-relational-database)
+    - [Relational Database](#relational-database)
   - [Database Schema](#database-schema)
     - [Posts App](#posts-app)
     - [Profiles App](#profiles-app)
@@ -229,6 +232,18 @@ Currently, users cannot edit comments. To change a comment, the user must delete
 
 This structured access ensures that each user interacts with the site in a way that is appropriate to their role and responsibilities, maintaining a secure and orderly environment.
 ***
+## Database Configuration
+
+Rainbow Runners utilizes two different database systems to optimize data management and support the diverse functionalities of the website.
+
+### Non-Relational Database
+
+For storing inquiries and questions submitted through the contact page, I have chosen **MongoDB** as the non-relational database solution. MongoDB provides the flexibility required for handling data that does not require relational integrity, which is ideal for the independent nature of user inquiries. This setup allows for scalable data storage that can adapt to varying loads and data types without predefined schemas.
+
+### Relational Database
+
+For all other data that benefits from structured relationships and integrity, such as user data, product information, and transaction records, I have chosen to use **Heroku Postgres**. I have selected the free tier of Heroku Postgres for its reliability and longevity, especially given that ElephantSQL, the previous provider, is reaching the end of its life. Heroku Postgres offers a robust, scalable, and efficient relational database solution, ensuring data integrity and seamless operations for all aspects of the site that require relational data handling.
+***
 ## Database Schema
 This section provides a detailed overview of the relationships and structure of the database models used within the Django application. Each model is critical for various features of the site, from managing user profiles and club posts to handling product sales and user interactions. The schemas illustrates how these models connect to each other, ensuring data integrity and facilitating efficient data retrieval. Below are complete entity-relationship diagrams (ERD), outlining the fields and relationships of each model involved in the application.     
 ### Posts App
@@ -240,6 +255,9 @@ This section provides a detailed overview of the relationships and structure of 
 ### Checkout App
 ![Image](resources/database-schema/checkout-schema.png)
 ### Contact App
-A non-relational database has been implemented to manage inquiries and questions. This decision was made because the functionality for submitting questions does not necessitate a relationship with other data entities within the system. Users, including non-members, can submit inquiries without the need for an account or any association with the user profiles, orders, or products databases. A non-relational database provides the flexibility and scalability needed to handle this isolated data efficiently, ensuring that the website can manage high volumes of queries seamlessly without impacting the performance and integrity of the relational data structures used elsewhere in the application.
+A non-relational database has been implemented to manage inquiries and questions. This decision was made because the functionality for submitting questions does not necessitate a relationship with other data entities within the system. Users, including non-members, can submit inquiries without the need for an account or any association with the user profiles, orders, or products databases. A non-relational database provides the flexibility and scalability needed to handle this isolated data efficiently, ensuring that the website can manage high volumes of queries seamlessly without impacting the performance and integrity of the relational data structures used elsewhere in the application.                 
+
 ![Image](resources/database-schema/contact-schema.png)
 ***
+
+
