@@ -82,6 +82,10 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
         - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
         - [Additional Deployment Steps](#additional-deployment-steps)
         - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
+  - [Credits](#credits)
+    - [Images](#images)
+    - [Other Credits](#other-credits)
+    - [Thank You](#thank-you)
 
 
 ***
@@ -315,12 +319,15 @@ A non-relational database has been implemented to manage inquiries and questions
 - [Django-bleach](https://django-bleach.readthedocs.io/) -  Integrates the Bleach library to sanitize HTML.         
 - [Django-CKEditor](https://django-ckeditor.readthedocs.io/) - Integrates for the CKEditor text editor.      
 - [Django-crispy-forms](https://django-crispy-forms.readthedocs.io/) - Allows for elegant rendering of forms.       
+- [Pillow](https://pypi.org/project/pillow/) - For image processing in Django.       
+- [Psycopg 3](https://pypi.org/project/psycopg/) - To manage the PostgreSQL database using Python.      
 ### Services
 - [Sentry](https://sentry.io) - Provides error tracking and application monitoring.         
 - [Heroku Postgresql](https://elements.heroku.com/addons/heroku-postgresql) - To host and manage the PostgreSQL database.       
 - [MongoDB](https://account.mongodb.com/) - To host and manage the MongoDB NoSQL database.  
 - [AWS](https://www.aws.amazon.com) -  Cloud platform providing storage for static and media files.                 
-- [Heroku](https://www.heroku.com/) - To build and host the website.                                                                   
+- [Heroku](https://www.heroku.com/) - To build and host the website.      
+- [Stripe](https://dashboard.stripe.com/) - To process payments.                                                               
 ***
 ## Testing
 Please see [TESTING.md](/TESTING.md) for all testing performed.          
@@ -790,4 +797,20 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 7. **Commit Changes**
 - Commit your changes and push them to GitHub. This will trigger an automatic deployment to Heroku if you've set up automatic deploys.
 ***
+## Credits
+### Images
+ - Hero Image - This image was AI generated 
+ - Runner Image - Photo by Chris Grabham
 
+### Other Credits
+- Code Institute - Project Boutique ADO
+- [Real Python](https://realpython.com/)
+- [freeCodeCamp](https://www.freecodecamp.org/)
+- [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified)
+- [Codemy.com](https://www.youtube.com/channel/UCFB0dxMudkws1q8w5NJEAmw)
+
+### Thank You
+* Amy (Cohort Facilitator) for providing support and guidance within weekly stand ups.
+* Graeme Taylor (Course Mentor) for providing support and guidance throughout the project.
+* Adam Davies for help with additional testing of the website. 
+***
