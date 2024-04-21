@@ -60,6 +60,7 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Utilities Used](#utilities-used)
     - [Packages](#packages)
     - [Services](#services)
+  - [Testing](#testing)
 
 
 ***
@@ -300,4 +301,6 @@ A non-relational database has been implemented to manage inquiries and questions
 - [AWS](https://www.aws.amazon.com) -  Cloud platform providing storage for static and media files.                 
 - [Heroku](https://www.heroku.com/) - To build and host the website.                                                                   
 ***
-
+## Testing
+Please see [TESTING.md](/TESTING.md) for all testing performed.          
+***
