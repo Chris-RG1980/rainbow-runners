@@ -801,6 +801,7 @@ MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 ### Images
  - Hero Image - This image was AI generated 
  - Runner Image - Photo by Chris Grabham
+ - Product Images - These are all AI generated 
 
 ### Other Credits
 - Code Institute - Project Boutique ADO
