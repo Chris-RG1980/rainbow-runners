@@ -216,7 +216,7 @@ The Rainbow Runners website offers comprehensive Create, Read, Update, and Delet
   - Can add, edit, and delete posts.
   - Can add and delete comments on any post.
   - Can add, edit, and delete products.
-- **Inquiries Management**: Can view and delete any questions submitted through the contact us page within the Django admin.
+- **Inquiries Management**: Can view any questions submitted through the contact us page.
 - **Shopping Basket**:
   - Can add products to their shopping basket.
   - Can edit the quantity of products in the basket.
