@@ -736,22 +736,22 @@ if 'USE_AWS' in os.environ:
 
 Go to your Heroku app's settings and add your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `USE_AWS` set to `True` as config vars.
 
-    | KEY | VALUE |
-    | --- | ----- |
-    | AWS_ACCESS_KEY_ID | `your variable here if you have it already` |
-    | AWS_SECRET_ACCESS_KEY | `your variable here if you have it already` |
-    | DISABLE_COLLECTSTATIC | 1* |
-    | DATABASE_URL | `your variable here` |
-    | EMAIL_HOST_PASS | `your variable here` |
-    | EMAIL_HOST_USER | `your variable here` |
-    | SECRET_KEY | `your variable here` |
-    | STRIPE_PUBLIC_KEY | `your variable here` |
-    | STRIPE_SECRET_KEY | `your variable here` |
-    | STRIPE_WH_SECRET | `your variable here` |
-    | USE_AWS | True |
-    | DEVELOPMENT | True* |
+| KEY | VALUE |               
+| :--- | :----: |                                       
+| AWS_ACCESS_KEY_ID | `your variable here if you have it already` |         
+| AWS_SECRET_ACCESS_KEY | `your variable here if you have it already` |      
+| DISABLE_COLLECTSTATIC | 1* |                                       
+| DATABASE_URL | `your variable here` |                             
+| EMAIL_HOST_PASS | `your variable here` |                              
+| EMAIL_HOST_USER | `your variable here` |                               
+| SECRET_KEY | `your variable here` |                                   
+| STRIPE_PUBLIC_KEY | `your variable here` |                             
+| STRIPE_SECRET_KEY | `your variable here` |                            
+| STRIPE_WH_SECRET | `your variable here` |                                
+| USE_AWS | True |                                             
+| DEVELOPMENT | True* |                                      
 
-     * Remove this before completing the deployment. 
+      * Remove this before completing the deployment. 
 
 1. **Configure Static and Media Files**
 
