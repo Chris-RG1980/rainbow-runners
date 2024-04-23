@@ -5,6 +5,9 @@ from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
+    """
+    Represents a category for products.
+    """
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -19,6 +22,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """
+    Defines the structure for a product listing in the database.
+    """
     category = models.ForeignKey(
         Category,
         null=True,
@@ -69,23 +75,38 @@ class Product(models.Model):
         return f'[{self.id}] {self.name}'
 
     def get_key_features(self):
+        """
+        Returns product's key features.
+        """
         return Metadata.objects.filter(products__id=self.id,
                                        category__name='key_features')
 
     def get_care_instructions(self):
+        """
+        Returns product's care instructions.
+        """
         return Metadata.objects.filter(products__id=self.id,
                                        category__name='care_instructions')
 
     def get_size_guide(self):
+        """
+        Returns product's size guide.
+        """
         return Metadata.objects.filter(products__id=self.id,
                                        category__name='size_guide')
 
     def get_sizes(self):
+        """
+        Returns product's available sizes.
+        """
         return Metadata.objects.filter(products__id=self.id,
                                        category__name='sizes')
 
 
 class MetadataCategories(models.Model):
+    """
+    Category for classifying product metadata.
+    """
     def __str__(self):
         return self.name
 
@@ -101,6 +122,9 @@ class MetadataCategories(models.Model):
 
 
 class Metadata(models.Model):
+    """
+    Metadata entries linked to products, classified under categories.
+    """
     def __str__(self):
         return f'[{self.id}] {self.category}'
 
@@ -124,6 +148,9 @@ class Metadata(models.Model):
     )
 
     def get_sizes():
+        """
+        Filter and return sizes from metadata.
+        """
         return Metadata.objects.filter(category__name='sizes')
 
     class Meta:
