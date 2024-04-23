@@ -1,7 +1,9 @@
 class CKEditorHelper {
 
-    prefix = "";
-    elementName = "";
+    constructor() {
+        this.prefix = "";
+        this.elementName = "";
+    }
 
     get elementId() {
         return `${this.prefix}_${this.elementName}`;
@@ -12,7 +14,7 @@ class CKEditorHelper {
     }
 
     get elementValidationId() {
-        return `${this.elementId}_validation`
+        return `${this.elementId}_validation`;
     }
 
     get elementFormId() {
