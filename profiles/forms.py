@@ -58,6 +58,9 @@ class DeactivateUserForm(forms.ModelForm):
 
 
 class UserSignupForm(SignupForm):
+    """
+    Stop help text on Django Allauth displaying on page load.
+    """
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
         self.fields['password1'].help_text = None
