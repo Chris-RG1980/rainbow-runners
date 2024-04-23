@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
+from allauth.account.forms import SignupForm
 
 
 class UserProfileForm(forms.ModelForm):
@@ -54,3 +55,9 @@ class DeactivateUserForm(forms.ModelForm):
             msg = "To deactivate this account tick the box."
 
             self.fields['is_active'].help_text = msg
+
+
+class UserSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(UserSignupForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].help_text = None

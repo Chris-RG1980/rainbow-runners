@@ -81,7 +81,7 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-SITE_ID = 2
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -298,3 +298,5 @@ BLEACH_STRIP_COMMENTS = False
 # Delivery charges & thresholds
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
+
+ACCOUNT_FORMS = {'signup': 'profiles.forms.UserSignupForm'}
