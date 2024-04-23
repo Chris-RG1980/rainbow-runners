@@ -7,6 +7,10 @@ from .models import Category, Product, Metadata, MetadataCategories
 
 
 class ProductAdmin(admin.ModelAdmin):
+    """
+    Admin interface for viewing and editing product details.
+    """
+
     list_display = ('sku',
                     'name',
                     'category',
@@ -19,6 +23,10 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class MetadataAdminForm(forms.ModelForm):
+    """
+    Form for editing Metadata using a rich text editor.
+    """
+
     value = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
@@ -27,11 +35,18 @@ class MetadataAdminForm(forms.ModelForm):
 
 
 class MetadataAdmin(admin.ModelAdmin):
+    """
+    Admin interface for Metadata with rich text editing capabilities.
+    """
+
     form = MetadataAdminForm
     filter_horizontal = ('products',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    """
+    Admin interface for viewing and editing category details.
+    """
     list_display = ('friendly_name', 'name')
 
 

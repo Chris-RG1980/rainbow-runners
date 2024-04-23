@@ -10,13 +10,17 @@ from django.contrib import messages
 
 
 def is_in_group(user, group_name):
-    """Check if the user is in the given group."""
+    """
+    Check if the user is in the given group.
+    """
     return user.groups.filter(name=group_name).exists()
 
 
 @login_required
 def all_posts(request):
-    """Show all posts"""
+    """
+    A view to show all posts
+    """
 
     form = PostsForm()
 
@@ -62,7 +66,9 @@ def all_posts(request):
 
 @login_required
 def edit_post(request, post_id):
-    """A view to allow co-ordinators and admin to edit posts"""
+    """
+    A view to allow co-ordinators and admin to edit posts
+    """
 
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
@@ -100,7 +106,9 @@ def edit_post(request, post_id):
 
 @login_required
 def delete_post(request, post_id):
-    """A view to allow admin or co-ordinators to delete posts"""
+    """
+    A view to allow admin or co-ordinators to delete posts
+    """
 
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
@@ -117,7 +125,9 @@ def delete_post(request, post_id):
 
 @login_required
 def post_detail(request, post_id):
-    """A view to allow users to comment on posts"""
+    """
+    A view to allow users to comment on posts
+    """
 
     post = get_object_or_404(Posts, id=post_id)
     is_coordinator = is_in_group(request.user, 'co-ordinators')
