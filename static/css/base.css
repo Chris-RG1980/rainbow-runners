@@ -47,6 +47,11 @@
     color: var(--red);
 }
 
+.light-red {
+    color: var(--red);
+    filter: contrast(200%);
+}
+
 .orange {
     color: var(--orange);
 }
@@ -116,6 +121,12 @@
 .image-size {
     width: 15%;
     height: 15%;
+}
+
+.alert {
+    border-width: 3px;
+    border-color: black;
+    border-radius: 0;
 }
 
 /* base.html */

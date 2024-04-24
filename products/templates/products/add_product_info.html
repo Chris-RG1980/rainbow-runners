@@ -33,8 +33,10 @@
                                     <div class="d-flex justify-content-center">
                                         <button class="btn select-size" data-product-id="{{ product.id }}" data-size-id="{{ size.id }}" data-exists="{{ size.product_exists|lower }}">
                                             {% if size.product_exists %}
-                                                <i class="fa-solid fa-trash-can red"></i>
+                                                <span class="sr-only white">Remove Size</span>
+                                                <i class="fa-solid fa-trash-can light-red"></i>
                                             {% else %}
+                                                <span class="sr-only white">Add Size</span>
                                                 <i class="fa-solid fa-plus green"></i>
                                             {% endif %}
                                         </button>
@@ -59,6 +61,7 @@
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="{% url 'add_product_metadata' product_id=product.id metadata_category_id=category.id %}" class="btn btn-primary">
+                                        <span class="sr-only">Edit {{ category.friendly_name }} Metadata</span>
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                 </div>
