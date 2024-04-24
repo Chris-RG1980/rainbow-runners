@@ -74,22 +74,22 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Cloning the Forked Repository](#cloning-the-forked-repository)
     - [Cloning with Git](#cloning-with-git)
     - [Creating a Local Django Environment](#creating-a-local-django-environment)
-      - [Precursors](#precursors)
-      - [Setup](#setup)
+    - [Precursors](#precursors)
+    - [Setup](#setup)
     - [Initial production deployment setup](#initial-production-deployment-setup)
-      - [Setting up the ElephantSQL Database](#setting-up-the-elephantsql-database)
-      - [Setting up an Amazon S3 Bucket for Static Website Hosting](#setting-up-an-amazon-s3-bucket-for-static-website-hosting)
-        - [Creating and Configuring the S3 Bucket](#creating-and-configuring-the-s3-bucket)
-        - [Configuring AWS IAM for Secure Access](#configuring-aws-iam-for-secure-access)
-      - [Creating a New Heroku App](#creating-a-new-heroku-app)
-        - [If using Heroku Postgres instead of ElephantSQL](#if-using-heroku-postgres-instead-of-elephantsql)
-        - [Project Preparation in Your IDE](#project-preparation-in-your-ide)
-        - [Update DATABASE Setting](#update-database-setting)
-      - [Confirming Your Database](#confirming-your-database)
-      - [Setting Up Heroku Deployment](#setting-up-heroku-deployment)
-        - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
-        - [Additional Deployment Steps](#additional-deployment-steps)
-        - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
+    - [Setting up the ElephantSQL Database](#setting-up-the-elephantsql-database)
+    - [Setting up an Amazon S3 Bucket for Static Website Hosting](#setting-up-an-amazon-s3-bucket-for-static-website-hosting)
+    - [Creating and Configuring the S3 Bucket](#creating-and-configuring-the-s3-bucket)
+    - [Configuring AWS IAM for Secure Access](#configuring-aws-iam-for-secure-access)
+    - [Creating a New Heroku App](#creating-a-new-heroku-app)
+    - [If using Heroku Postgres instead of ElephantSQL](#if-using-heroku-postgres-instead-of-elephantsql)
+    - [Project Preparation in Your IDE](#project-preparation-in-your-ide)
+    - [Update DATABASE Setting](#update-database-setting)
+    - [Confirming Your Database](#confirming-your-database)
+    - [Setting Up Heroku Deployment](#setting-up-heroku-deployment)
+    - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
+    - [Additional Deployment Steps](#additional-deployment-steps)
+    - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
   - [Credits](#credits)
     - [Images](#images)
     - [Other Credits](#other-credits)
@@ -404,10 +404,10 @@ Please see [TESTING.md](/TESTING.md) for all testing performed.
 5. Git will download the repository files onto your computer, creating a new directory with the repository name.
 
 ### Creating a Local Django Environment
-#### Precursors
+### Precursors
 - Ensure Python >=3.8 and pip are installed.
 
-#### Setup
+### Setup
 1. Create a virtual environment: `python -m venv env
 source env/bin/activate` On Windows use `env\Scripts\activate`                
 2. Install Django and other dependencies:  `pip install -r requirements.txt`                                 
@@ -425,7 +425,7 @@ source env/bin/activate` On Windows use `env\Scripts\activate`
 
 This website has been deployed to Heroku with Heroku Postgresql hosting the PostgreSQL database however if using ElephantSQL use the following method:
 
-#### Setting up the ElephantSQL Database  
+### Setting up the ElephantSQL Database  
 
 Log into ElephantSQL and create database instance.
 1. Click on "Create New Instance".
@@ -436,11 +436,11 @@ Log into ElephantSQL and create database instance.
 6. Review your instance details and confirm by creating the instance.
 7. Copy the URL of the newly created database instance for later use.
 
-#### Setting up an Amazon S3 Bucket for Static Website Hosting
+### Setting up an Amazon S3 Bucket for Static Website Hosting
 
 This guide will walk you through the process of setting up an Amazon S3 bucket for hosting a static website, including necessary permissions and security configurations using AWS IAM.
 
-##### Creating and Configuring the S3 Bucket
+### Creating and Configuring the S3 Bucket
 
 1. **Create an AWS Account**:
    - Sign up or log into your Amazon AWS account.
@@ -487,7 +487,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
    - Confirm to acknowledge public access.
    - Save the configuration.
 
-##### Configuring AWS IAM for Secure Access
+### Configuring AWS IAM for Secure Access
 
 1. **Create an IAM User Group**:
    - From the IAM dashboard, select "User Groups".
@@ -514,7 +514,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
    - Add this user to the group you created.
    - Finalize user creation and download the .csv file containing their access key and secret. This is crucial as it cannot be downloaded again later.
 
-#### Creating a New Heroku App
+### Creating a New Heroku App
 
 1. **Log Into Heroku**:
 
@@ -550,7 +550,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
 
 - After adding the `DATABASE_URL` config var with the appropriate value from ElephantSQL, ensure it's saved correctly.
 
-##### If using Heroku Postgres instead of ElephantSQL
+### If using Heroku Postgres instead of ElephantSQL
 1. **Navigate to Resources Tab:**
 On your application's dashboard, click on the "Resources" tab.
 2. **Add Heroku Postgres:**
@@ -562,7 +562,7 @@ Click on the "Provision" button to add the Heroku Postgres service to your appli
 5. **Verify Installation:**
 After provisioning, go back to the "Settings" tab, and under the "Config Vars" section, you should see the DATABASE_URL. This URL is the connection string that your application will use to connect to the Postgres database.
 
-##### Project Preparation in Your IDE
+### Project Preparation in Your IDE
 
 1. **Install Required Packages**
 
@@ -592,7 +592,7 @@ import os
 import dj_database_url
 ```
 
-##### Update DATABASE Setting
+### Update DATABASE Setting
 
 Comment out the original SQLite connection and add a new connection to use ElephantSQL.
 
@@ -655,7 +655,7 @@ DATABASES = {
     }
 }
 ```
-#### Confirming Your Database
+### Confirming Your Database
 
 After setting up the database and performing migrations, it's essential to confirm that the data in your ElephantSQL database has been correctly created. This step ensures that your database tables are set up and that you can successfully add data to your database, including your superuser account.
 
@@ -675,11 +675,11 @@ With the **auth_user** table selected, click on **"Execute"** to run the query a
 
 After executing the query, you should see a list of users in the table. Look for the details of the superuser account you created during the setup process. Confirming the presence and accuracy of your superuser details in the `auth_user` table indicates that your migrations were successful, and your database tables have been correctly created.
 
-#### Setting Up Heroku Deployment
+### Setting Up Heroku Deployment
 
 After preparing your project in your IDE and confirming your database with ElephantSQL, deploy the application on Heroku and ensure it uses the correct database depending on the environment it's running in.
 
-##### Update Database Settings in `settings.py`
+### Update Database Settings in `settings.py`
 
 Modify `settings.py` to dynamically switch between databases (Postgres on Heroku and SQLite locally).
 
@@ -708,7 +708,7 @@ else:
         }
     }
 ```
-##### Additional Deployment Steps
+### Additional Deployment Steps
 
 1. **Install Gunicorn:**  
 
@@ -751,7 +751,7 @@ else:
    ACCOUNT_EMAIL_VERIFICATION = 'none'
    ```
 
-##### Connecting Django to AWS S3
+### Connecting Django to AWS S3
 
 1. **Install Required Packages**
 
