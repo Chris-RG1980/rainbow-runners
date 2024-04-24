@@ -24,6 +24,15 @@ class UserProfileForm(forms.ModelForm):
             'default_county': 'County',
             'default_postcode': 'Postal Code'
         }
+        aria_labels = {
+            'default_full_name': 'Enter your full name',
+            'default_phone_number': 'Enter your phone number',
+            'default_street_address1': 'Enter your street address 1',
+            'default_street_address2': 'Enter your street address 2',
+            'default_town_or_city': 'Enter your town or city',
+            'default_county': 'Enter your county',
+            'default_postcode': 'Enter your postal code'
+        }
 
         self.fields['default_full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
@@ -33,6 +42,8 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].widget.attrs[
+                    'aria-label'] = aria_labels[field]
             self.fields[field].widget.attrs['class'] = 'border-black'
             self.fields[field].label = False
 

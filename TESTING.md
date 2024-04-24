@@ -9,6 +9,7 @@
     - [JSHint](#jshint)
     - [Python Linter](#python-linter)
     - [Validation Summary](#validation-summary)
+  - [Lighthouse](#lighthouse)
 ***
 ## Responsiveness
 This website has been tested on a wide range of screen sizes from various manufacturers to account for the differences between them. It’s crucial to test website responsiveness due to the web being mostly accessed using mobile devices. A responsive website guarantees a uniform user experience across different screen sizes and resolutions, making it easy for visitors to access and navigate the site, regardless of the device they’re using. Additionally, responsive design enhances search engine optimization (SEO), as search engines prioritize mobile-friendly sites in their rankings. The testing has been carried out using the device list on the chrome developer tools.
@@ -101,3 +102,13 @@ The Code Institute Python Linter has been used to validate the python code. No e
 ### Validation Summary
 ![Image](resources/validations/validation-summary.PNG)
 ***
+## Lighthouse                                             
+The lighthouse results can be found for each page below.                        
+
+![Image](resources/lighthouse/lighthouse-test-one.PNG)                   
+![Image](resources/lighthouse/lighthouse-test-two.PNG)                         
+![Image](resources/lighthouse/lighthouse-test-three.PNG)                         
+![Image](resources/lighthouse/lighthouse-test-four.PNG)                          
+![Image](resources/lighthouse/lighthouse-test-five.PNG)                           
+***
+
