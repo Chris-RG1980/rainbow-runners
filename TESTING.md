@@ -64,7 +64,7 @@ Quality testing of the JavaScript code has been carried out using [JSHint](https
 ![Image](resources/validations/quantity-input.PNG)                                           
 
 **_stripe_elements.js_**<br>
-![Image](Resources/validations/stripe.PNG)
+![Image](resources/validations/stripe.PNG)
 
 ### Python Linter                                                   
 The Code Institute Python Linter has been used to validate the python code. No errors were found and the results can be seen by clicking the links below.<br>
