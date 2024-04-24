@@ -1,4 +1,7 @@
 def user_groups(request):
+    """
+    Get admin and co-oridinator from user.
+    """
     is_coordinator = is_in_group(request.user, 'co-ordinators')
     is_admin = is_in_group(request.user, 'admin')
     return {'is_admin': is_admin,
