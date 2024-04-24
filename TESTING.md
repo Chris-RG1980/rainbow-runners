@@ -10,6 +10,7 @@
     - [Python Linter](#python-linter)
     - [Validation Summary](#validation-summary)
   - [Lighthouse](#lighthouse)
+  - [Wave](#wave)
   - [Browser Compatibility](#browser-compatibility)
 ***
 ## Responsiveness
@@ -115,8 +116,16 @@ The lighthouse results can be found for each page below.
 ![Image](resources/lighthouse/lighthouse-test-four.PNG)                          
 ![Image](resources/lighthouse/lighthouse-test-five.PNG)                           
 ***
-
-
+## Wave
+The Wave tool has been completed with no errors or contrast errors found.                              
+                                   
+![Image](resources/wave/wave-results-one.PNG)
+![Image](resources/wave/wave-results-two.PNG)
+![Image](resources/wave/wave-results-three.PNG)
+![Image](resources/wave/wave-results-four.PNG)
+![Image](resources/wave/wave-results-five.PNG)
+![Image](resources/wave/wave-results-six.PNG)
+![Image](resources/wave/wave-results-severn.PNG)
 ***
 ## Browser Compatibility
 Testing has been carried out on the browsers within the below table as these browsers are most used, but in addition to this Firefox uses Gecko rendering engine while the others use WebKit. This helps identify any inconsistencies or rendering discrepancies that may arise due to variations in the rendering engines.        
