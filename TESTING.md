@@ -346,11 +346,3 @@ Testing has been carried out on the browsers within the below table as these bro
 |:--- | :----------|
 | Image filename capitalization with Django Pillow | When uploading image files using Django Pillow, an unexpected behavior has been observed where the filenames are altered to have capital letters at the end.|
 | Button Spacing Issue on Tablet and Mobile Devices | On the add product info page, users accessing the site via tablet and mobile devices may encounter a display issue where there is no gap between the buttons.|
-
-
-
-
-
-
-
-
