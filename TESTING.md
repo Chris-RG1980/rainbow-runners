@@ -18,6 +18,8 @@
   - [Browser Compatibility](#browser-compatibility)
   - [Full Testing](#full-testing)
     - [Interactive Elements](#interactive-elements)
+  - [Bugs](#bugs)
+    - [Known Bugs](#known-bugs)
 ***
 ## Responsiveness
 This website has been tested on a wide range of screen sizes from various manufacturers to account for the differences between them. It’s crucial to test website responsiveness due to the web being mostly accessed using mobile devices. A responsive website guarantees a uniform user experience across different screen sizes and resolutions, making it easy for visitors to access and navigate the site, regardless of the device they’re using. Additionally, responsive design enhances search engine optimization (SEO), as search engines prioritize mobile-friendly sites in their rankings. The testing has been carried out using the device list on the chrome developer tools.
@@ -338,12 +340,9 @@ Testing has been carried out on the browsers within the below table as these bro
 | :-----: | :--------------: | :---------------: | :----: | :-------: |
 | Sign out button | When clicked the user will be taken to the home page. | Clicked on the sign out button. | Taken to the home page. | Pass |
 ***
-
-
-
-
-
-
-
-
-
+## Bugs
+### Known Bugs
+| Bug | Description|
+|:--- | :----------|
+| Image filename capitalization with Django Pillow | When uploading image files using Django Pillow, an unexpected behavior has been observed where the filenames are altered to have capital letters at the end.|
+| Button Spacing Issue on Tablet and Mobile Devices | On the add product info page, users accessing the site via tablet and mobile devices may encounter a display issue where there is no gap between the buttons.|
