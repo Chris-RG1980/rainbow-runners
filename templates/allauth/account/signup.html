@@ -6,9 +6,7 @@
     {% endelement %}
 {% endblock %}
 {% block inner_content %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
+    {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
     {% url 'account_signup' as action_url %}
     {% element form form=form method="post" action=action_url tags="entrance,signup" %}
         {% slot body %}
@@ -23,7 +21,9 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            <button tags="prominent,signup" type="submit" class="btn btn-primary" >Sign Up</button>
+            {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+            {% endelement %}
         {% endslot %}
     {% endelement %}
     {% if SOCIALACCOUNT_ENABLED %}

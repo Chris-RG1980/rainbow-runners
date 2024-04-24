@@ -6,6 +6,10 @@ from products.models import Product
 
 
 def bag_contents(request):
+    """
+    Calculate and return the contents of the shopping bag,
+    including subtotal and delivery costs.
+    """
     bag_items = []
     total = 0
     product_count = 0

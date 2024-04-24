@@ -12,6 +12,10 @@ from products.models import Product
 
 
 class Order(models.Model):
+    """
+    Stores a single order, related to `UserProfile`
+    and containing multiple `OrderLineItems`.
+    """
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -98,6 +102,9 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    Represents an individual item within an order.
+    """
     order = models.ForeignKey(
         Order,
         null=False,

@@ -15,12 +15,12 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=asc">
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">
                                 Price (Low to High)
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" type="button" href="{% url 'products' %}?sort=price&direction=desc">
+                            <a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=desc">
                                 Price (High to Low)
                             </a>
                         </li>
@@ -113,7 +113,7 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script type="text/javascript">
+<script>
     const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
     const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new  bootstrap.Dropdown(dropdownToggleEl))
 </script>

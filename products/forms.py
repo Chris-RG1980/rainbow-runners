@@ -4,6 +4,9 @@ from .models import Product, Category, Metadata
 
 
 class ProductForm(forms.ModelForm):
+    """
+    Form for creating and updating Product instances.
+    """
 
     class Meta:
         model = Product
@@ -28,6 +31,9 @@ class ProductForm(forms.ModelForm):
 
 
 class MetadataForm(forms.ModelForm):
+    """
+    Form for adding or editing metadata related to products.
+    """
 
     class Meta:
         model = Metadata

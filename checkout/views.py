@@ -18,7 +18,9 @@ import sentry_sdk
 
 @require_POST
 def cache_checkout_data(request):
-    """Update strip payment intent cache with latest basket"""
+    """
+    Update stripe payment intent cache with latest basket
+    """
 
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
@@ -36,7 +38,9 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-    """A view to initiate and pass checkout data to stripe"""
+    """
+    A view to initiate and pass checkout data to stripe
+    """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY

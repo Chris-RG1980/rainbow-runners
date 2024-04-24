@@ -14,13 +14,17 @@ import sentry_sdk
 
 
 class StripeWH_Handler:
-    """Handle Stripe webhooks"""
+    """
+    Handle Stripe webhooks
+    """
 
     def __init__(self, request):
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """Send the user a confirmation email"""
+        """
+        Send the user a confirmation email
+        """
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -51,7 +55,7 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
-        save_info = intent.metadata.save_info # noqa
+        save_info = intent.metadata.save_info
 
         # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(

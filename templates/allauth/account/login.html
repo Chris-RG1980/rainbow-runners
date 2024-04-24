@@ -25,7 +25,9 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            <button class="btn btn-primary" type="submit" tags="prominent,login">Sign In</button>
+            {% element button type="submit" tags="prominent,login" %}
+                {% trans "Sign In" %}
+            {% endelement %}
         {% endslot %}
     {% endelement %}
     {% if SOCIALACCOUNT_ENABLED %}
