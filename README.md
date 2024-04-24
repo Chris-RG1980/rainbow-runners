@@ -74,22 +74,22 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Cloning the Forked Repository](#cloning-the-forked-repository)
     - [Cloning with Git](#cloning-with-git)
     - [Creating a Local Django Environment](#creating-a-local-django-environment)
-      - [Precursors](#precursors)
-      - [Setup](#setup)
+    - [Precursors](#precursors)
+    - [Setup](#setup)
     - [Initial production deployment setup](#initial-production-deployment-setup)
-      - [Setting up the ElephantSQL Database](#setting-up-the-elephantsql-database)
-      - [Setting up an Amazon S3 Bucket for Static Website Hosting](#setting-up-an-amazon-s3-bucket-for-static-website-hosting)
-        - [Creating and Configuring the S3 Bucket](#creating-and-configuring-the-s3-bucket)
-        - [Configuring AWS IAM for Secure Access](#configuring-aws-iam-for-secure-access)
-      - [Creating a New Heroku App](#creating-a-new-heroku-app)
-        - [If using Heroku Postgres instead of ElephantSQL](#if-using-heroku-postgres-instead-of-elephantsql)
-        - [Project Preparation in Your IDE](#project-preparation-in-your-ide)
-        - [Update DATABASE Setting](#update-database-setting)
-      - [Confirming Your Database](#confirming-your-database)
-      - [Setting Up Heroku Deployment](#setting-up-heroku-deployment)
-        - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
-        - [Additional Deployment Steps](#additional-deployment-steps)
-        - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
+    - [Setting up the ElephantSQL Database](#setting-up-the-elephantsql-database)
+    - [Setting up an Amazon S3 Bucket for Static Website Hosting](#setting-up-an-amazon-s3-bucket-for-static-website-hosting)
+    - [Creating and Configuring the S3 Bucket](#creating-and-configuring-the-s3-bucket)
+    - [Configuring AWS IAM for Secure Access](#configuring-aws-iam-for-secure-access)
+    - [Creating a New Heroku App](#creating-a-new-heroku-app)
+    - [If using Heroku Postgres instead of ElephantSQL](#if-using-heroku-postgres-instead-of-elephantsql)
+    - [Project Preparation in Your IDE](#project-preparation-in-your-ide)
+    - [Update DATABASE Setting](#update-database-setting)
+    - [Confirming Your Database](#confirming-your-database)
+    - [Setting Up Heroku Deployment](#setting-up-heroku-deployment)
+    - [Update Database Settings in `settings.py`](#update-database-settings-in-settingspy)
+    - [Additional Deployment Steps](#additional-deployment-steps)
+    - [Connecting Django to AWS S3](#connecting-django-to-aws-s3)
   - [Credits](#credits)
     - [Images](#images)
     - [Other Credits](#other-credits)
@@ -121,50 +121,50 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
 ***
 ## Wireframes
 #### Mobile
-[Mobile Homepage 1](resources/wireframes/Mobile-Home-1.png)                     
-[Mobile Homepage 2](resources/wireframes/Mobile-Home-2.png)                    
-[Mobile About Us](resources/wireframes/Mobile-About-Us.png)                   
-[Mobile Resources](resources/wireframes/Mobile-Resources.png)                 
-[Mobile Contact Us](resources/wireframes/Mobile-Contact-Us.png)                
-[Mobile Shop](resources/wireframes/Mobile-Kit-Store.png)                    
-[Mobile Product](resources/wireframes/Mobile-Product.png)                      
-[Mobile Checkout 1](resources/wireframes/Mobile-Checkout.png)               
-[Mobile Checkout 2](resources/wireframes/Mobile-Checkout-2.png)                
-[Mobile Shopping Cart](resources/wireframes/Mobile-Shopping-Cart.png)           
-[Mobile Profile](resources/wireframes/Mobile-Profile.png)                    
-[Mobile Club Posts](resources/wireframes/Mobile-Team-Space.png)                 
-[Mobile Register](resources/wireframes/Mobile-Register.png)               
-[Mobile Sign In](resources/wireframes/Mobile-Sign-In.png)                     
+[Mobile Homepage 1](resources/wireframes/mobile-home-one.png)                     
+[Mobile Homepage 2](resources/wireframes/mobile-home-two.png)                    
+[Mobile About Us](resources/wireframes/mobile-about-us.png)                   
+[Mobile Resources](resources/wireframes/mobile-resources.png)                 
+[Mobile Contact Us](resources/wireframes/mobile-contact-us.png)                
+[Mobile Shop](resources/wireframes/mobile-kit-store.png)                    
+[Mobile Product](resources/wireframes/mobile-product.png)                      
+[Mobile Checkout 1](resources/wireframes/mobile-checkout.png)               
+[Mobile Checkout 2](resources/wireframes/mobile-checkout-two.png)                
+[Mobile Shopping Cart](resources/wireframes/mobile-shopping-cart.png)           
+[Mobile Profile](resources/wireframes/mobile-profile.png)                    
+[Mobile Club Posts](resources/wireframes/mobile-team-space.png)                 
+[Mobile Register](resources/wireframes/mobile-register.png)               
+[Mobile Sign In](resources/wireframes/mobile-sign-in.png)                     
 #### Tablet
-[Tablet Homepage 1](resources/wireframes/Tablet-Home-1.png)                 
-[Tablet Homepage 2](resources/wireframes/Tablet-Home-2.png)                    
-[Tablet Homepage 3](resources/wireframes/Tablet-Home-3.png)                   
-[Tablet About Us](resources/wireframes/Tablet-About-Us.png)                    
-[Tablet Resources](resources/wireframes/Tablet-Resources.png)                
-[Tablet Contact Us](resources/wireframes/Tablet-Contact-Us.png)             
-[Tablet Shop](resources/wireframes/Tablet-Kit-Store.png)                 
-[Tablet Product](resources/wireframes/Tablet-Product.png)                   
-[Tablet Checkout 1](resources/wireframes/Tablet-Checkout.png)               
-[Tablet Checkout 2](resources/wireframes/Tablet-Checkout-2.png)               
-[Tablet Shopping Cart](resources/wireframes/Tablet-Shopping-Cart.png)         
-[Tablet Profile](resources/wireframes/Tablet-Profile.png)                     
-[Tablet Club Posts](resources/wireframes/Tablet-Team-Space.png)                
-[Tablet Register](resources/wireframes/Tablet-Register.png)              
-[Tablet Sign In](resources/wireframes/Tablet-Sign-In.png)          
+[Tablet Homepage 1](resources/wireframes/tablet-home-one.png)                 
+[Tablet Homepage 2](resources/wireframes/tablet-home-two.png)                    
+[Tablet Homepage 3](resources/wireframes/tablet-home-three.png)                   
+[Tablet About Us](resources/wireframes/tablet-about-us.png)                    
+[Tablet Resources](resources/wireframes/tablet-resources.png)                
+[Tablet Contact Us](resources/wireframes/tablet-contact-us.png)             
+[Tablet Shop](resources/wireframes/tablet-kit-store.png)                 
+[Tablet Product](resources/wireframes/tablet-product.png)                   
+[Tablet Checkout 1](resources/wireframes/tablet-checkout.png)               
+[Tablet Checkout 2](resources/wireframes/tablet-checkout-two.png)               
+[Tablet Shopping Cart](resources/wireframes/tablet-shopping-cart.png)         
+[Tablet Profile](resources/wireframes/tablet-profile.png)                     
+[Tablet Club Posts](resources/wireframes/tablet-team-space.png)                
+[Tablet Register](resources/wireframes/tablet-register.png)              
+[Tablet Sign In](resources/wireframes/tablet-sign-in.png)          
 #### Desktop
-[Desktop Homepage 1](resources/wireframes/Desktop-Home-1.png)                
-[Desktop Homepage 2](resources/wireframes/Desktop-Home-2.png)                 
-[Desktop About Us](resources/wireframes/Desktop-About-Us.png)                  
-[Desktop Resources](resources/wireframes/Desktop-Resources.png)                 
-[Desktop Contact Us](resources/wireframes/Desktop-Contact-Us.png)               
-[Desktop Shop](resources/wireframes/Desktop-Kit-Store.png)                   
-[Desktop Product](resources/wireframes/Desktop-Product.png)                  
-[Desktop Checkout](resources/wireframes/Desktop-Checkout.png)                
-[Desktop Shopping Cart](resources/wireframes/Desktop-Shopping-Cart.png)        
-[Desktop Profile](resources/wireframes/Desktop-Profile.png)                     
-[Desktop Club Posts](resources/wireframes/Desktop-Team-Space.png)              
-[Desktop Register](resources/wireframes/Desktop-Register.png)                
-[Desktop Sign In](resources/wireframes/Desktop-Sign-In.png)            
+[Desktop Homepage 1](resources/wireframes/desktop-home-one.png)                
+[Desktop Homepage 2](resources/wireframes/desktop-home-two.png)                 
+[Desktop About Us](resources/wireframes/desktop-about-us.png)                  
+[Desktop Resources](resources/wireframes/desktop-resources.png)                 
+[Desktop Contact Us](resources/wireframes/desktop-contact-us.png)               
+[Desktop Shop](resources/wireframes/desktop-kit-store.png)                   
+[Desktop Product](resources/wireframes/desktop-product.png)                  
+[Desktop Checkout](resources/wireframes/desktop-checkout.png)                
+[Desktop Shopping Cart](resources/wireframes/desktop-shopping-cart.png)        
+[Desktop Profile](resources/wireframes/desktop-profile.png)                     
+[Desktop Club Posts](resources/wireframes/desktop-team-space.png)              
+[Desktop Register](resources/wireframes/desktop-register.png)                
+[Desktop Sign In](resources/wireframes/desktop-sign-in.png)            
 ***
 ## Design
 
@@ -228,9 +228,9 @@ The design approach for the Rainbow Runners website has a blend of aesthetic app
 | Checkout        | **Structure**<br>The "Checkout" page is designed to create a smooth and secure transaction process for items selected from the Club Shop. The layout of the page has several key features:<br><br>**Customer Information Form:** Includes fields for full name, email address, phone number, and address to ensure accurate delivery and contact.<br>**Login and Registration Links:** For users not logged in, links to the login and registration pages are provided, offering quick navigation options to either sign in for a faster checkout based on stored information or to create a new account.<br>Payment Section: Integrated with Stripe, this section provides a secure and streamlined payment process. Users can enter their payment details directly on this page.<br>**Adjust Bag Button:** Allows users to return to their shopping bag to make any final adjustments before completing the purchase.<br>**Complete Order Button:** Submits the payment and finalizes the order. Upon clicking, users may be redirected to a confirmation page.<br><br>**Purpose**<br>The Checkout page is crucial for completing purchases made through the Club Shop. It aims to provide a hassle-free payment experience by collecting essential customer information and facilitating secure transactions. The inclusion of direct links for login and registration ensures that users can easily access their accounts or create new ones, enhancing the user experience by streamlining the checkout process. The integration with Stripe for payments ensures security and reliability, maintaining user trust and satisfaction.      | ![Image](resources/features/checkout.png)   |
 | Receipt         | **Structure**<br>The "Receipt" page serves as the final confirmation for a user's purchase, detailing every aspect of the order to ensure clarity and record-keeping. Key features of this page include:<br><br>**Order Information:** Displays the name, quantity, and price of each item purchased. This section helps users review the specific details of what they have ordered.<br>**Delivery Information:** Includes essential details such as the delivery address, providing the user with a clear understanding of  where their items will be delivered.<br>**Financial Summaries:** Breaks down the financial aspects of the order, listing the order total, delivery charges, and the grand total. This section provides a complete and transparent account of all costs incurred during the transaction.<br>**Confirmation Email:** Shows the email address to which a confirmation email will be sent, reassuring the user that they will receive all necessary order and delivery details electronically.<br><br>**Purpose**<br>The Receipt page is designed to provide a complete overview of the transaction.  |  ![Image](resources/features/receipt.png)  |
 | View questions  | **Structure**<br>The "View Questions" page is an administrative tool accessible only to admin and superuser accounts on the website. This page is designed to have oversight of user inquiries submitted through the "Contact Us" page. Key features of this page include:<br><br>**Questions and Comments Display:** Lists all the questions and comments that users have entered into the "Contact Us" form. Each entry typically includes the user's name, email address, submission date, and the content of their inquiry.<br><br>**Purpose**<br>The "View Questions" page provides administrators and superusers with a clear view of user interactions through the website's contact form. | ![Image](resources/features/view-questions.png)    |
-| Club Posts      | **Structure**<br>The "Club Posts" page is a content management tool accessible to superusers, admins, and coordinators for posting, and available to all logged-in users for reading. This page allows authorized users to post and manage information related to club events, training tips, races, and other relevant content, while ensuring that the broader club membership can stay informed and engaged. Key features of this page include:<br><br>**Posting Interface:** Enables authorized users (superusers, admins, and coordinators) to create and share posts about various club-related topics.<br>**Club News Checkbox:** When selected, this option makes the post interactive, allowing club members to click on the post and leave comments. This feature enhances member engagement by creating discussions.<br>**Edit and Delete Buttons:** Each post is equipped with options to edit or delete it, providing flexibility and control over the published content for the authors.<br>**Pagination:** To keep the page uncluttered and improve user experience, posts are organized across multiple pages, making it easier to navigate through large amounts of content.<br>**Accessibility for All Logged-In Users:** While posting is restricted to certain roles, reading and interacting with the posts through comments is available to all logged-in members, ensuring wide accessibility and inclusivity within the club community.<br><br>**Purpose**<br>The "Club Posts" page serves multiple functions. It provides a platform for designated users to share important updates and insights, while also fostering a dynamic interactive environment where all club members can engage with the content. This setup not only keeps the club community well-informed but also encourages active participation and feedback, enhancing the overall club experience and community spirit. |  ![Image](resources/features/club-posts.png)  |
-| Comments        | **Structure**<br>The "Comments" page is an integral part of the interactive features of the website, creating discussion and engagement among club members on published posts. This page allows any logged-in user to add comments to selected posts. Key features of this page include:<br><br>**Commenting Capability:** Any logged-in user can add comments to selected posts, encouraging a broad participation in discussions.<br>**Delete Button:** Each comment includes a delete button, enabling the comment author, coordinators, admins, or superusers to delete the comment. This feature is vital for maintaining the quality and appropriateness of the discussion.<br>**Moderation by Coordinators, Admins, or Superusers:** To ensure a respectful and constructive community dialogue, coordinators, admins, and superusers have the authority to delete any comments, providing essential moderation and oversight.<br><br>**Purpose**<br>The Comments page aims to enhance user interaction by enabling comments on club-related posts. This page supports an open dialogue among club members, contributing to a vibrant community atmosphere. The ability to moderate comments ensures that discussions remain positive and constructive, aligning with the club’s values and standards.  | ![Image](resources/features/comments.png)   |
-| My Profile      | **Structure**<br>The "My Profile" page is a personal dashboard for logged-in users, providing them with the ability to view and manage their account details. This page is designed to give users control over their personal information. Key features of this page include:<br><br>**User Account Details:** Displays essential information such as the user's name, telephone number, and address, allowing members to verify and review their stored data.<br>**Update Information Button:** Applies the update to their personal information as needed, ensuring their account remains accurate and up-to-date.<br>**Deactivate My Account Button:** Offers users the option to deactivate their account. This feature is crucial for those who wish to temporarily or permanently stop using the platform, providing them with control over their data and participation.<br><br>**Purpose**<br>The My Profile enables members to maintain their personal information. By providing straightforward tools for updating information and deactivating accounts, this page supports user autonomy and privacy. It ensures that members can easily adjust their details as their personal circumstances or preferences change.  | ![Image](resources/features/my-profile.png) |
+| Club Posts      | **Structure**<br>The "Club Posts" page is a content management tool accessible to superusers, admins, and coordinators for posting, and available to all logged-in users for reading. This page allows authorized users to post and manage information related to club events, training tips, races, and other relevant content, while ensuring that the broader club membership can stay informed and engaged. Key features of this page include:<br><br>**Posting Interface:** Enables authorized users (superusers, admins, and coordinators) to create and share posts about various club-related topics.<br>**Club News Checkbox:** When selected, this option makes the post interactive, allowing club members to click on the post and leave comments. This feature enhances member engagement by creating discussions.<br>**Edit and Delete Buttons:** Each post is equipped with options to edit or delete it, providing flexibility and control over the published content for the authors.<br>**Pagination:** To keep the page uncluttered and improve user experience, posts are organized across multiple pages, making it easier to navigate through large amounts of content.<br>**Accessibility for All Logged-In Users:** While posting is restricted to certain roles, reading and interacting with the posts through comments is available to all logged-in members, ensuring wide accessibility and inclusivity within the club community.<br><br>**Purpose**<br>The "Club Posts" page serves multiple functions. It provides a platform for designated users to share important updates and insights, while also fostering a dynamic interactive environment where all club members can engage with the content. This setup not only keeps the club community well-informed but also encourages active participation and feedback, enhancing the overall club experience and community spirit.<br><br>**Associated User Stories:**<br>As a member, I want notifications about events, challenges, and updates, so I can keep up with the club.<br><br>As a returning member, I would like to be kept informed of any club news or events.   |  ![Image](resources/features/club-posts.png)  |
+| Comments        | **Structure**<br>The "Comments" page is an integral part of the interactive features of the website, creating discussion and engagement among club members on published posts. This page allows any logged-in user to add comments to selected posts. Key features of this page include:<br><br>**Commenting Capability:** Any logged-in user can add comments to selected posts, encouraging a broad participation in discussions.<br>**Delete Button:** Each comment includes a delete button, enabling the comment author, coordinators, admins, or superusers to delete the comment. This feature is vital for maintaining the quality and appropriateness of the discussion.<br>**Moderation by Coordinators, Admins, or Superusers:** To ensure a respectful and constructive community dialogue, coordinators, admins, and superusers have the authority to delete any comments, providing essential moderation and oversight.<br><br>**Purpose**<br>The Comments page aims to enhance user interaction by enabling comments on club-related posts. This page supports an open dialogue among club members, contributing to a vibrant community atmosphere. The ability to moderate comments ensures that discussions remain positive and constructive, aligning with the club’s values and standards.<br><br>**Associated User Stories:**<br>As a member, I would like to be able to provide feedback and comments on club events. | ![Image](resources/features/comments.png)   |
+| My Profile      | **Structure**<br>The "My Profile" page is a personal dashboard for logged-in users, providing them with the ability to view and manage their account details. This page is designed to give users control over their personal information. Key features of this page include:<br><br>**User Account Details:** Displays essential information such as the user's name, telephone number, and address, allowing members to verify and review their stored data.<br>**Update Information Button:** Applies the update to their personal information as needed, ensuring their account remains accurate and up-to-date.<br>**Deactivate My Account Button:** Offers users the option to deactivate their account. This feature is crucial for those who wish to temporarily or permanently stop using the platform, providing them with control over their data and participation.<br><br>**Purpose**<br>The My Profile enables members to maintain their personal information. By providing straightforward tools for updating information and deactivating accounts, this page supports user autonomy and privacy. It ensures that members can easily adjust their details as their personal circumstances or preferences change.<br><br>**Associated User Stories:**<br>As a member, I would like to be able to deactivate me account should I wish to leave.   | ![Image](resources/features/my-profile.png) |
 | 500             | **Structure**<br>The "500 Error" page is designed to inform users that an internal server error has occurred, which prevents the requested page from being displayed. Key features of this page include:<br><br>**Error Notification:** Clearly communicates to the user that an unexpected error has occurred on the server side, helping to set appropriate expectations regarding website functionality.<br>**Home Page Button:** Includes a prominent button that directs users back to the home page. This allows users to easily navigate away from the error page and continue their experience on the site, potentially accessing functioning parts of the website.<br><br>**Purpose**<br>The 500 Error page serves a critical role in user experience management during instances of server failures or other internal errors. It aims to mitigate user frustration by providing clear information and a simple way to return to a stable part of the website. This setup helps maintain a positive user experience, even in the face of technical issues, by offering a straightforward recovery path.<br> | ![Image](resources/features/500-error.png) |
 | 404             | **Structure**<br>The "404 Error" page is designed to notify users that the page they are attempting to access does not exist, typically due to a mistyped URL or a broken link. Key features of this page include:<br><br>**Error Notification:** Clearly communicates to the user that the requested page cannot be found, setting clear expectations and minimizing confusion.<br>**Home Page Button:** Includes a prominent button that directs users back to the home page. This feature allows users to easily navigate away from the error page and continue their experience on the site, helping them find what they were looking for or explore other content.<br><br>**Purpose**<br>The 404 Error page plays an essential role in the user experience by addressing navigation errors transparently and helpfully. It helps reduce user frustration associated with dead ends on the website by providing an easy way to return to a central, operational part of the site. This setup ensures that users maintain a positive interaction with the website, even when encountering errors. | ![Image](resources/features/404-page.png) |
 | Sign in page    | **Structure**<br>The "Sign In" page is created using Django Allauth. This page provides a straightforward interface for users to access their accounts. Key features of this page include:<br><br>**Login Field:** Allows users to enter their username or email address, to identify their account.<br>**Password Field:** Users must enter their password, which is checked against stored credentials for authentication.<br>**Sign In Button:** After entering their credentials, users can press this button to attempt to log into their accounts. If the credentials are correct, the user will gain access to their account and associated features.<br><br>**Purpose**<br>The Sign In page serves as the gateway for users to access member-exclusive areas of the website. By providing a secure and efficient means for user authentication, the page plays a critical role in ensuring that access to sensitive user information and functionalities is properly safeguarded. | ![Image](resources/features/sign-in.png)  |
@@ -406,10 +406,10 @@ Please see [TESTING.md](/TESTING.md) for all testing performed.
 5. Git will download the repository files onto your computer, creating a new directory with the repository name.
 
 ### Creating a Local Django Environment
-#### Precursors
+### Precursors
 - Ensure Python >=3.8 and pip are installed.
 
-#### Setup
+### Setup
 1. Create a virtual environment: `python -m venv env
 source env/bin/activate` On Windows use `env\Scripts\activate`                
 2. Install Django and other dependencies:  `pip install -r requirements.txt`                                 
@@ -427,7 +427,7 @@ source env/bin/activate` On Windows use `env\Scripts\activate`
 
 This website has been deployed to Heroku with Heroku Postgresql hosting the PostgreSQL database however if using ElephantSQL use the following method:
 
-#### Setting up the ElephantSQL Database  
+### Setting up the ElephantSQL Database  
 
 Log into ElephantSQL and create database instance.
 1. Click on "Create New Instance".
@@ -438,11 +438,11 @@ Log into ElephantSQL and create database instance.
 6. Review your instance details and confirm by creating the instance.
 7. Copy the URL of the newly created database instance for later use.
 
-#### Setting up an Amazon S3 Bucket for Static Website Hosting
+### Setting up an Amazon S3 Bucket for Static Website Hosting
 
 This guide will walk you through the process of setting up an Amazon S3 bucket for hosting a static website, including necessary permissions and security configurations using AWS IAM.
 
-##### Creating and Configuring the S3 Bucket
+### Creating and Configuring the S3 Bucket
 
 1. **Create an AWS Account**:
    - Sign up or log into your Amazon AWS account.
@@ -489,7 +489,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
    - Confirm to acknowledge public access.
    - Save the configuration.
 
-##### Configuring AWS IAM for Secure Access
+### Configuring AWS IAM for Secure Access
 
 1. **Create an IAM User Group**:
    - From the IAM dashboard, select "User Groups".
@@ -516,7 +516,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
    - Add this user to the group you created.
    - Finalize user creation and download the .csv file containing their access key and secret. This is crucial as it cannot be downloaded again later.
 
-#### Creating a New Heroku App
+### Creating a New Heroku App
 
 1. **Log Into Heroku**:
 
@@ -552,7 +552,7 @@ This guide will walk you through the process of setting up an Amazon S3 bucket f
 
 - After adding the `DATABASE_URL` config var with the appropriate value from ElephantSQL, ensure it's saved correctly.
 
-##### If using Heroku Postgres instead of ElephantSQL
+### If using Heroku Postgres instead of ElephantSQL
 1. **Navigate to Resources Tab:**
 On your application's dashboard, click on the "Resources" tab.
 2. **Add Heroku Postgres:**
@@ -564,7 +564,7 @@ Click on the "Provision" button to add the Heroku Postgres service to your appli
 5. **Verify Installation:**
 After provisioning, go back to the "Settings" tab, and under the "Config Vars" section, you should see the DATABASE_URL. This URL is the connection string that your application will use to connect to the Postgres database.
 
-##### Project Preparation in Your IDE
+### Project Preparation in Your IDE
 
 1. **Install Required Packages**
 
@@ -594,7 +594,7 @@ import os
 import dj_database_url
 ```
 
-##### Update DATABASE Setting
+### Update DATABASE Setting
 
 Comment out the original SQLite connection and add a new connection to use ElephantSQL.
 
@@ -657,7 +657,7 @@ DATABASES = {
     }
 }
 ```
-#### Confirming Your Database
+### Confirming Your Database
 
 After setting up the database and performing migrations, it's essential to confirm that the data in your ElephantSQL database has been correctly created. This step ensures that your database tables are set up and that you can successfully add data to your database, including your superuser account.
 
@@ -677,11 +677,11 @@ With the **auth_user** table selected, click on **"Execute"** to run the query a
 
 After executing the query, you should see a list of users in the table. Look for the details of the superuser account you created during the setup process. Confirming the presence and accuracy of your superuser details in the `auth_user` table indicates that your migrations were successful, and your database tables have been correctly created.
 
-#### Setting Up Heroku Deployment
+### Setting Up Heroku Deployment
 
 After preparing your project in your IDE and confirming your database with ElephantSQL, deploy the application on Heroku and ensure it uses the correct database depending on the environment it's running in.
 
-##### Update Database Settings in `settings.py`
+### Update Database Settings in `settings.py`
 
 Modify `settings.py` to dynamically switch between databases (Postgres on Heroku and SQLite locally).
 
@@ -710,7 +710,7 @@ else:
         }
     }
 ```
-##### Additional Deployment Steps
+### Additional Deployment Steps
 
 1. **Install Gunicorn:**  
 
@@ -753,7 +753,7 @@ else:
    ACCOUNT_EMAIL_VERIFICATION = 'none'
    ```
 
-##### Connecting Django to AWS S3
+### Connecting Django to AWS S3
 
 1. **Install Required Packages**
 
