@@ -50,7 +50,8 @@ Testing has been completed using the W3C code validators to ensure that the code
 16. [Club Posts Page Validation](resources/validations/club-posts.PNG)
 17. [Comments Page Validation](resources/validations/comments.PNG)
 18. [Profile Page Validation](resources/validations/profile.PNG)
-19. [CSS Validation](resources/validations/css-validation.PNG)
+19. [Sign Out Page Validation](resources/validations/sign-out.PNG)
+20. [CSS Validation](resources/validations/css-validation.PNG)
 <br>
 ### JSHint
 Quality testing of the JavaScript code has been carried out using [JSHint](https://jshint.com/). Before testing please ensure the checkboxes next to "New JavaScript features (ES6)" and "jQuery" have been turned on. To do this please click "CONFIGURE" and if needed click "New JavaScript features (ES6)" and "jQuery".
