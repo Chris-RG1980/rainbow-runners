@@ -47,6 +47,11 @@
     color: var(--red);
 }
 
+.light-red {
+    color: var(--red);
+    filter: contrast(200%);
+}
+
 .orange {
     color: var(--orange);
 }
@@ -116,6 +121,12 @@
 .image-size {
     width: 15%;
     height: 15%;
+}
+
+.alert {
+    border-width: 3px;
+    border-color: black;
+    border-radius: 0;
 }
 
 /* base.html */
@@ -386,31 +397,34 @@ footer, ul {
     thead {
         display: none;
     }
-    .responsive-bag tr {
+    .responsive-flex-table tr {
         display: flex;
         flex-direction: column;
     }
 
-    .responsive-bag tbody {
+    .responsive-flex-table tbody {
         gap: 20px;
         display: flex;
         flex-direction: column;
     }
 
-    .responsive-bag tr {
+    .responsive-flex-table td {
+        padding: 5px 15px;
+    }
+
+    .bag-table tr {
         border: solid black;
     }
 
-    .responsive-bag td {
-        padding: 5px 15px;
+    .bag-table td {
         border-color: var(--bs-border-color);
     }
 
-    .responsive-bag td.quantity-col {
+    .bag-table td.quantity-col {
         order: 998;
     }
 
-    .responsive-bag td.btn-row {
+    .bag-table td.btn-row {
         order: 999;
     }
 

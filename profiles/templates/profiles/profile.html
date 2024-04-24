@@ -12,7 +12,7 @@
         <div class="col-lg-6">
             <form method="post" id="profile-update-form" action="{% url 'profile' %}">
                 {% csrf_token %}
-                <fieldset class="border border-black p-3 text-muted">
+                <fieldset class="border border-black border-3 p-3 bg-white text-muted">
                     <legend class="mb-2">Account Details</legend>
                     {{ form|crispy }}
                     <div class="d-flex justify-content-center">

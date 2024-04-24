@@ -25,7 +25,7 @@
                 {% if post.club_notice %}
                     <a href="{% url 'post_detail' post_id=post.id %}" class="text-decoration-none black">
                         <div class="card-body">
-                                <h4><span class="badge bg-green">Club News</span></h4>
+                                <h4><span class="badge bg-green black">Club News</span></h4>
                             <p>{{ post.body|bleach }}</p>
                             {% if post.edited_by == None %}
                                 <div class="d-flex justify-content-between">
