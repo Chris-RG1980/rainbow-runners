@@ -4,6 +4,10 @@
 **Contents**
 - [Rainbow Runners - Testing](#rainbow-runners---testing)
   - [Responsiveness](#responsiveness)
+    - [Mobile Screenshots](#mobile-screenshots)
+    - [Tablet Screenshots](#tablet-screenshots)
+    - [Desktop Screenshots](#desktop-screenshots)
+    - [Summary](#summary)
   - [Validations](#validations)
     - [W3C Validator](#w3c-validator)
     - [JSHint](#jshint)
@@ -26,7 +30,21 @@ Ipad Air: 768 x 1024<br>
 Nexus 10: 800 x 1280<br>
 Desktop 1080p: 1920 x 1080<br>
 
-
+### Mobile Screenshots                
+![Image](resources/responsive/mobile-responsive-one.png)
+![Image](resources/responsive/mobile-responsive-two.png)                  
+### Tablet Screenshots
+![Image](resources/responsive/tablet-responsive-one.png)
+![Image](resources/responsive/tablet-responsive-two.png)
+![Image](resources/responsive/tablet-responsive-three.png)
+### Desktop Screenshots
+![Image](resources/responsive/desktop-responsive-one.png)
+![Image](resources/responsive/desktop-responsive-two.png)
+![Image](resources/responsive/desktop-responsive-three.png)
+![Image](resources/responsive/desktop-responsive-four.png)
+![Image](resources/responsive/desktop-responsive-five.png)
+### Summary
+![Image](resources/responsive/responsive-summary.png)
 ***
 ## Validations
 ### W3C Validator
