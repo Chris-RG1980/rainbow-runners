@@ -19,9 +19,6 @@ def is_in_group(user, group_name):
 
 def all_products(request):
     """A view to show all products, including sorting and search queries"""
-
-    is_admin = is_in_group(request.user, 'admin')
-
     products = Product.objects.all()
     query = None
     categories = None
@@ -47,8 +44,7 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
-        'current_sorting': current_sorting,
-        'is_admin': is_admin
+        'current_sorting': current_sorting
     }
 
     return render(request, 'products/products.html', context)
