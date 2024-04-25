@@ -32,6 +32,7 @@
                 {% empty %}
                     <p>No comments yet.</p>
                 {% endfor %}
+                <!--Pagination to display a maximum of three comments per page-->
                 <div class="mt-1">
                     <ul class="pagination pagination-sm justify-content-center mt-2">
                         {% if comments.has_previous %}
@@ -62,7 +63,7 @@
                     </ul>
                 </div>
             </section>
-            <!-- Comment form -->
+            <!-- Comment form with CKEditor text box -->
             <section class="mt-2">
                 <form id="comment_form" action="" method="post">
                     {% csrf_token %}
