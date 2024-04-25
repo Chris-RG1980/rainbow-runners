@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page_header %}
+    <!--Page heading-->
     <div class="container py-4">
         <div class="row">
             <div class="col text-center">
@@ -16,13 +17,14 @@
 {% endblock %}
 
 {% block content %}
+    <!--Page content-->
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="text-center mb-4">
                 <h2 class="sub-heading">Thank You</h2>
                 <p>Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
             </div>
-
+            <!--Display order information-->
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title text-muted mb-4">Order Information</h5>
@@ -38,7 +40,7 @@
                     <h5 class="card-title text-muted mb-4">Order Details</h5>
                     {% for item in order.lineitems.all %}
                         <div class="row">
-                            <div class="col-6">{{ item.product.name }}{% if item.product_size %} - Size {{ item.product.size|upper }}{% endif %}</div>
+                            <div class="col-6">{{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}</div>
                             <div class="col-6 text-end">{{ item.quantity }} @ £{{ item.product.price }} each</div>
                         </div>
                     {% endfor %}

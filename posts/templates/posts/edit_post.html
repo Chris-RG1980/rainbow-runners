@@ -3,9 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <!--Page heading-->
     <h2 class="text-center sub-heading mt-4">Edit Info</h2>
     <div class="row d-flex justify-content-center mt-4 text-font">
+        <!--Page body-->
         <div class="col-xl-6 col-md-10">
+            <!--Form for editing posts-->
             <form id="posts_form" action="{% url 'edit_post' post_id=post.id %}" method="POST" class="p-3 border bg-light bg-gradient">
                 {% csrf_token %}
                 {{ form|crispy }}

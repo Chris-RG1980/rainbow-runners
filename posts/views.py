@@ -56,9 +56,7 @@ def all_posts(request):
 
     context = {
         'posts': posts,
-        'form': form,
-        'is_coordinator': is_coordinator,
-        'is_admin': is_admin
+        'form': form
     }
 
     return render(request, 'posts/posts.html', context)
@@ -96,9 +94,7 @@ def edit_post(request, post_id):
     print("Is Coordinator:", is_coordinator)
     context = {
         'post': post,
-        'form': form,
-        'is_coordinator': is_coordinator,
-        'is_admin': is_admin
+        'form': form
     }
 
     return render(request, 'posts/edit_post.html', context)
@@ -130,8 +126,6 @@ def post_detail(request, post_id):
     """
 
     post = get_object_or_404(Posts, id=post_id)
-    is_coordinator = is_in_group(request.user, 'co-ordinators')
-    is_admin = is_in_group(request.user, 'admin')
 
     new_comment = None
     if request.method == 'POST':
@@ -168,9 +162,7 @@ def post_detail(request, post_id):
         'post': post,
         'comments': comments,
         'new_comment': new_comment,
-        'comment_form': comment_form,
-        'is_coordinator': is_coordinator,
-        'is_admin': is_admin
+        'comment_form': comment_form
     }
     return render(request, 'posts/post_detail.html', context)
 
