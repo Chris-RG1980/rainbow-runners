@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block page_header %}
+    <!--Page heading-->
     <div class="row">
         <div class="col mt-5 mb-2">
             <h2 class="sub-heading text-center">Shopping Basket</h2>
@@ -11,6 +12,7 @@
 
 
 {% block content %}
+    <!--Page content-->
     <div class="row d-flex justify-content-center">
         {% if bag_items %}
             <div class="col-xl-8">
@@ -61,6 +63,7 @@
                                 <div class="quantity">
                                     <form method="POST"  action="{% url 'adjust_bag' item.item_id %}" class="update-form">
                                         {% csrf_token %}
+                                        <!--Quantity selector to increase or decrease the quantity of a selected product-->
                                         <div class="input-group">
                                             <div>
                                                 <label class="sr-only" for="id_qty_{{ item.item_id }}">Quantity</label>
@@ -77,6 +80,7 @@
                                         </div>
                                         <input type="hidden" name="product_size"  value="{{ item.size }}" />
                                     </form>
+                                    <!--Update button-->
                                     <div>
                                         <a class="update-link black btn btn-info"><small>Update</small></a>
                                     </div>
@@ -98,6 +102,7 @@
                     </div>
                     <div>
                         <strong>Subtotal:</strong> £{{ total }}</div>
+                    <!--Shipping information to be displayed-->
                     <div class="border-top">
                         <strong>Shipping:</strong>
                     </div>
@@ -127,6 +132,7 @@
                 </div>
             </div>
         {% else %}
+            <!--Display if the basket is empty-->
             <div class="row">
                 <div class="col">
                     <div class="alert alert-warning">No products in basket</div>

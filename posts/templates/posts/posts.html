@@ -16,6 +16,7 @@
                         </div>
                     </div>
                     <div>
+                        <!--Display edit and delete button to superusers, admin and co-ords-->
                         {% if user.is_authenticated and is_coordinator or is_admin %}
                             <a href="{% url 'edit_post' post_id=post.id %}" class="btn btn-primary" aria-label="Edit Button"><i class="bi bi-pencil p-2"></i></a>
                             <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?');" aria-label="Delete Button"><i class="bi bi-trash3 p-2"></i></a>
@@ -27,12 +28,14 @@
                         <div class="card-body">
                                 <h4><span class="badge bg-green black">Club News</span></h4>
                             <p>{{ post.body|bleach }}</p>
+                            <!--Display the users name who created the post-->
                             {% if post.edited_by == None %}
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
                                     <p><small class="text-muted">Click on this post to view or add comments!</small></p>
                                 </div>
                             {% endif %}
+                            <!--Display the users name who edited the post-->
                             {% if post.edited_by != None %}
                                 <div class="d-flex justify-content-between">
                                     <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
@@ -44,9 +47,11 @@
                 {% else %}
                     <div class="card-body">
                         <p>{{ post.body|bleach }}</p>
+                        <!--Display the users name who created the post-->
                         {% if post.edited_by == None %}
                             <p class="mb-0"><small class="text-muted">Posted on {{ post.created_date|date:"d M, Y" }}</small></p>
                         {% endif %}
+                        <!--Display the users name who edited the post-->
                         {% if post.edited_by != None %}
                             <p class="mb-0"><small class="text-muted">Edited by {{ post.edited_by }} on {{ post.last_edited_date|date:"d M, Y" }}</small></p>
                         {% endif %}
@@ -54,6 +59,7 @@
                 {% endif %}
             </div>
             {% endfor %}
+            <!--Pagination to display a maximum of three posts per page-->
             <div class="mt-1">
                 <ul class="pagination pagination-sm justify-content-center mt-2">
                     {% if posts.has_previous %}
@@ -85,6 +91,7 @@
             </div>
         </div>
     </div>
+    <!--Create posts form with CKEditor text box-->
     {% if user.is_authenticated and is_coordinator or is_admin%}
         <div class="row d-flex justify-content-center mt-4 mb-4 text-font">
             <div class="col-xl-6 col-md-10">

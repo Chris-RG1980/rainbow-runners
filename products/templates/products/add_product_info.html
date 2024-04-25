@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <!--Page heading-->
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6">
             <hr>
@@ -9,11 +10,12 @@
             <hr>
         </div>
     </div>
-
+    <!--Page body-->
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6">
             <h6 class="mb-3"><span class="text-muted">Product Name: </span> {{product.name}}</h6>
             <h6 class="mb-3"><span class="text-muted">Product ID: </span> {{product.id}}</h6>
+            <!--Size selection-->
             {% if product.has_sizes %}
                 <h6 class="mb-3 text-muted">Select Required Sizes:</h6>
                 <table class="table w-50 table-sm table-bordered table-dark table-hover">
@@ -49,6 +51,7 @@
             {% endif %}
         </div>            
     </div>
+    <!--Add product metadata-->
     <div class="row d-flex justify-content-center mb-2">
         <div class="col-12 col-md-6">
             <hr>
@@ -77,6 +80,7 @@
 {% endblock %}
 {% block postloadjs %}
     <script>
+        // Size selection toggle that allows users to add and delete sizes
         $(".select-size").click(function(){
             let btn = $(this);
             let productId = $(btn).attr('data-product-id');
