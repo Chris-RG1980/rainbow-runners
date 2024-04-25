@@ -19,6 +19,7 @@
   - [Full Testing](#full-testing)
     - [Interactive Elements](#interactive-elements)
   - [Bugs](#bugs)
+    - [Solved Bugs](#solved-bugs)
     - [Known Bugs](#known-bugs)
 ***
 ## Responsiveness
@@ -142,6 +143,8 @@ The lighthouse results can be found for each page below.
 ![Image](resources/lighthouse/lighthouse-test-five.PNG)                           
 ***
 ## Wave
+WAVE is a free web accessibility evaluation tool that utilises browser extensions which identifies ways to make a webpage more accessible to people with disabilities.
+
 The Wave tool has been completed with no errors or contrast errors found.                              
                                    
 ![Image](resources/wave/wave-results-one.PNG)
@@ -341,6 +344,14 @@ Testing has been carried out on the browsers within the below table as these bro
 | Sign out button | When clicked the user will be taken to the home page. | Clicked on the sign out button. | Taken to the home page. | Pass |
 ***
 ## Bugs
+### Solved Bugs
+| Bug | Solution |
+|:----| :------: |
+| Users not logged are able to access products from categories that are restricted for logged in members only by changing the product ID in the url.  | Added check on the  product details view to ensure that users are logged in before viewing products outside of a specific category.  |  
+| Users on the product and bag page are able to manually input quantities lower than 0 when not using the quantity increase/decrease functionality. | A change event was updated to check the minimum value on the quantity input and set it to that if the value goes lower than the minimum value |  
+| Accessibility bug on sign up form where help text span for password 1 had no value which triggered Wave tool issue.  |  The help text span is empty because all validation messages are shown in an unordered list outside of the span making the span redundant, a new sign up form was created which inherited from SignupForm so the password1 help_text could be set to None which stopped rendering the span on the page. The help text will display correctly if the user submits and has a validation issue with their password so functionality now works as expected and wave tool issue is resolved. |  
+| Questions table was not responsive. | Reutilised previous written CSS to make the bag table responsive using flex and made the class names more generic so they could apply to other tables throughout the site, those class names was then applied to the question table which resolved the issue and enabled future tables to also utilise this fix. | 
+
 ### Known Bugs
 | Bug | Description|
 |:--- | :----------|
