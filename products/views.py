@@ -54,6 +54,13 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+
+    if (not request.user.is_authenticated and
+            product.category.name != "essentials"):
+        msg = 'You need to be logged in to view this product.'
+        messages.error(request, msg)
+        return redirect('products')
+
     context = {
         'product': product
     }
