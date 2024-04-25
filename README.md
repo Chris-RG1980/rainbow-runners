@@ -39,6 +39,7 @@ Welcome to Rainbow Runners, a vibrant virtual running club dedicated to the LGBT
     - [Conclusion](#conclusion)
   - [Features](#features)
   - [Future Features](#future-features)
+    - [View Questions CRUD Functionality](#view-questions-crud-functionality)
     - [Support Options for Non-Members](#support-options-for-non-members)
     - [Event Calendar for Potential Members](#event-calendar-for-potential-members)
     - [Mobile App for Members](#mobile-app-for-members)
@@ -237,6 +238,9 @@ The design approach for the Rainbow Runners website has a blend of aesthetic app
 | Register Page   | **Structure**<br>The "Register" page, powered by Django Allauth, provides a user-friendly interface for new users to create accounts. This setup includes the necessary fields and functionalities for secure user registration. Key features of this page include:<br><br>**Email Field:** Requires new users to provide a valid email address, which will be used for account verification.<br>**Username Field:** Allows users to choose a unique username that will identify them on the platform.<br>**Password Fields:** Users must enter a password and confirm it in a second field to ensure accuracy. This password will be used for account security.<br>**Sign Up Button:** Completes the registration process. Upon clicking, the system validates the data. If all is well, the new account is created, and the user will be asked to verify their email address to activate the account.<br>**Purpose**<br>The Register page facilitates the onboarding of new members by providing a clear and secure method for account creation. This page plays a crucial role in expanding the user base, while also maintaining high standards of security and data integrity. | ![Image](resources/features/register.png) |
 ***
 ## Future Features
+
+### View Questions CRUD Functionality
+- **CRUD Integration:** Implement CRUD functionality into the view questions page to assist with database management.
 
 ### Support Options for Non-Members
 - **Donation Integration:** Enable non-members to support the club through financial donations. This feature will include information on how contributions can be made easily, even for those who choose not to join but wish to support the club's efforts.
